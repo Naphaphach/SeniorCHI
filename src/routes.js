@@ -25,12 +25,24 @@ const SignIn = Loadable({
     loading: LoadingComponant
 })
 
+const SignUp = Loadable({
+    loader: () => import('./views/SignUp'),
+    loading: LoadingComponant
+})
+
+const Map = Loadable({
+    loader: () => import('./views/Map'),
+    loading: LoadingComponant
+})
+
 const Routes = props => {
     return (
         <App>
             <Router history={history}>
                 <Switch>
-                    <Route exact path="/" component={SignIn} />
+                    <Route exact path="/in" component={SignIn} />
+                    <Route exact path="/up" component={SignUp} />
+                    <Route exact path="/" component={Map} />
                 </Switch>
             </Router>
         </App>

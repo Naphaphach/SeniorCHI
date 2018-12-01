@@ -11,9 +11,13 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Logo from '../assets/logo.png';
+import Header from '../components/main/header'
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   main: {
+    marginTop: '9%',
+    marginBottom: '9%',
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
@@ -41,6 +45,7 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 2,
   },
 });
 
@@ -49,11 +54,12 @@ function SignIn(props) {
 
   return (
     <main className={classes.main}>
+    <Header/>
       <CssBaseline />
       <Paper className={classes.paper}>
         {/*<Avatar className={classes.avatar}>
           <LockIcon />
-  </Avatar>*/}
+        </Avatar>*/}
         <img src={Logo} width="20%" alt="Logo"/>
         <Typography component="h1" variant="h5">
           Sign in
@@ -67,10 +73,13 @@ function SignIn(props) {
             <InputLabel htmlFor="password">Password</InputLabel>
             <Input name="password" type="password" id="password" autoComplete="current-password" />
           </FormControl>
+          
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
+          <br/>
+          <Link to="/up" style={{fontSize:13}}>Do you have an account?</Link>
           <Button
             type="submit"
             fullWidth
@@ -80,7 +89,11 @@ function SignIn(props) {
           >
             Sign in
           </Button>
+          <br/>
+          <Link to="/" style={{fontSize:13}}>Cancel</Link>
         </form>
+        <br/>
+        <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
       </Paper>
     </main>
   );

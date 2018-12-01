@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,10 +23,16 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import logo from '../../assets/logo.png'
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import Button from '@material-ui/core/Button';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import { Link } from 'react-router-dom'
 
 const drawerWidth = 240;
 
 const styles = theme => ({
+  but:{
+    marginRight: 12,
+  },
   root: {
     display: 'flex',
   },
@@ -137,9 +143,10 @@ const styles = theme => ({
   },
 });
 
-class MiniDrawer extends React.Component {
+class Header extends Component {
   state = {
     open: false,
+    auth: false,
   };
 
   handleDrawerOpen = () => {
@@ -155,6 +162,7 @@ class MiniDrawer extends React.Component {
 
     return (
       <div className={classes.root}>
+      {console.log(window.location.href)}
         <CssBaseline />
         <AppBar
           position="fixed"
@@ -171,12 +179,14 @@ class MiniDrawer extends React.Component {
                 [classes.hide]: this.state.open,
               })}
             >
-              <MenuIcon />
+              {this.state.auth ? <MenuIcon /> : null}
             </IconButton>
             <Typography variant="h6" color="inherit">
                 <img src={logo} alt='CHI' className={classes.logo}/>
             </Typography>
-            <div className={classes.search} style={{width: '100%', marginLeft: 0}}>
+            {window.location.href.search('in') === -1 && window.location.href.search('up') === -1 ? 
+            <Fragment>
+              <div className={classes.search} style={{width: '100%', marginLeft: 0}}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
@@ -188,8 +198,18 @@ class MiniDrawer extends React.Component {
                             }}
                         />
                     </div>
+                    {this.state.auth?
+                    <AccountCircle className={classes.but}/>
+                    : <Button color="inherit" className={classes.but}><Link to="/in" style={{
+                      fontWeight: "bold",
+                      color: "white"
+                    }}> Login </Link> </Button>}
+                    {console.log(window.location.href.search('in'), window.location.href.search('up'))}
+            </Fragment>
+            :null}
           </Toolbar>
         </AppBar>
+        {this.state.auth ?
         <Drawer
           variant="permanent"
           className={classNames(classes.drawer, {
@@ -228,14 +248,15 @@ class MiniDrawer extends React.Component {
             ))}
           </List> */}
         </Drawer>
+        :null}
       </div>
     );
   }
 }
 
-MiniDrawer.propTypes = {
+Header.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+export default withStyles(styles, { withTheme: true })(Header);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
+import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import Icon from '@material-ui/core/Icon';
@@ -8,15 +8,18 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-const styles = {
+const styles = theme => ( {
     root:{
         width: '100%',
         position: 'fixed',
         bottom: 0,
         backgroundColor: 'rgb(162,224,120)',
-        color: 'green'
+        color: 'green',
+        [theme.breakpoints.up('sm')]: {
+            display: "none"
+        },
     }
-}
+})
 
 class Footer extends Component {
     constructor(props) {
@@ -48,5 +51,5 @@ Footer.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default injectSheet(styles)(Footer)
+export default withStyles(styles)(Footer)
 

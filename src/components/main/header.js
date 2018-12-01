@@ -182,7 +182,7 @@ class Header extends Component {
               {this.state.auth ? <MenuIcon /> : null}
             </IconButton>
             <Typography variant="h6" color="inherit">
-                <img src={logo} alt='CHI' className={classes.logo}/>
+                <Link to="/"><img src={logo} alt='CHI' className={classes.logo}/></Link>
             </Typography>
             {window.location.href.search('in') === -1 && window.location.href.search('up') === -1 ? 
             <Fragment>

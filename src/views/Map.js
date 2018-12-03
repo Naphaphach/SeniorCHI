@@ -1373,11 +1373,11 @@ class Map extends Component {
                     }
                        {valueState[0] ===  "Chandigarh"? 
                        <g id="Chandigarh">
-                            <polygon className={classes.unselected} fill="#F79833" points="502.5,203.667 499.012,203.667 497.167,206.5 497.167,206.5 497.833,209.167 498.833,210.5 
+                            <polygon className={classes.selected} fill="#F79833" points="502.5,203.667 499.012,203.667 497.167,206.5 497.167,206.5 497.833,209.167 498.833,210.5 
                                 501.333,211.333 503.167,209.333 503.167,205.333 	"/>
                         </g>
                        :<g id="Chandigarh">
-                            <polygon onClick={()=>{this.handleClick('Chandigarh')}} className={classes.Chandigarh} fill="#F79833" points="502.5,203.667 499.012,203.667 497.167,206.5 497.167,206.5 497.833,209.167 498.833,210.5 
+                            <polygon onClick={()=>{this.handleClick('Chandigarh')}} className={classes.unselected} fill="#F79833" points="502.5,203.667 499.012,203.667 497.167,206.5 497.167,206.5 497.833,209.167 498.833,210.5 
                                 501.333,211.333 503.167,209.333 503.167,205.333 	"/>
                         </g>}
                         {valueState[0] ===  "Uttarakhand"? 

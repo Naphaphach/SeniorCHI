@@ -1,5 +1,5 @@
 const initState = {
-    valueState: 'Andaman_and_Nicobar_Islands'
+    valueState: 'Andaman and Nicobar Islands'
 }
 
 const projectReducer = (state, action) => {

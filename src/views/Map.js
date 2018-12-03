@@ -82,8 +82,8 @@ class Map extends Component {
                             <polygon onClick={()=>{this.handleClick('Lakshadweep')}} className={classes.unselected} fill="#128832" points="360.833,864.333 359.333,867.167 360.833,869 363.333,867.667 363.333,865.833 	"/>
                             <path onClick={()=>{this.handleClick('Lakshadweep')}} className={classes.unselected} fill="#128832" d="M315.083,861l-1.417,0.667l-0.833,2.667c0,0.833,0.833,2.333,0.833,2.333l2.833-2.833v-2L315.083,861z"/>
                         </g>}
-                        {valueState === "Andaman_and_Nicobar_Islands" ? 
-                        <g id="Andaman_and_Nicobar_Islands" >
+                        {valueState === "Andaman and Nicobar Islands" ? 
+                        <g id="Andaman and Nicobar Islands" >
                             <polygon className={classes.selected} fill="#128832" points="1008.5,722 1005,722 1008.5,728.5 1011.5,725.25 	"/>
                             <polygon className={classes.selected} fill="#128832" points="986.5,762.5 983.5,768 983.5,778 990.5,775.5 990.5,766 	"/>
                             <polygon className={classes.selected} fill="#128832" points="980.5,793 980.5,798.5 987,806 987,796 990.5,790 987,783.5 	"/>
@@ -98,20 +98,20 @@ class Map extends Component {
                             <polygon className={classes.selected} fill="#128832" points="1008.25,948.5 1005,948.5 1011.5,948.5 1011.5,941 1008.25,937.25 	"/>
                             <path className={classes.selected} fill="#128832" d="M1021.5,961.5l2.5,8l-2.5,3.5l2.5,7.5h6h3c0,0,0.5-6,0-5.5s-5.639-6.5-5.639-6.5V965v-3.5H1021.5z"/>
                         </g>
-                        :<g id="Andaman_and_Nicobar_Islands" >
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="1008.5,722 1005,722 1008.5,728.5 1011.5,725.25 	"/>
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="986.5,762.5 983.5,768 983.5,778 990.5,775.5 990.5,766 	"/>
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="980.5,793 980.5,798.5 987,806 987,796 990.5,790 987,783.5 	"/>
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="980.5,806 977.5,815 980.5,822.5 980.5,829 983.5,833 987,826 990.5,819.5 985.5,814 983.5,809 	"/>
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="977.5,851.5 971.5,854 974.5,860.5 980.5,860.5 980.5,851.5 	"/>
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="965.5,830 965.5,833 967.5,833 	"/>
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="958.5,819.5 954.5,822 958.5,822 961.5,820.75 	"/>
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="1016.5,806 1014,809 1018.5,809 1018.5,806 	"/>
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="983.5,910.5 984,914 987,910 	"/>
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="1014,927 1011.5,930 1012.75,933.5 1016.25,930.25 	"/>
-                            <path onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" d="M993,933.5c0,0,4,2,4,3.5s0,4,0,4h6c0,0,2-2.5,0-3.75s-4.556-3.75-4.556-3.75H993z"/>
-                            <polygon onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" points="1008.25,948.5 1005,948.5 1011.5,948.5 1011.5,941 1008.25,937.25 	"/>
-                            <path onClick={()=>{this.handleClick('Andaman_and_Nicobar_Islands')}} className={classes.unselected} fill="#128832" d="M1021.5,961.5l2.5,8l-2.5,3.5l2.5,7.5h6h3c0,0,0.5-6,0-5.5s-5.639-6.5-5.639-6.5V965v-3.5H1021.5z"/>
+                        :<g id="Andaman and Nicobar Islands" >
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="1008.5,722 1005,722 1008.5,728.5 1011.5,725.25 	"/>
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="986.5,762.5 983.5,768 983.5,778 990.5,775.5 990.5,766 	"/>
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="980.5,793 980.5,798.5 987,806 987,796 990.5,790 987,783.5 	"/>
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="980.5,806 977.5,815 980.5,822.5 980.5,829 983.5,833 987,826 990.5,819.5 985.5,814 983.5,809 	"/>
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="977.5,851.5 971.5,854 974.5,860.5 980.5,860.5 980.5,851.5 	"/>
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="965.5,830 965.5,833 967.5,833 	"/>
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="958.5,819.5 954.5,822 958.5,822 961.5,820.75 	"/>
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="1016.5,806 1014,809 1018.5,809 1018.5,806 	"/>
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="983.5,910.5 984,914 987,910 	"/>
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="1014,927 1011.5,930 1012.75,933.5 1016.25,930.25 	"/>
+                            <path onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" d="M993,933.5c0,0,4,2,4,3.5s0,4,0,4h6c0,0,2-2.5,0-3.75s-4.556-3.75-4.556-3.75H993z"/>
+                            <polygon onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" points="1008.25,948.5 1005,948.5 1011.5,948.5 1011.5,941 1008.25,937.25 	"/>
+                            <path onClick={()=>{this.handleClick('Andaman and Nicobar Islands')}} className={classes.unselected} fill="#128832" d="M1021.5,961.5l2.5,8l-2.5,3.5l2.5,7.5h6h3c0,0,0.5-6,0-5.5s-5.639-6.5-5.639-6.5V965v-3.5H1021.5z"/>
                         </g>}
                         {valueState === "Goa" ? 
                         <g id="Goa">
@@ -207,8 +207,8 @@ class Map extends Component {
                                 l-1.065-1.194L401.75,658z"/>
                         </g>
                         }
-                        {valueState === "Andhra_Pradesh" ?
-                        <g id="Andhra_Pradesh">
+                        {valueState === "Andhra Pradesh" ?
+                        <g id="Andhra Pradesh">
                         <path className={classes.selected} fill="#128832" d="M477.313,748.188l0.188,3.625l-1.313,1.563l0.25,2.438l3.313,0.438l1-1l0.355-2.213l1.645,0.463
                             l5.229-0.604l0.896,3.354l2.25,1.438l5.25-0.563l2.75-1.125l1.5-1.125l1.108-1.611l0.267-0.389l2.875,0.375l1.624,2.274
                             l0.251,0.351l1.625-1l2.25,0.792l0.125,4.958l1.625,0.5l1.125,3.75l1.5-1.375l4.009,0.578l0.048,1.756l0.098,3.59l0.095,3.451
@@ -246,8 +246,8 @@ class Map extends Component {
                             l0.425,2.211l-0.782,3.884l1.028,1.267L477.313,748.188z"/>
                     </g>
                         :
-                        <g id="Andhra_Pradesh">
-                            <path onClick={()=>{this.handleClick('Andhra_Pradesh')}} className={classes.unselected} fill="#128832" d="M477.313,748.188l0.188,3.625l-1.313,1.563l0.25,2.438l3.313,0.438l1-1l0.355-2.213l1.645,0.463
+                        <g id="Andhra Pradesh">
+                            <path onClick={()=>{this.handleClick('Andhra Pradesh')}} className={classes.unselected} fill="#128832" d="M477.313,748.188l0.188,3.625l-1.313,1.563l0.25,2.438l3.313,0.438l1-1l0.355-2.213l1.645,0.463
                                 l5.229-0.604l0.896,3.354l2.25,1.438l5.25-0.563l2.75-1.125l1.5-1.125l1.108-1.611l0.267-0.389l2.875,0.375l1.624,2.274
                                 l0.251,0.351l1.625-1l2.25,0.792l0.125,4.958l1.625,0.5l1.125,3.75l1.5-1.375l4.009,0.578l0.048,1.756l0.098,3.59l0.095,3.451
                                 h5.083l1.292,4.875l-0.875,0.75l-1.125,3.125l-2.875-0.125v2.75l-1.125,2.125l-2.75-0.625l-0.413,1.449l-1.721,2.391l-1.492,1.658
@@ -352,8 +352,8 @@ class Map extends Component {
                                 l-1.333-1.083l-0.417-2.25c0,0,0.25-2,0.083-2.5s-2.083-1.583-2.083-1.583L412.333,800l-0.417-2.083l-1.208-1.583v-3
                                 c0,0-0.542-2.167-0.792-2.167s-1.083-1.5-1.083-1.5v-0.861L410.708,789.667z"/>
                         </g>}
-                        {valueState === "Tamil_Nadu" ?
-                        <g id="Tamil_Nadu">
+                        {valueState === "Tamil Nadu" ?
+                        <g id="Tamil Nadu">
                         <path className={classes.selected} fill="#128832" d="M474.875,821.75l-3.25,0.125l-0.851,0.803l-0.959,0.754l-0.564,0.444l-0.503,1.078l-0.372,0.797v0.719
                             v0.688l-0.156,0.938l-0.656,0.281h-2.25h-3.188h-0.375l-1.552-0.621l-0.948-0.379l-1.5-1.75l-1.49-0.349l-1.709-0.672l-0.261-0.436
                             l-0.432,0.999l-0.71,0.685l-0.769,0.555l-1.046,1.968h-2.917l-1,0.792l0.238,0.885l0.345,1.282h1.667l0.667,0.833l0.786,0.427
@@ -399,8 +399,8 @@ class Map extends Component {
                             l-0.63,1.387l-1.999-0.846l-0.99-0.419l-4.136-0.985l-1.125,1.125l-2.656,0.706L474.875,821.75z"/>
                     </g>
                         :
-                        <g id="Tamil_Nadu">
-                            <path onClick={()=>{this.handleClick('Tamil_Nadu')}} className={classes.unselected} fill="#128832" d="M474.875,821.75l-3.25,0.125l-0.851,0.803l-0.959,0.754l-0.564,0.444l-0.503,1.078l-0.372,0.797v0.719
+                        <g id="Tamil Nadu">
+                            <path onClick={()=>{this.handleClick('Tamil Nadu')}} className={classes.unselected} fill="#128832" d="M474.875,821.75l-3.25,0.125l-0.851,0.803l-0.959,0.754l-0.564,0.444l-0.503,1.078l-0.372,0.797v0.719
                                 v0.688l-0.156,0.938l-0.656,0.281h-2.25h-3.188h-0.375l-1.552-0.621l-0.948-0.379l-1.5-1.75l-1.49-0.349l-1.709-0.672l-0.261-0.436
                                 l-0.432,0.999l-0.71,0.685l-0.769,0.555l-1.046,1.968h-2.917l-1,0.792l0.238,0.885l0.345,1.282h1.667l0.667,0.833l0.786,0.427
                                 l3.17,0.906l0.647,1.083l1.251,0.507l0.394,0.16l0.833,0.833l-0.827,0.788l-0.576,0.548l-0.347,0.33l-0.233,0.467l-0.933,1.867
@@ -551,8 +551,8 @@ class Map extends Component {
                                 L889.333,368.667z"/>
                         </g>
                         }
-                        {valueState === "Arunachai_Pradesh" ?
-                        <g id="Arunachai_Pradesh">
+                        {valueState === "Arunachai Pradesh" ?
+                        <g id="Arunachai Pradesh">
                         <path className={classes.selected} fill="#FFFFFF" d="M939.574,336.616V333l-2.407-3l-1.333-3.333v-1.833c0,0,2.667,1.333,2.667,0c0-1.333-3.333-5.333-2.667-6
                             c0.667-0.667-0.833-1.5-0.833-1.5s-2.5,0-3,0.667s-4.5,1.333-4.5,1.333l-4.167-8.833l1.833-3l4.833,1.167l2.833,0.833l3.667-2.667
                             l5-1.667l3.167-0.667h4.167l1.667-1.333l1.5-1.5v-0.833l2-2.5l-2.333-1.5l2.333-2.5l1.833-1.5l3.565-0.667l6.769-8.167v-5.667
@@ -576,8 +576,8 @@ class Map extends Component {
                             l-3.77,0.37l-2.894,1.388L945,338l-2.667,1.603L939.574,336.616z"/>
                         </g>
                         :
-                        <g id="Arunachai_Pradesh">
-                            <path onClick={()=>{this.handleClick('Arunachai_Pradesh')}} className={classes.unselected} fill="#FFFFFF" d="M939.574,336.616V333l-2.407-3l-1.333-3.333v-1.833c0,0,2.667,1.333,2.667,0c0-1.333-3.333-5.333-2.667-6
+                        <g id="Arunachai Pradesh">
+                            <path onClick={()=>{this.handleClick('Arunachai Pradesh')}} className={classes.unselected} fill="#FFFFFF" d="M939.574,336.616V333l-2.407-3l-1.333-3.333v-1.833c0,0,2.667,1.333,2.667,0c0-1.333-3.333-5.333-2.667-6
                                 c0.667-0.667-0.833-1.5-0.833-1.5s-2.5,0-3,0.667s-4.5,1.333-4.5,1.333l-4.167-8.833l1.833-3l4.833,1.167l2.833,0.833l3.667-2.667
                                 l5-1.667l3.167-0.667h4.167l1.667-1.333l1.5-1.5v-0.833l2-2.5l-2.333-1.5l2.333-2.5l1.833-1.5l3.565-0.667l6.769-8.167v-5.667
                                 l5.667-1l1.167-1.167h3.333l1.833-0.833l2.667-1.667l9-9.167l5.167-5l3.333-1.667v-1.667l3.333-0.667l2.167-1.333l3.333-1
@@ -688,8 +688,8 @@ class Map extends Component {
                                 L976.522,387.006z"/>
                         </g>
                         }
-                        {valueState === "West_Bengai" ?
-                        <g id="West_Bengai">
+                        {valueState === "West Bengai" ?
+                        <g id="West Bengai">
                         <path className={classes.selected} fill="#870024" d="M845.125,343"/>
                         <path className={classes.selected} fill="#FFFFFF" d="M841.5,331.625l-2.875-0.25l-3.941-0.894L833,330l-1.5,2.875l-3,1.125l-0.75-1.375h-2.5
                             c0,0-2.75,0.625-2.75,1.375s1.25,4,1.25,4l0.25,3.25l1.25,1.75c0,0,1.75,2,0,2.5s-3,1.25-2.75,2.25s0.208,3.125,0.208,3.125
@@ -712,9 +712,9 @@ class Map extends Component {
                             l1.347-3.917L870,343h-5.25l-5.75-2.25l-5-1.5c0,0-0.5,1.5-1.25,1.25s-3.5-1.25-3.5-1.25l-1.25-0.5l-4-4.75L841.5,331.625z"/>
                     </g>
                         :
-                        <g id="West_Bengai">
-                            <path onClick={()=>{this.handleClick('West_Bengai')}} className={classes.unselected} fill="#870024" d="M845.125,343"/>
-                            <path onClick={()=>{this.handleClick('West_Bengai')}} className={classes.unselected} fill="#FFFFFF" d="M841.5,331.625l-2.875-0.25l-3.941-0.894L833,330l-1.5,2.875l-3,1.125l-0.75-1.375h-2.5
+                        <g id="West Bengai">
+                            <path onClick={()=>{this.handleClick('West Bengai')}} className={classes.unselected} fill="#870024" d="M845.125,343"/>
+                            <path onClick={()=>{this.handleClick('West Bengai')}} className={classes.unselected} fill="#FFFFFF" d="M841.5,331.625l-2.875-0.25l-3.941-0.894L833,330l-1.5,2.875l-3,1.125l-0.75-1.375h-2.5
                                 c0,0-2.75,0.625-2.75,1.375s1.25,4,1.25,4l0.25,3.25l1.25,1.75c0,0,1.75,2,0,2.5s-3,1.25-2.75,2.25s0.208,3.125,0.208,3.125
                                 l1.792,1.875v5l0.75,3.375l-3.25,2.042l-5.667,4.333l-2.69,3.5l-0.143,4.083l5.625,4.386l1.708,1.864v4.167l-3.5-0.833l-2,2.833
                                 l-2,1.333l1.333,2.167v6.5l1.458,8l-1.75,4.5l3.625,1.375v3.5l-4.625,1.792l1,3.333l-1,3.75L811,427.833L807,430l-1.125,3.875
@@ -899,27 +899,27 @@ class Map extends Component {
                                 c0,0.846-3.739,0-3.739,0L369.25,543l-3.998,1.398H364l-1.506-0.971l1.27-1.407l-1.178-2.891V538z"/>
                         </g>
                         }
-                        {valueState === "Dadra_and_Nagar_Mavell" ?
-                        <g id="Dadra_and_Nagar_Mavell">
+                        {valueState === "Dadra and Nagar Mavell" ?
+                        <g id="Dadra and Nagar Mavell">
                         <polygon className={classes.selected} fill="#FFFFFF" points="370.333,542.333 370.333,542.333 372,540.667 370.917,538.583 369.667,539.129 367.739,539.333 
                             365.5,541.107 363.167,542.333 361.833,544.5 361.833,546.833 363.167,547.833 365.203,549.667 367.739,548.333 369.667,548 
                             371.667,547.333 373.667,545.167 374,543.333 	"/>
                         </g>
                         :
-                        <g id="Dadra_and_Nagar_Mavell">
-                            <polygon onClick={()=>{this.handleClick('Dadra_and_Nagar_Mavell')}} className={classes.unselected} fill="#FFFFFF" points="370.333,542.333 370.333,542.333 372,540.667 370.917,538.583 369.667,539.129 367.739,539.333 
+                        <g id="Dadra and Nagar Mavell">
+                            <polygon onClick={()=>{this.handleClick('Dadra and Nagar Mavell')}} className={classes.unselected} fill="#FFFFFF" points="370.333,542.333 370.333,542.333 372,540.667 370.917,538.583 369.667,539.129 367.739,539.333 
                                 365.5,541.107 363.167,542.333 361.833,544.5 361.833,546.833 363.167,547.833 365.203,549.667 367.739,548.333 369.667,548 
                                 371.667,547.333 373.667,545.167 374,543.333 	"/>
                         </g>
                         }
-                        {valueState === "Daman_and_Diu" ?
-                        <g id="Daman_and_Diu">
+                        {valueState === "Daman and Diu" ?
+                        <g id="Daman and Diu">
                         <polygon className={classes.selected} fill="#FFFFFF" points="363.613,535.603 362.587,539.129 363.416,542.654 367.333,539.667 367.917,537.026 366.203,536.34 
                                 "/>
                         </g>
                         :
-                        <g id="Daman_and_Diu">
-                            <polygon onClick={()=>{this.handleClick('Daman_and_Diu')}} className={classes.unselected} fill="#FFFFFF" points="363.613,535.603 362.587,539.129 363.416,542.654 367.333,539.667 367.917,537.026 366.203,536.34 
+                        <g id="Daman and Diu">
+                            <polygon onClick={()=>{this.handleClick('Daman and Diu')}} className={classes.unselected} fill="#FFFFFF" points="363.613,535.603 362.587,539.129 363.416,542.654 367.333,539.667 367.917,537.026 366.203,536.34 
                                     "/>
                         </g>
                         }
@@ -970,8 +970,8 @@ class Map extends Component {
                                 L700.333,322.333z"/>
                         </g>
                         }
-                        {valueState === "Madhya_Pradesh" ?
-                        <g id="Madhya_Pradesh">
+                        {valueState === "Madhya Pradesh" ?
+                        <g id="Madhya Pradesh">
                         <path className={classes.selected} fill="#FFFFFF" d="M489.583,424.667l-1.181-0.175L488.167,422l-2.769-0.274l0.269-3.393l-10.167,1.75l-0.5-0.75l-6-0.833
                             l-1.5,6.167l-1.731,1.113l-2.435,5.053l-4.5,1l-2.5,2.333l-1.408-0.179l-0.759-1.821H453l0.5-2l-2,0.053l-0.411-0.306l1.249-3.049
                             l1.495,0.404l1.771-0.417l1.063-0.25l1.837-0.08l2.122-0.844l0.104-3.071l-0.28-4.984l0.069-2.199l0.147-1.989l3.57-0.445
@@ -1018,8 +1018,8 @@ class Map extends Component {
                             L495,411.936l-1.333-1.269l-1.5,0.333l-0.333,7.769l0.833,3.5c0,0-1.316,2.206-1.667,2.397"/>
                     </g>
                         :
-                        <g id="Madhya_Pradesh">
-                            <path onClick={()=>{this.handleClick('Madhya_Pradesh')}} className={classes.unselected} fill="#FFFFFF" d="M489.583,424.667l-1.181-0.175L488.167,422l-2.769-0.274l0.269-3.393l-10.167,1.75l-0.5-0.75l-6-0.833
+                        <g id="Madhya Pradesh">
+                            <path onClick={()=>{this.handleClick('Madhya Pradesh')}} className={classes.unselected} fill="#FFFFFF" d="M489.583,424.667l-1.181-0.175L488.167,422l-2.769-0.274l0.269-3.393l-10.167,1.75l-0.5-0.75l-6-0.833
                                 l-1.5,6.167l-1.731,1.113l-2.435,5.053l-4.5,1l-2.5,2.333l-1.408-0.179l-0.759-1.821H453l0.5-2l-2,0.053l-0.411-0.306l1.249-3.049
                                 l1.495,0.404l1.771-0.417l1.063-0.25l1.837-0.08l2.122-0.844l0.104-3.071l-0.28-4.984l0.069-2.199l0.147-1.989l3.57-0.445
                                 l0.742-2.492L464.5,407.5h-2.129l0.296-5.333l-1.823,0.101l-2.379-0.175l-1.298-0.26l-1.833,2.5l-1.667-1l-7.833-0.917L445,399.728
@@ -1131,8 +1131,8 @@ class Map extends Component {
                                 l1.5-1.375l0.625-2.875v-2.875l1.375-1.75L844,306.125l-1-3.5l-1-1.5l-1.75-1.5l-2.125-0.25L838,298H836.375z"/>
                         </g>
                     }
-                    {valueState === "Uttar_Pradesh" ?
-                    <g id="Uttar_Pradesh">
+                    {valueState === "Uttar Pradesh" ?
+                    <g id="Uttar Pradesh">
                     <path className={classes.selected} fill="#F79833" d="M531.167,230.5l-3.667-0.667h-1.167l-1.429-1.17l-2.834-1.474l-0.82,1.31h-1.083v1.5l-2.223,1.641
                         l-1.429,2.2l-1.289,2.568l-2.058,1.425l-2.137,1.986L510.5,240.5v1.167l-0.752,2.99L509.5,245.5l-1.667,0.5l-0.716,2.863
                         L506.833,250l-1.333,0.5l0.248,8.664L506,268l0.5,6.333l2.5,1.833l0.5,2.167l1.667,1.25c0,0,0,2.667,0,3.083
@@ -1185,8 +1185,8 @@ class Map extends Component {
                         l0.188-0.188l0.667-0.667l0.467-0.775L531.167,230.5z"/>
                 </g>
                     :
-                        <g id="Uttar_Pradesh">
-                            <path onClick={()=>{this.handleClick('Uttar_Pradesh')}} className={classes.unselected} fill="#F79833" d="M531.167,230.5l-3.667-0.667h-1.167l-1.429-1.17l-2.834-1.474l-0.82,1.31h-1.083v1.5l-2.223,1.641
+                        <g id="Uttar Pradesh">
+                            <path onClick={()=>{this.handleClick('Uttar Pradesh')}} className={classes.unselected} fill="#F79833" d="M531.167,230.5l-3.667-0.667h-1.167l-1.429-1.17l-2.834-1.474l-0.82,1.31h-1.083v1.5l-2.223,1.641
                                 l-1.429,2.2l-1.289,2.568l-2.058,1.425l-2.137,1.986L510.5,240.5v1.167l-0.752,2.99L509.5,245.5l-1.667,0.5l-0.716,2.863
                                 L506.833,250l-1.333,0.5l0.248,8.664L506,268l0.5,6.333l2.5,1.833l0.5,2.167l1.667,1.25c0,0,0,2.667,0,3.083
                                 c0,0.417,0,2.833,0,2.833l1.167,3.167l2.183,4.383l1.952,6.555l0.364,4.395l-2.167,1.167l-1.957,2.071l-1.543,2.345v2.833
@@ -1238,15 +1238,15 @@ class Map extends Component {
                                 l0.188-0.188l0.667-0.667l0.467-0.775L531.167,230.5z"/>
                         </g>
                     }
-                    {valueState === 'National_Capital_Territory_of_Delhi'?
-                    <g id="National_Capital_Territory_of_Delhi">
+                    {valueState === 'National Capital Territory of Delhi'?
+                    <g id="National Capital Territory of Delhi">
                     <polygon className={classes.selected} fill="#F79833" points="506.5,274.333 504.167,274.333 502.333,275.167 501.333,277.333 501.137,278.586 500.167,280.667 
                         499.633,281.9 499.633,281.9 500.167,282.167 501.167,284.167 504.167,283.833 506,285.333 511.167,285.833 511.167,281.667 
                         511.167,279 509.5,278.333 509,277.333 509,276.167 	"/>
                     </g>
                     :
-                        <g id="National_Capital_Territory_of_Delhi">
-                            <polygon onClick={()=>{this.handleClick('National_Capital_Territory_of_Delhi')}} className={classes.unselected} fill="#F79833" points="506.5,274.333 504.167,274.333 502.333,275.167 501.333,277.333 501.137,278.586 500.167,280.667 
+                        <g id="National Capital Territory of Delhi">
+                            <polygon onClick={()=>{this.handleClick('National Capital Territory of Delhi')}} className={classes.unselected} fill="#F79833" points="506.5,274.333 504.167,274.333 502.333,275.167 501.333,277.333 501.137,278.586 500.167,280.667 
                                 499.633,281.9 499.633,281.9 500.167,282.167 501.167,284.167 504.167,283.833 506,285.333 511.167,285.833 511.167,281.667 
                                 511.167,279 509.5,278.333 509,277.333 509,276.167 	"/>
                         </g>
@@ -1459,8 +1459,8 @@ class Map extends Component {
                                 l0.167-2l-0.833-1.5l-1.167-5.833l-1.167-2.167l-1.333-1.167l-2.138-0.261l-3.837-0.637l1.725-1.685l0.874-2.621l0.542-2.462l0,0
                                 l1.8-0.5l0.7-1.667L475.667,156.833z"/>
                         </g>}
-                        {valueState ===  "Himachal_Pradesh"? 
-                        <g id="Himachal_Pradesh">
+                        {valueState ===  "Himachal Pradesh"? 
+                        <g id="Himachal Pradesh">
                         <path className={classes.selected} fill="#F79833" d="M504.139,131.797L500,130.25l-5.95,1.294L490,133.25l-0.333,2.75H486.5l-2.75,2.25l-1.5,1.5l-1.625-1.125
                             l-1.875,0.25L478.583,141l2.167,3l-0.351,3.497L478,151.75v2.083l-0.216,2.399l-3.117,1.101l-1.366,0.839v1.161h-1.134l-0.816,1.18
                             l-0.219,0.997l-0.37,1.032l-0.511,1.541l-1.398,1.093l-0.494,1.426l1.622,0.269l2.865,0.447l1.795,0.45l1.027,0.898l0.917,1.702
@@ -1478,8 +1478,8 @@ class Map extends Component {
                             l-2.11-2.426L529,140.75v1.167l-2.161,0.392l-3.761,0.102l-3.472-0.161l-0.759-1.328L517.75,139l-4.75-0.75l-2.25-2.75"/>
                     </g>
                         :
-                        <g id="Himachal_Pradesh">
-                            <path onClick={()=>{this.handleClick('Himachal_Pradesh')}} className={classes.unselected} fill="#F79833" d="M504.139,131.797L500,130.25l-5.95,1.294L490,133.25l-0.333,2.75H486.5l-2.75,2.25l-1.5,1.5l-1.625-1.125
+                        <g id="Himachal Pradesh">
+                            <path onClick={()=>{this.handleClick('Himachal Pradesh')}} className={classes.unselected} fill="#F79833" d="M504.139,131.797L500,130.25l-5.95,1.294L490,133.25l-0.333,2.75H486.5l-2.75,2.25l-1.5,1.5l-1.625-1.125
                                 l-1.875,0.25L478.583,141l2.167,3l-0.351,3.497L478,151.75v2.083l-0.216,2.399l-3.117,1.101l-1.366,0.839v1.161h-1.134l-0.816,1.18
                                 l-0.219,0.997l-0.37,1.032l-0.511,1.541l-1.398,1.093l-0.494,1.426l1.622,0.269l2.865,0.447l1.795,0.45l1.027,0.898l0.917,1.702
                                 l0.567,2.051l0.49,2.452l0.595,2.219l0.564,1.482l-0.133,1.593l1.802,0.158l0.988,1.153l0.784,1.855L482,185.5l0.386,1.7l1.78,2.3
@@ -1495,8 +1495,8 @@ class Map extends Component {
                                 l-0.145-1.6l1.056-0.88v-6l-1.96-0.28l-3.29,2.78l-5.08-0.929L537,149.25v-1.75l-0.603-0.991l-0.647-0.592v-1.667l-2-0.5
                                 l-2.11-2.426L529,140.75v1.167l-2.161,0.392l-3.761,0.102l-3.472-0.161l-0.759-1.328L517.75,139l-4.75-0.75l-2.25-2.75"/>
                         </g>}
-                        {valueState ===  "Jammu_and_Kashmir"? 
-                        <g id="Jammu_and_Kashmir">
+                        {valueState ===  "Jammu and Kashmir"? 
+                        <g id="Jammu and Kashmir">
                         <path className={classes.selected} fill="#F79833" d="M433.5,5.625l-2.57,1.365l1.32,1.76l3,1.75V13h-3l-3,1.25h-2.5v-2L416.25,12l-1.083,2.25H413v2.5
                             l-1.75,1.375l-1.5,0.625h-1.5v2.5L406,22.5l-1.994,1.855L401.25,24.5l-1.457,2.199l-1.293,2.926v5.125l1.25,1.75l2.125,0.625
                             l4.5,0.625H411l2,2l2.167,3.25l2.333,2.75L420,47l3.25,1.25h5l0.875,2.625l0.125,1.875l-1.5,2.25l0.5,4h3.5l1.25,2h2.25l1.25,1.75
@@ -1520,8 +1520,8 @@ class Map extends Component {
                         <path className={classes.selected} fill="#CCE70B" d="M445.5,68.75"/>
                     </g>
                         :
-                        <g id="Jammu_and_Kashmir">
-                            <path onClick={()=>{this.handleClick('Jammu_and_Kashmir')}} className={classes.unselected} fill="#F79833" d="M433.5,5.625l-2.57,1.365l1.32,1.76l3,1.75V13h-3l-3,1.25h-2.5v-2L416.25,12l-1.083,2.25H413v2.5
+                        <g id="Jammu and Kashmir">
+                            <path onClick={()=>{this.handleClick('Jammu and Kashmir')}} className={classes.unselected} fill="#F79833" d="M433.5,5.625l-2.57,1.365l1.32,1.76l3,1.75V13h-3l-3,1.25h-2.5v-2L416.25,12l-1.083,2.25H413v2.5
                                 l-1.75,1.375l-1.5,0.625h-1.5v2.5L406,22.5l-1.994,1.855L401.25,24.5l-1.457,2.199l-1.293,2.926v5.125l1.25,1.75l2.125,0.625
                                 l4.5,0.625H411l2,2l2.167,3.25l2.333,2.75L420,47l3.25,1.25h5l0.875,2.625l0.125,1.875l-1.5,2.25l0.5,4h3.5l1.25,2h2.25l1.25,1.75
                                 l0.916,2.901L436.5,67.5l-1.5,4h-3.25l-3,1.25l-3.25,0.875V79l-3.125,0.875L418.5,80.5l-1.375,4.5l0.375,6l1.375,2v3.25l0.25,6.625
@@ -1541,7 +1541,7 @@ class Map extends Component {
                                 l0.5-3.25l-2.5,0.25l0.5-2l-1.75-0.25l-0.75-1.75l-4.75,0.25l-1.25,1.75l-1.75-5L477,6.25l-6.25,1.25l-1.25-1.25h-2.75h-3.25h-2
                                 h-0.75L459.426,4H457.5l-2.25,1.75L448.5,5.5l-2.75,2.75L443.25,8c0,0-1.886,2.65-1.136,0.9s-4.739-0.15-4.739-0.15L433.5,5.625z"
                                 />
-                            <path onClick={()=>{this.handleClick('Jammu_and_Kashmir')}} className={classes.unselected} fill="#CCE70B" d="M445.5,68.75"/>
+                            <path onClick={()=>{this.handleClick('Jammu and Kashmir')}} className={classes.unselected} fill="#CCE70B" d="M445.5,68.75"/>
                         </g>
                         }
                     </svg>

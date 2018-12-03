@@ -162,7 +162,6 @@ class Header extends Component {
 
     return (
       <div className={classes.root}>
-      {console.log(window.location.href)}
         <CssBaseline />
         <AppBar
           position="fixed"
@@ -171,6 +170,7 @@ class Header extends Component {
           })}
         >
           <Toolbar disableGutters={!this.state.open}>
+          {this.state.auth ?
             <IconButton
               color="inherit"
               aria-label="Open drawer"
@@ -179,8 +179,9 @@ class Header extends Component {
                 [classes.hide]: this.state.open,
               })}
             >
-              {this.state.auth ? <MenuIcon /> : null}
+               <MenuIcon /> 
             </IconButton>
+            : null}
             <Typography variant="h6" color="inherit">
                 <Link to="/"><img src={logo} alt='CHI' className={classes.logo}/></Link>
             </Typography>
@@ -204,7 +205,6 @@ class Header extends Component {
                       fontWeight: "bold",
                       color: "white"
                     }}> Login </Link> </Button>}
-                    {console.log(window.location.href.search('in'), window.location.href.search('up'))}
             </Fragment>
             :null}
           </Toolbar>

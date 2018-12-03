@@ -26,6 +26,8 @@ import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Link } from 'react-router-dom'
+import { searchMap } from '../../store/actions/mapAction'
+import { connect } from 'react-redux'
 
 const drawerWidth = 240;
 
@@ -144,10 +146,20 @@ const styles = theme => ({
 });
 
 class Header extends Component {
-  state = {
-    open: false,
-    auth: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      auth: false,
+      search: this.props.valueSearch
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -157,8 +169,12 @@ class Header extends Component {
     this.setState({ open: false });
   };
 
+  handleChangeSearch = event => {
+    this.props.searchMap(event.target.value)
+  };
+
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, valueSearch } = this.props;
 
     return (
       <div className={classes.root}>
@@ -197,6 +213,8 @@ class Header extends Component {
                             root: classes.inputRoot,
                             input: classes.inputInput,
                             }}
+                            value={valueSearch}
+                            onChange={this.handleChangeSearch}
                         />
                     </div>
                     {this.state.auth?
@@ -257,6 +275,19 @@ class Header extends Component {
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  valueSearch: PropTypes.string
 };
 
-export default withStyles(styles, { withTheme: true })(Header);
+const mapStateToProps = (state) => {
+  return {
+      valueSearch: state.map.valueSearch,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      searchMap: valueSearch => dispatch(searchMap(valueSearch))
+  }
+}
+
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Header));

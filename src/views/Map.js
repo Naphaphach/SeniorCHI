@@ -1371,7 +1371,7 @@ class Map extends Component {
                                 L459,244l-0.833,0.833h-1.333l-1.333,1.333L454.833,247.833z"/>
                         </g>
                     }
-                       {valueState[0] ===  "Chandigarh"? 
+                       {valueState[0] ===  "Chandigarh" ? 
                        <g id="Chandigarh">
                             <polygon className={classes.selected} fill="#F79833" points="502.5,203.667 499.012,203.667 497.167,206.5 497.167,206.5 497.833,209.167 498.833,210.5 
                                 501.333,211.333 503.167,209.333 503.167,205.333 	"/>

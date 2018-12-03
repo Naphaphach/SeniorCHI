@@ -34,7 +34,7 @@ class Detail extends Component {
         const { classes, valueState } = this.props;
         return(
             <div className={classes.state}>
-                {valueState.map((s,i) => i === 0 ? <b key = {i}>{s}</b> : <Button color='link' key = {i} onClick={()=>{this.handleClick(s)}}>{s}</Button>)}
+                {valueState.map((s,i) => i === 0 ? <b key = {i}>{s}<br/></b> : <Button color='link' key = {i} onClick={()=>{this.handleClick(s)}}>{s}<br/></Button>)}
             </div>
         )
     }

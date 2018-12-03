@@ -33,7 +33,7 @@ class Map extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         fetch('/api/Chi')
-        .then(res => console.log(res.body))
+        .then(res => res.json()).then(data => console.log(data.body))
         .catch(err => console.log(err))
     }
 

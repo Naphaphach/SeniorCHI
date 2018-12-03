@@ -21,6 +21,10 @@
         "function": "helloWorld"
       },
       {
+        "source": "/api/Chi",
+        "function": "Chi"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

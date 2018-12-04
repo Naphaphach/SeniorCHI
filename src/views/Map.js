@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import Home from '../layouts/Home'
 import Detail from '../components/map/detail'
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { connect } from 'react-redux'
 import { changeState } from '../store/actions/mapAction'
 import { Element, scroller } from 'react-scroll'
@@ -49,7 +49,6 @@ class Map extends Component {
 
         return(
             <Home>
-                    <Container>
                     <Result/>
                     <Element name="section_map" />
                     <Row>
@@ -1556,7 +1555,6 @@ class Map extends Component {
                         <Detail/>
                     </Col>
                     </Row>
-                    </Container>
                 </Home>
         )
     }    

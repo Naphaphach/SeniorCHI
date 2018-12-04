@@ -8,7 +8,8 @@ import Detail from '../components/map/detail'
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux'
 import { changeState } from '../store/actions/mapAction'
-
+import { Element, scroller } from 'react-scroll'
+import Result from '../components/map/searchResult'
 // Create your Styles. Remember, since React-JSS uses the default preset,
 // most plugins are available without further configuration needed.
 const styles = {
@@ -36,6 +37,12 @@ class Map extends Component {
 
     handleClick(s) {
         this.props.changeState(s);
+        scroller.scrollTo('section_detail', {
+            duration: 1000,
+            delay: 100,
+            smooth: true,
+            offset: 0, // Scrolls to element + 50 pixels down the page
+        })
     }
 
     render() {
@@ -44,8 +51,9 @@ class Map extends Component {
         return(
             <Fragment >
                 <Header/>
-                    {/* <img src={map} alt="map" className={classes.map}/> */}
                     <Container>
+                    <Result/>
+                    <Element name="section_map" />
                     <Row>
                     <Col xs="12" md="9">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width={window.innerWidth} height={window.innerHeight} viewBox={`170 0 990 990`} className={classes.map}>

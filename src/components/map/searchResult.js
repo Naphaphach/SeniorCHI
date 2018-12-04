@@ -5,24 +5,24 @@ import { withStyles } from '@material-ui/core/styles';
 import {Button} from 'reactstrap'
 import { connect } from 'react-redux'
 import { changeState } from '../../store/actions/mapAction'
-import { Element, scroller } from 'react-scroll'
+import { scroller } from 'react-scroll'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const styles = theme => ({
     state:{
         width: "100%",
         color: 'black',
+        textAlign: 'left',
         [theme.breakpoints.up('sm')]: {
-            marginTop: '45%',
-            width: 'auto',
+            marginTop: '9%',
         },
         [theme.breakpoints.down('sm')]: {
-            marginBottom: '20%',
-            width: 'auto',
+            marginTop: '20%',
         },
     }
 })
 
-class Detail extends Component {
+class Result extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -34,29 +34,35 @@ class Detail extends Component {
         })
     }
 
-    handleClick(s) {
-        this.props.changeState(s);
+    handleClick() {
+        scroller.scrollTo('section_detail', {
+            duration: 1000,
+            delay: 100,
+            smooth: true,
+            offset: 0, // Scrolls to element + 50 pixels down the page
+        })
     }
     render() {
-        const { classes, valueState } = this.props;
+        const { classes, valueState, search, Query} = this.props;
         return(
             <Fragment>
-                <Element name="section_detail" />
-                <div className={classes.state}>
-                    {valueState.map((s,i) => i === 0 ? <b key = {i}>{s}<br/></b> : <Button color='link' key = {i} onClick={()=>{this.handleClick(s)}}>{s}<br/></Button>)}
-                </div>
+                {search ? <div className={classes.state}>
+                    search: '{Query}' with {valueState[0] === '' ? 0 : valueState.length} Result <Button color='link' onClick={()=>{this.handleClick()}}><FontAwesomeIcon icon={['fas', 'arrow-right']} /><br/></Button>
+                </div> : null}
             </Fragment>
         )
     }
 }
 
-Map.propTypes = {
+Result.propTypes = {
     classes: PropTypes.object.isRequired,
     name: PropTypes.object.isRequired
 };
 const mapStateToProps = (state) => {
     return {
         valueState: state.map.valueState,
+        search: state.map.search,
+        Query: state.map.Query,
     }
 }
 
@@ -66,4 +72,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Detail))
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Result))

@@ -2,13 +2,15 @@ import stateSet from '../../models/state.json'
 
 const initState = {
     valueState: ['Andaman and Nicobar Islands'],
-    valueSearch: ''
+    valueSearch: '',
+    Query: '',
+    search: false
 }
 
 const projectReducer = (state, action) => {
     switch (action.type) {
         case 'CHANGE_STATE':
-            state = { ...state, valueState: [action.S], valueSearch: ''}
+            state = { ...state, valueState: [action.S], valueSearch: '', search: false}
             break;
 
         case 'SEARCH_MAP':
@@ -19,7 +21,7 @@ const projectReducer = (state, action) => {
                 result.push('')
             }
             result.sort();
-            state = { ...state, valueSearch: action.S, valueState: result }
+            state = { ...state, valueSearch: action.S, valueState: result, search: true, Query: action.S}
             break;
 
         default:

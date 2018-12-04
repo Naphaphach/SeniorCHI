@@ -28,6 +28,14 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+    [theme.breakpoints.up('sm')]:{
+      marginTop: '12%',
+      marginBottom: '9%',
+    },
+    [theme.breakpoints.down('sm')]:{
+      marginTop: '20%',
+      marginBottom: '9%',
+    },
   },
   paper: {
     marginTop: theme.spacing.unit ,

@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 //import map from '../assets/map.svg';
 import injectSheet from 'react-jss';
-import Header from '../components/main/header'
-import Footer from '../components/main/footer'
+import Home from '../layouts/Home'
 import Detail from '../components/map/detail'
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux'
@@ -49,8 +48,7 @@ class Map extends Component {
         const { classes, valueState} = this.props;
 
         return(
-            <Fragment >
-                <Header/>
+            <Home>
                     <Container>
                     <Result/>
                     <Element name="section_map" />
@@ -1559,8 +1557,7 @@ class Map extends Component {
                     </Col>
                     </Row>
                     </Container>
-                <Footer/>
-            </Fragment>
+                </Home>
         )
     }    
 }

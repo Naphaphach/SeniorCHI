@@ -1,18 +1,12 @@
-import React, {Component, Fragment} from 'react'
-import Header from '../components/main/header'
-import Footer from '../components/main/footer'
-import {Container} from 'reactstrap'
+import React, {Component} from 'react'
+import Home from '../layouts/Home'
 
 class Notice extends Component {
     render() {
         return(
-            <Fragment>
-                <Header/>
-                    <Container>
-                        Notice is not available
-                    </Container>
-                <Footer/>
-            </Fragment>
+            <Home>
+                Notice is not available
+            </Home>
         )
     }
 }

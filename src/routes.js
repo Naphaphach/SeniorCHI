@@ -7,7 +7,6 @@ import { Route, Switch, Router } from "react-router-dom";
 import createBrowserHistory from 'history/createBrowserHistory'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Alert } from 'reactstrap';
-
 const history = createBrowserHistory()
 
 const LoadingComponant = ({ isLoading, error }) => {

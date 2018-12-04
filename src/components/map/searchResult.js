@@ -56,7 +56,6 @@ class Result extends Component {
 
 Result.propTypes = {
     classes: PropTypes.object.isRequired,
-    name: PropTypes.object.isRequired
 };
 const mapStateToProps = (state) => {
     return {

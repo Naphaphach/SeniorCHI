@@ -35,6 +35,26 @@ const Map = Loadable({
     loading: LoadingComponant
 })
 
+const Diary = Loadable({
+    loader: () => import('./views/Diary'),
+    loading: LoadingComponant
+})
+
+const Book = Loadable({
+    loader: () => import('./views/Book'),
+    loading: LoadingComponant
+})
+
+const Feed = Loadable({
+    loader: () => import('./views/Feed'),
+    loading: LoadingComponant
+})
+
+const Notice = Loadable({
+    loader: () => import('./views/Notice'),
+    loading: LoadingComponant
+})
+
 const Routes = props => {
     return (
         <App>
@@ -42,6 +62,10 @@ const Routes = props => {
                 <Switch>
                     <Route exact path="/in" component={SignIn} />
                     <Route exact path="/up" component={SignUp} />
+                    <Route exact path="/diary" component={Diary} />
+                    <Route exact path="/feed" component={Feed} />
+                    <Route exact path="/bookmark" component={Book} />
+                    <Route exact path="/notice" component={Notice} />
                     <Route exact path="/" component={Map} />
                 </Switch>
             </Router>

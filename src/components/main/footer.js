@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
 
 const styles = theme => ( {
     root:{
@@ -12,7 +13,7 @@ const styles = theme => ( {
         bottom: 0,
         backgroundColor: 'rgb(162,224,120)',
         color: 'green',
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             display: "none"
         },
         fontSize: '1.5em',
@@ -23,7 +24,7 @@ class Footer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'recents',
+            value: 'map',
         }
     }
 
@@ -36,11 +37,11 @@ class Footer extends Component {
         const { value } = this.state;
         return(
             <BottomNavigation value={value} onChange={this.handleChange} className={classes.root} showLabels>
-                <BottomNavigationAction label="map" value="map" icon={<FontAwesomeIcon icon={['fas', 'map-marked-alt']} />} />
-                <BottomNavigationAction label="diary" value="diary" icon={<FontAwesomeIcon icon={['fas', 'file-signature']} />} />
-                <BottomNavigationAction label="feed" value="feed" icon={<FontAwesomeIcon icon={['fas', 'newspaper']} />} />
-                <BottomNavigationAction label="bookmark" value="bookmark" icon={<FontAwesomeIcon icon={['fas', 'bookmark']} />} />
-                <BottomNavigationAction label="notice" value="notice" icon={<FontAwesomeIcon icon={['fas', 'bell']} />} />
+                <BottomNavigationAction component={Link} to="/" label="map" value="map" icon={<FontAwesomeIcon icon={['fas', 'map-marked-alt']} />} />
+                <BottomNavigationAction component={Link} to="/diary" label="diary" value="diary" icon={<FontAwesomeIcon icon={['fas', 'file-signature']} />} />
+                <BottomNavigationAction component={Link} to="/feed" label="feed" value="feed" icon={<FontAwesomeIcon icon={['fas', 'newspaper']} />} />
+                <BottomNavigationAction component={Link} to="/bookmark" label="bookmark" value="bookmark" icon={<FontAwesomeIcon icon={['fas', 'bookmark']} />} />
+                <BottomNavigationAction component={Link} to="/notice" label="notice" value="notice" icon={<FontAwesomeIcon icon={['fas', 'bell']} />} />
             </BottomNavigation>
         )
     }    

@@ -16,10 +16,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Icon from '@material-ui/core/Icon';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import logo from '../../assets/logo.png'
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
@@ -28,6 +24,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Link } from 'react-router-dom'
 import { searchMap } from '../../store/actions/mapAction'
 import { connect } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const drawerWidth = 240;
 
@@ -197,7 +194,7 @@ class Header extends Component {
             >
                <MenuIcon /> 
             </IconButton>
-            : null}
+             : null} 
             <Typography variant="h6" color="inherit">
                 <Link to="/"><img src={logo} alt='CHI' className={classes.logo}/></Link>
             </Typography>
@@ -249,9 +246,18 @@ class Header extends Component {
           </div>
           <Divider />
           <List>
-            {['recents', 'favorites', 'nearby', 'folder'].map((text, index) => (
+            {['map', 'diary', 'feed', 'bookmark', 'notification'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>{index === 0 ? <RestoreIcon /> : index === 1 ? <FavoriteIcon /> : index === 2 ? <LocationOnIcon /> : <Icon> fol </Icon>}</ListItemIcon>
+                <ListItemIcon>
+                {index === 0 ? 
+                <FontAwesomeIcon icon={['fas', 'map-marked-alt']} /> : 
+                index === 1 ? 
+                <FontAwesomeIcon icon={['fas', 'file-signature']} /> : 
+                index === 2 ? 
+                <FontAwesomeIcon icon={['fas', 'newspaper']} /> : 
+                index === 3 ? 
+                <FontAwesomeIcon icon={['fas', 'bookmark']} /> :
+                <FontAwesomeIcon icon={['fas', 'bell']} />}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
@@ -266,7 +272,7 @@ class Header extends Component {
             ))}
           </List> */}
         </Drawer>
-        :null}
+        :null} 
       </div>
     );
   }

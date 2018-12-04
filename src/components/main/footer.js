@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import Icon from '@material-ui/core/Icon';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const styles = theme => ( {
     root:{
@@ -18,6 +15,7 @@ const styles = theme => ( {
         [theme.breakpoints.up('sm')]: {
             display: "none"
         },
+        fontSize: '1.5em',
     }
 })
 
@@ -37,11 +35,12 @@ class Footer extends Component {
         const { classes } = this.props;
         const { value } = this.state;
         return(
-            <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
-                <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />} />
-                <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-                <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
-                <BottomNavigationAction label="Folder" value="folder" icon={<Icon>1</Icon>} />
+            <BottomNavigation value={value} onChange={this.handleChange} className={classes.root} showLabels>
+                <BottomNavigationAction label="map" value="map" icon={<FontAwesomeIcon icon={['fas', 'map-marked-alt']} />} />
+                <BottomNavigationAction label="diary" value="diary" icon={<FontAwesomeIcon icon={['fas', 'file-signature']} />} />
+                <BottomNavigationAction label="feed" value="feed" icon={<FontAwesomeIcon icon={['fas', 'newspaper']} />} />
+                <BottomNavigationAction label="bookmark" value="bookmark" icon={<FontAwesomeIcon icon={['fas', 'bookmark']} />} />
+                <BottomNavigationAction label="notice" value="notice" icon={<FontAwesomeIcon icon={['fas', 'bell']} />} />
             </BottomNavigation>
         )
     }    

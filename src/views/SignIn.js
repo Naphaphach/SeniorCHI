@@ -13,6 +13,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Logo from '../assets/logo.png';
 import Header from '../components/main/header'
 import { Link } from 'react-router-dom'
+import Co from '../components/main/cooperate'
 
 const styles = theme => ({
   main: {
@@ -90,10 +91,11 @@ function SignIn(props) {
             Sign in
           </Button>
           <br/>
-          <Link to="/" style={{fontSize:13}}>Cancel</Link>
         </form>
         <br/>
+        <Link to="/" style={{fontSize:13}}>Cancel</Link>
         <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
+        <Co/>
       </Paper>
     </main>
   );

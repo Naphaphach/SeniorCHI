@@ -13,6 +13,7 @@ import Logo from '../assets/logo.png';
 import Header from '../components/main/header'
 import { Link } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
+import Co from '../components/main/cooperate'
 
 const styles = theme => ({
   main: {
@@ -57,6 +58,7 @@ const styles = theme => ({
 });
 
 function SignUp(props) {
+
   const { classes } = props;
 
   return (
@@ -72,6 +74,10 @@ function SignUp(props) {
           Register
         </Typography>
         <form className={classes.form}>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="name">Display name</InputLabel>
+            <Input id="name" name="name" autoFocus />
+          </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
             <Input id="email" name="email" autoFocus />
@@ -98,7 +104,7 @@ function SignUp(props) {
               />
           </div>
           <FormGroup>
-            <Label for="exampleCustomFileBrowser" style={{fontSize: 15, float:'left'}}><b>File Browser:</b></Label>
+            <Label for="exampleCustomFileBrowser" style={{fontSize: 15, float:'left'}}><b>profile image:</b></Label>
             <CustomInput style={{fontSize: 1}} type="file" id="exampleCustomFileBrowser" name="customFile" />
           </FormGroup>
           <Button
@@ -114,6 +120,7 @@ function SignUp(props) {
           <Link to="/" style={{fontSize:13}}>Cancel</Link>
         </form>
         <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
+        <Co/>
       </Paper>
     </main>
   );

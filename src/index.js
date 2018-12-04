@@ -5,7 +5,7 @@ import Router from './routes';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMapMarkedAlt, faFileSignature, faNewspaper, faBookmark, faBell} from '@fortawesome/free-solid-svg-icons'
+import { faMapMarkedAlt, faFileSignature, faNewspaper, faBookmark, faBell, faSpinner} from '@fortawesome/free-solid-svg-icons'
 import { Provider } from 'react-redux'
 import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from './store/reducers/rootReducer'
@@ -13,7 +13,7 @@ import { offline } from 'redux-offline';
 import offlineConfig from 'redux-offline/lib/defaults';
 import thunk from 'redux-thunk'
 
-library.add(faMapMarkedAlt, faFileSignature, faNewspaper, faBookmark, faBell);
+library.add(faMapMarkedAlt, faFileSignature, faNewspaper, faBookmark, faBell, faSpinner);
 
 const store = createStore(rootReducer,compose(offline(offlineConfig),applyMiddleware(thunk)))
 

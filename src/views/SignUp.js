@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +14,7 @@ import Header from '../components/main/header'
 import { Link } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
 import Co from '../components/main/cooperate'
+import { connect } from 'react-redux'
 
 const styles = theme => ({
   main: {
@@ -57,10 +58,33 @@ const styles = theme => ({
   },
 });
 
-function SignUp(props) {
+class SignUp extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      Name: '',
+      Email: '',
+      Password: '',
+      RePassword: '',
+      BOD: '',
+      Photo: null,
+    };
+    this.handleChangePhoto = this.handleChangePhoto.bind(this)
+  }
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
 
-  const { classes } = props;
+  handleChangePhoto(event) {
+    this.setState({
+      Photo: URL.createObjectURL(event.target.files[0])
+    })
+  }
 
+  render(){
+  const { classes } = this.props;
   return (
     <main className={classes.main}>
     <Header/>
@@ -68,7 +92,8 @@ function SignUp(props) {
       <Paper className={classes.paper}>
         {/*<Avatar className={classes.avatar}>
           <LockIcon />
-        </Avatar>*/}
+        </Avatar>*/console.log(this.state)
+        }
         <img src={Logo} width="20%" alt="Logo"/>
         <Typography component="h1" variant="h5">
           Register
@@ -76,19 +101,19 @@ function SignUp(props) {
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="name">Display name</InputLabel>
-            <Input id="name" name="name" autoFocus />
+            <Input id="name" name="name" autoFocus onChange={this.handleChange('Name')}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoFocus />
+            <Input id="email" name="email" autoFocus onChange={this.handleChange('Email')}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" />
+            <Input name="password" type="password" id="password" onChange={this.handleChange('Password')}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="repassword">Re-Password</InputLabel>
-            <Input name="repassword" type="password" id="repassword" />
+            <Input name="repassword" type="password" id="repassword" onChange={this.handleChange('RePassword')}/>
           </FormControl>
           <div style={{marginTop: 10}}>
             <b style={{fontSize: 15, float:'left'}}>Birthday: </b>
@@ -101,11 +126,12 @@ function SignUp(props) {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                onChange={this.handleChange('BOD')}
               />
           </div>
           <FormGroup>
             <Label for="exampleCustomFileBrowser" style={{fontSize: 15, float:'left'}}><b>profile image:</b></Label>
-            <CustomInput style={{fontSize: 1}} type="file" id="exampleCustomFileBrowser" name="customFile" />
+            <CustomInput style={{fontSize: 1}} type="file" id="exampleCustomFileBrowser" accept="image/*" name="customFile" onChange={ (event) => this.handleChangePhoto(event) }/>
           </FormGroup>
           <Button
             type="submit"
@@ -123,11 +149,20 @@ function SignUp(props) {
         <Co/>
       </Paper>
     </main>
-  );
+  )
+}
 }
 
 SignUp.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignUp);
+const mapStateToProps = (state) => {
+  console.log(state);
+  
+  return {
+      valueState: state.map.valueState,
+  }
+}
+
+export default withStyles(styles)(connect(mapStateToProps)(SignUp));

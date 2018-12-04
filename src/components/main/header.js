@@ -25,6 +25,7 @@ import { Link } from 'react-router-dom'
 import { searchMap } from '../../store/actions/mapAction'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Co from '../../components/main/cooperate'
 
 const drawerWidth = 240;
 
@@ -147,7 +148,7 @@ class Header extends Component {
     super(props);
     this.state = {
       open: false,
-      auth: false,
+      auth: this.props.auth,
       search: this.props.valueSearch
     };
 
@@ -262,8 +263,9 @@ class Header extends Component {
               </ListItem>
             ))}
           </List>
-          {/* <Divider />
-          <List>
+          <Divider />
+
+          {/* <List>
             {['All mail', 'Trash', 'Spam'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
@@ -271,8 +273,9 @@ class Header extends Component {
               </ListItem>
             ))}
           </List> */}
+          <Co/>
         </Drawer>
-        :null} 
+         :null}  
       </div>
     );
   }
@@ -287,6 +290,7 @@ Header.propTypes = {
 const mapStateToProps = (state) => {
   return {
       valueSearch: state.map.valueSearch,
+      auth: state.auth.auth
   }
 }
 

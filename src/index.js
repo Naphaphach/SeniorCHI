@@ -12,10 +12,23 @@ import rootReducer from './store/reducers/rootReducer'
 import { offline } from 'redux-offline';
 import offlineConfig from 'redux-offline/lib/defaults';
 import thunk from 'redux-thunk'
+import { reduxFirestore, getFirestore } from 'redux-firestore'
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
+import fbConfig from './configs/fbConfig'
 
 library.add(faMapMarkedAlt, faFileSignature, faNewspaper, faBookmark, faBell, faSpinner);
 
-const store = createStore(rootReducer,compose(offline(offlineConfig),applyMiddleware(thunk)))
+const store = createStore(
+                            rootReducer,
+                            compose(
+                                offline(offlineConfig),
+                                applyMiddleware(
+                                    thunk.withExtraArgument({getFirebase, getFirestore})
+                                ),
+                                reduxFirestore(fbConfig),
+                                reactReduxFirebase(fbConfig)
+                            )
+                        )
 
 ReactDOM.render(
 <Provider store={store}>

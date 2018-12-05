@@ -54,6 +54,7 @@ Map.propTypes = {
     classes: PropTypes.object.isRequired,
     name: PropTypes.object.isRequired
 };
+
 const mapStateToProps = (state) => {
     return {
         valueState: state.map.valueState,

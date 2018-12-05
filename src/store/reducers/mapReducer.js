@@ -4,13 +4,19 @@ const initState = {
     valueState: ['Andaman and Nicobar Islands'],
     valueSearch: '',
     Query: '',
-    search: false
+    search: false,
+    Menu: '/'
 }
 
 const projectReducer = (state, action) => {
     switch (action.type) {
         case 'CHANGE_STATE':
             state = { ...state, valueState: [action.S], valueSearch: '', search: false}
+            break;
+
+        case 'CHANGE_MENU':
+            console.log(action.S);
+            state = { ...state, Menu: action.S}
             break;
 
         case 'SEARCH_MAP':

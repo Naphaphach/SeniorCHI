@@ -4,7 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import { changeMenu } from "../../store/actions/mapAction";
+import { connect } from 'react-redux'
 
 const styles = theme => ( {
     root:{
@@ -24,24 +26,31 @@ class Footer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'map',
+            value: this.props.Menu,
         }
     }
 
     handleChange = (event, value) => {
-        this.setState({ value });
+        this.setState({value})
+        this.props.changeMenu(value)
     };
+
+    renderRedirect = (value) => {
+        return <Redirect to={value} />
+    }
+
 
     render() {
         const { classes } = this.props;
         const { value } = this.state;
         return(
             <BottomNavigation value={value} onChange={this.handleChange} className={classes.root} showLabels>
-                <BottomNavigationAction component={Link} to="/" label="map" value="map" icon={<FontAwesomeIcon icon={['fas', 'map-marked-alt']} />} />
-                <BottomNavigationAction component={Link} to="/diary" label="diary" value="diary" icon={<FontAwesomeIcon icon={['fas', 'file-signature']} />} />
-                <BottomNavigationAction component={Link} to="/feed" label="feed" value="feed" icon={<FontAwesomeIcon icon={['fas', 'newspaper']} />} />
-                <BottomNavigationAction component={Link} to="/bookmark" label="bookmark" value="bookmark" icon={<FontAwesomeIcon icon={['fas', 'bookmark']} />} />
-                <BottomNavigationAction component={Link} to="/notice" label="notice" value="notice" icon={<FontAwesomeIcon icon={['fas', 'bell']} />} />
+                {this.renderRedirect(value)}
+                <BottomNavigationAction label="map" value="/" icon={<FontAwesomeIcon icon={['fas', 'map-marked-alt']} />} />
+                <BottomNavigationAction label="diary" value="/diary" icon={<FontAwesomeIcon icon={['fas', 'file-signature']} />} />
+                <BottomNavigationAction label="feed" value="/feed" icon={<FontAwesomeIcon icon={['fas', 'newspaper']} />} />
+                <BottomNavigationAction label="bookmark" value="/bookmark" icon={<FontAwesomeIcon icon={['fas', 'bookmark']} />} />
+                <BottomNavigationAction label="notice" value="/notice" icon={<FontAwesomeIcon icon={['fas', 'bell']} />} />
             </BottomNavigation>
         )
     }    
@@ -51,5 +60,17 @@ Footer.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Footer)
+const mapStateToProps = (state) => {
+    return {
+        Menu: state.map.Menu,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeMenu: Menu => dispatch(changeMenu(Menu))
+    }
+}
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Footer))
 

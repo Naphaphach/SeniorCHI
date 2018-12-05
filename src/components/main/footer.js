@@ -19,6 +19,10 @@ const styles = theme => ( {
             display: "none"
         },
         fontSize: '1.5em',
+    },
+    choice:{
+        minWidth: '0 !important',
+        padding: '0 !important',
     }
 })
 
@@ -46,11 +50,11 @@ class Footer extends Component {
         return(
             <BottomNavigation value={value} onChange={this.handleChange} className={classes.root} showLabels>
                 {this.renderRedirect(value)}
-                <BottomNavigationAction label="map" value="/" icon={<FontAwesomeIcon icon={['fas', 'map-marked-alt']} />} />
-                <BottomNavigationAction label="diary" value="/diary" icon={<FontAwesomeIcon icon={['fas', 'file-signature']} />} />
-                <BottomNavigationAction label="feed" value="/feed" icon={<FontAwesomeIcon icon={['fas', 'newspaper']} />} />
-                <BottomNavigationAction label="bookmark" value="/bookmark" icon={<FontAwesomeIcon icon={['fas', 'bookmark']} />} />
-                <BottomNavigationAction label="notice" value="/notice" icon={<FontAwesomeIcon icon={['fas', 'bell']} />} />
+                <BottomNavigationAction className={classes.choice} label="map" value="/" icon={<FontAwesomeIcon icon={['fas', 'map-marked-alt']} />} />
+                <BottomNavigationAction className={classes.choice} label="diary" value="/diary" icon={<FontAwesomeIcon icon={['fas', 'file-signature']} />} />
+                <BottomNavigationAction className={classes.choice} label="feed" value="/feed" icon={<FontAwesomeIcon icon={['fas', 'newspaper']} />} />
+                <BottomNavigationAction className={classes.choice} label="bookmark" value="/bookmark" icon={<FontAwesomeIcon icon={['fas', 'bookmark']} />} />
+                <BottomNavigationAction className={classes.choice} label="notice" value="/notice" icon={<FontAwesomeIcon icon={['fas', 'bell']} />} />
             </BottomNavigation>
         )
     }    

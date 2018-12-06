@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +14,9 @@ import Logo from '../assets/logo.png';
 import Header from '../components/main/header'
 import { Link } from 'react-router-dom'
 import Co from '../components/main/cooperate'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import {signin} from '../store/actions/authAction'
 
 const styles = theme => ({
   main: {
@@ -58,59 +61,101 @@ const styles = theme => ({
   },
 });
 
-function SignIn(props) {
-  const { classes } = props;
+class SignIn extends Component {
 
-  return (
-    <main className={classes.main}>
-    <Header/>
-      <CssBaseline />
-      <Paper className={classes.paper}>
-        {/*<Avatar className={classes.avatar}>
-          <LockIcon />
-        </Avatar>*/}
-        <img src={Logo} width="20%" alt="Logo"/>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
-          </FormControl>
-          
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <br/>
-          <Link to="/up" style={{fontSize:13}}>Do you have an account?</Link>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+  constructor(props){
+    super(props);
+    this.state = {
+      Email: '',
+      Password: '',
+      err: null
+    };
+  }
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
+    console.log(this.state);
+  };
+
+  handleClick(e){
+    e.preventDefault();
+    console.log(this.state);
+    this.props.signin(this.state)
+  }
+
+  renderRedirect = () => {
+    if (typeof(this.props.auth.uid) !== 'undefined'){
+      return <Redirect to={'/'} />
+    }
+  }
+
+  render(){
+    const { classes } = this.props;
+    return (
+      <main className={classes.main}>
+      {this.renderRedirect()}
+      <Header/>
+        <CssBaseline />
+        <Paper className={classes.paper}>
+          {/*<Avatar className={classes.avatar}>
+            <LockIcon />
+          </Avatar>*/}
+          <img src={Logo} width="20%" alt="Logo"/>
+          <Typography component="h1" variant="h5">
             Sign in
-          </Button>
+          </Typography>
+          <form className={classes.form} method="post" onSubmit={(event) => this.handleClick(event)}>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange('Email')}/>
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange('Password')}/>
+            </FormControl>
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <br/>
+            <Link to="/up" style={{fontSize:13}}>Do you have an account?</Link>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign in
+            </Button>
+            <br/>
+          </form>
           <br/>
-        </form>
-        <br/>
-        <Link to="/" style={{fontSize:13}}>Cancel</Link>
-        <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
-        <Co/>
-      </Paper>
-    </main>
-  );
+          <Link to="/" style={{fontSize:13}}>Cancel</Link>
+          <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
+          <Co/>
+        </Paper>
+      </main>
+    )
+  }
 }
 
 SignIn.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signin: user => dispatch(signin(user))
+  }
+}
+
+export default withStyles(styles)(connect(mapStateToProps,mapDispatchToProps)(SignIn));

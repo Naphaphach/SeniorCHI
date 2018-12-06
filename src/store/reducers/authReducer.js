@@ -1,16 +1,17 @@
 const initState = {
-    Name: '',
-    Photo: null,
-    err: null
+    err: null,
 }
 
 const authReducer = (state, action) => {
     switch (action.type) {
         case 'SIGNIN_SUCCESS':
-            state = { ...state, Name: action.U.Name, Photo: action.U.Photo, err: null}
+            state = { ...state}
             break;
         case 'SIGNIN_ERROR':
             state = { ...state, err: action.err.message}
+            break;
+        case 'SIGNOUT_SUCCESS':
+            state = initState
             break;
         default:
             state = initState

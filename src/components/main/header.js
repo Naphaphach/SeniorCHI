@@ -20,12 +20,13 @@ import logo from '../../assets/logo.png'
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Link } from 'react-router-dom'
 import { searchMap } from '../../store/actions/mapAction'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Co from '../../components/main/cooperate'
+import Avatar from 'react-avatar'
+import {signout} from '../../store/actions/authAction'
 
 const drawerWidth = 240;
 
@@ -148,7 +149,6 @@ class Header extends Component {
     super(props);
     this.state = {
       open: false,
-      auth: this.props.auth,
       search: this.props.valueSearch
     };
 
@@ -171,8 +171,12 @@ class Header extends Component {
     this.props.searchMap(event.target.value)
   };
 
+  handleclick = () => {
+    this.props.signout()
+  }
+
   render() {
-    const { classes, theme, valueSearch } = this.props;
+    const { classes, theme, valueSearch, profile } = this.props;
 
     return (
       <div className={classes.root}>
@@ -184,7 +188,7 @@ class Header extends Component {
           })}
         >
           <Toolbar disableGutters={!this.state.open}>
-          {this.state.auth ?
+          {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && this.props.auth.uid ?
             <IconButton
               color="inherit"
               aria-label="Open drawer"
@@ -199,7 +203,7 @@ class Header extends Component {
             <Typography variant="h6" color="inherit">
                 <Link to="/"><img src={logo} alt='CHI' className={classes.logo}/></Link>
             </Typography>
-            {window.location.href.search('in') === -1 && window.location.href.search('up') === -1 ? 
+            {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 ? 
             <Fragment>
               <div className={classes.search} style={{width: '100%', marginLeft: 0}}>
                         <div className={classes.searchIcon}>
@@ -215,8 +219,8 @@ class Header extends Component {
                             onChange={this.handleChangeSearch}
                         />
                     </div>
-                    {this.state.auth?
-                    <AccountCircle className={classes.but}/>
+                    {this.props.auth.uid ?
+                      <Button onClick={() => this.handleclick()}><Avatar name={profile.displayName} size="35" src={''} round={true} style={{marginRight: 12}}/></Button>
                     : <Button color="inherit" className={classes.but}><Link to="/in" style={{
                       fontWeight: "bold",
                       color: "white"
@@ -225,7 +229,7 @@ class Header extends Component {
             :null}
           </Toolbar>
         </AppBar>
-        {this.state.auth ?
+        {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && this.props.auth.uid ?
         <Drawer
           variant="permanent"
           className={classNames(classes.drawer, {
@@ -288,15 +292,18 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
       valueSearch: state.map.valueSearch,
-      auth: state.auth.auth
+      auth: state.firebase.auth,
+      profile: state.firebase.profile,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      searchMap: valueSearch => dispatch(searchMap(valueSearch))
+      searchMap: valueSearch => dispatch(searchMap(valueSearch)),
+      signout: () => dispatch(signout())
   }
 }
 

@@ -16,6 +16,7 @@ import TextField from '@material-ui/core/TextField';
 import Co from '../components/main/cooperate'
 import { connect } from 'react-redux'
 import {register} from '../store/actions/authAction'
+import { Redirect } from 'react-router-dom'
 
 const styles = theme => ({
   main: {
@@ -71,8 +72,9 @@ class SignUp extends Component{
       Email: '',
       Password: '',
       RePassword: '',
-      BOD: '',
+      BOD: '1997-01-01',
       Photo: null,
+      filename: '',
       err: null
     };
     this.handleChangePhoto = this.handleChangePhoto.bind(this)
@@ -87,22 +89,32 @@ class SignUp extends Component{
 
   handleChangePhoto(event) {
     this.setState({
-      Photo: URL.createObjectURL(event.target.files[0])
+      Photo: event.target.files[0],
+      filename: event.target.files[0].name
     })
   }
 
   handleClick(e){
     e.preventDefault();
     console.log(this.state);
-    if (this.state.Password === this.state.RePassword) {
+    if (this.state.Password === this.state.RePassword && this.state.Name !== '' && this.state.Email !== '') {
       this.props.register(this.state)
+    } else {
+      this.setState({err: 'field are missing'})
+    }
+  }
+
+  renderRedirect = () => {
+    if (typeof(this.props.auth.uid) !== 'undefined'){
+      return <Redirect to={'/'} />
     }
   }
 
   render(){
-  const { classes } = this.props;
+  const { classes, err} = this.props;
   return (
     <main className={classes.main}>
+    {this.renderRedirect()}
     <Header/>
       <CssBaseline />
       <Paper className={classes.paper}>
@@ -144,7 +156,7 @@ class SignUp extends Component{
           </div>
           <FormGroup>
             <Label for="exampleCustomFileBrowser" style={{fontSize: 15, float:'left'}}><b>profile image:</b></Label>
-            <CustomInput style={{fontSize: 1}} type="file" id="exampleCustomFileBrowser" accept="image/*" name="customFile" onChange={ (event) => this.handleChangePhoto(event) }/>
+            <CustomInput style={{fontSize: 1}} type="file" id="exampleCustomFileBrowser" accept="image/*" name="customFile" onChange={ (event) => this.handleChangePhoto(event) } label={this.state.filename}/>
           </FormGroup>
           <Button
             type="submit"
@@ -155,6 +167,8 @@ class SignUp extends Component{
           >
             Sign Up
           </Button>
+          <br/>
+          <p className={classes.err}> {err} <br/> {this.state.err} </p>
           <br/>
           <Link to="/" style={{fontSize:13}}>Cancel</Link>
         </form>
@@ -173,7 +187,8 @@ SignUp.propTypes = {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    auth: state.auth.auth,
+    err: state.auth.err,
+    auth: state.firebase.auth,
   }
 }
 

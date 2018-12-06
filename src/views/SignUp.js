@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
 import Co from '../components/main/cooperate'
 import { connect } from 'react-redux'
+import {register} from '../store/actions/authAction'
 
 const styles = theme => ({
   main: {
@@ -56,6 +57,10 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 2,
   },
+  err: {
+    color: 'Red',
+    fontSize: '.5em'
+  }
 });
 
 class SignUp extends Component{
@@ -68,19 +73,30 @@ class SignUp extends Component{
       RePassword: '',
       BOD: '',
       Photo: null,
+      err: null
     };
     this.handleChangePhoto = this.handleChangePhoto.bind(this)
   }
+
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
     });
+    console.log(this.state);
   };
 
   handleChangePhoto(event) {
     this.setState({
       Photo: URL.createObjectURL(event.target.files[0])
     })
+  }
+
+  handleClick(e){
+    e.preventDefault();
+    console.log(this.state);
+    if (this.state.Password === this.state.RePassword) {
+      this.props.register(this.state)
+    }
   }
 
   render(){
@@ -90,15 +106,11 @@ class SignUp extends Component{
     <Header/>
       <CssBaseline />
       <Paper className={classes.paper}>
-        {/*<Avatar className={classes.avatar}>
-          <LockIcon />
-        </Avatar>*/console.log(this.state)
-        }
         <img src={Logo} width="20%" alt="Logo"/>
         <Typography component="h1" variant="h5">
           Register
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} method="post" onSubmit={(event) => this.handleClick(event)}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="name">Display name</InputLabel>
             <Input id="name" name="name" autoFocus onChange={this.handleChange('Name')}/>
@@ -115,6 +127,7 @@ class SignUp extends Component{
             <InputLabel htmlFor="repassword">Re-Password</InputLabel>
             <Input name="repassword" type="password" id="repassword" onChange={this.handleChange('RePassword')}/>
           </FormControl>
+          {this.state.Password !== this.state.RePassword && this.state.RePassword.length > 0 ? <p className={classes.err}> Password does not match with RePassword </p> : null}
           <div style={{marginTop: 10}}>
             <b style={{fontSize: 15, float:'left'}}>Birthday: </b>
             <TextField
@@ -159,10 +172,15 @@ SignUp.propTypes = {
 
 const mapStateToProps = (state) => {
   console.log(state);
-  
   return {
-      valueState: state.map.valueState,
+    auth: state.auth.auth,
   }
 }
 
-export default withStyles(styles)(connect(mapStateToProps)(SignUp));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    register: valueState => dispatch(register(valueState))
+  }
+}
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(SignUp));

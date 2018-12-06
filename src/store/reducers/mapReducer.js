@@ -15,7 +15,6 @@ const projectReducer = (state, action) => {
             break;
 
         case 'CHANGE_MENU':
-            console.log(action.S);
             state = { ...state, Menu: action.S}
             break;
 

@@ -17,6 +17,8 @@ import Co from '../components/main/cooperate'
 import { connect } from 'react-redux'
 import {register} from '../store/actions/authAction'
 import { Redirect } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ErrMessage from '../components/main/errMessage';
 
 const styles = theme => ({
   main: {
@@ -24,11 +26,9 @@ const styles = theme => ({
     display: 'block', // Fix IE 11 issue.
     [theme.breakpoints.up('sm')]:{
       marginTop: '12%',
-      marginBottom: '9%',
     },
     [theme.breakpoints.down('sm')]:{
       marginTop: '20%',
-      marginBottom: '9%',
     },
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
@@ -38,6 +38,7 @@ const styles = theme => ({
       marginRight: 'auto',
     },
     color: 'rgb(14,4,123)',
+    marginBottom: '9%',
   },
   paper: {
     marginTop: theme.spacing.unit ,
@@ -56,12 +57,7 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 2,
   },
-  err: {
-    color: 'Red',
-    fontSize: '.5em'
-  }
 });
 
 class SignUp extends Component{
@@ -100,7 +96,7 @@ class SignUp extends Component{
     if (this.state.Password === this.state.RePassword && this.state.Name !== '' && this.state.Email !== '') {
       this.props.register(this.state)
     } else {
-      this.setState({err: 'field are missing'})
+      this.setState({err: 'some field are missing'})
     }
   }
 
@@ -139,7 +135,7 @@ class SignUp extends Component{
             <InputLabel htmlFor="repassword">Re-Password</InputLabel>
             <Input name="repassword" type="password" id="repassword" onChange={this.handleChange('RePassword')}/>
           </FormControl>
-          {this.state.Password !== this.state.RePassword && this.state.RePassword.length > 0 ? <p className={classes.err}> Password does not match with RePassword </p> : null}
+          {this.state.Password !== this.state.RePassword && this.state.RePassword.length > 0 ? <ErrMessage err='Password does not match with RePassword'/> : null}
           <div style={{marginTop: 10}}>
             <b style={{fontSize: 15, float:'left'}}>Birthday: </b>
             <TextField
@@ -168,9 +164,10 @@ class SignUp extends Component{
             Sign Up
           </Button>
           <br/>
-          <p className={classes.err}> {err} <br/> {this.state.err} </p>
+          <ErrMessage err={err}/>
+          <br/> <ErrMessage err={this.state.err}/>
           <br/>
-          <Link to="/" style={{fontSize:13}}>Cancel</Link>
+          <Link to="/in" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'backward']} /> Back</Link> <Link to="/" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'ban']} /> Cancel</Link>
         </form>
         <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
         <Co/>

@@ -2,24 +2,9 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import {Drawer, MenuItem, Menu, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, InputBase, Button} from '@material-ui/core';
+import {Menu as MenuIcon, ChevronLeft as ChevronLeftIcon,ChevronRight as ChevronRightIcon, Search as SearchIcon} from '@material-ui/icons';
 import logo from '../../assets/logo.png'
-import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
 import { searchMap } from '../../store/actions/mapAction'
 import { connect } from 'react-redux'
@@ -149,7 +134,8 @@ class Header extends Component {
     super(props);
     this.state = {
       open: false,
-      search: this.props.valueSearch
+      search: this.props.valueSearch,
+      anchorEl: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -172,11 +158,37 @@ class Header extends Component {
   };
 
   handleclick = () => {
-    this.props.signout()
+    this.props.signout();
+    this.setState({ anchorEl: null });
   }
+
+  handleProfileMenuOpen = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleMenuClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
 
   render() {
     const { classes, theme, valueSearch, profile } = this.props;
+    const { anchorEl } = this.state;
+    const isMenuOpen = Boolean(anchorEl);
+    
+    const renderMenu = (
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMenuOpen}
+        onClose={this.handleMenuClose}
+      >
+        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleclick}>Sign Out</MenuItem>
+      </Menu>
+    );
 
     return (
       <div className={classes.root}>
@@ -220,7 +232,14 @@ class Header extends Component {
                         />
                     </div>
                     {this.props.auth.uid ?
-                      <Button onClick={() => this.handleclick()}><Avatar name={profile.displayName} size="35" src={''} round={true} style={{marginRight: 12}}/></Button>
+                    <IconButton
+                      aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                      aria-haspopup="true"
+                      onClick={this.handleProfileMenuOpen}
+                      color="inherit"
+                    >
+                      <Avatar name={profile.displayName} size="35" src={''} round={true} style={{marginRight: 12}}/>
+                      </IconButton>
                     : <Button color="inherit" className={classes.but}><Link to="/in" style={{
                       fontWeight: "bold",
                       color: "white"
@@ -279,7 +298,8 @@ class Header extends Component {
           </List> */}
           <Co/>
         </Drawer>
-         :null}  
+         :null}
+         {renderMenu}  
       </div>
     );
   }

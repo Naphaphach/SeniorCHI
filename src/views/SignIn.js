@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
@@ -17,6 +15,7 @@ import Co from '../components/main/cooperate'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {signin} from '../store/actions/authAction'
+import ErrMessage from '../components/main/errMessage';
 
 const styles = theme => ({
   main: {
@@ -92,7 +91,7 @@ class SignIn extends Component {
   }
 
   render(){
-    const { classes } = this.props;
+    const { classes, err } = this.props;
     return (
       <main className={classes.main}>
       {this.renderRedirect()}
@@ -115,12 +114,9 @@ class SignIn extends Component {
               <InputLabel htmlFor="password">Password</InputLabel>
               <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange('Password')}/>
             </FormControl>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <br/>
             <Link to="/up" style={{fontSize:13}}>Do you have an account?</Link>
+            <br/>
+            <ErrMessage err={err}/>
             <Button
               type="submit"
               fullWidth
@@ -149,6 +145,7 @@ SignIn.propTypes = {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
+    err: state.auth.err,
   }
 }
 

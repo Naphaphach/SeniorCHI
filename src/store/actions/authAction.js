@@ -7,11 +7,30 @@ export const register = (U) => {
             U.Email,
             U.Password,
         ).then((resp) => {
-            return firestore.collection('user').doc(resp.user.uid).set({
-                displayName: U.Name,
-                BOD: U.BOD,
-                Photo: null,
-                token: 0
+            const uploadTask = firebase.storage().ref(`profile/${U.Photo.name}`).put(U.Photo);
+            uploadTask.on('state_changed',
+            (snapshot) => {
+
+            },
+            (error) => {
+                return firestore.collection('user').doc(resp.user.uid).set({
+                    displayName: U.Name,
+                    BOD: U.BOD,
+                    Photo: null,
+                    token: 0,
+                    created: Date()
+                })
+            },
+            () => {
+                firebase.storage().ref('profile').child(U.Photo.name).getDownloadURL().then(url => {
+                    return firestore.collection('user').doc(resp.user.uid).set({
+                        displayName: U.Name,
+                        BOD: U.BOD,
+                        Photo: url,
+                        token: 0,
+                        created: Date()
+                    })
+                })
             })
         }).then(() => {
             dispatch({ type: 'SIGNIN_SUCCESS' })

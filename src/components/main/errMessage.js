@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 const styles = {
     err: {
         color: 'Red',
-        fontSize: '.5em'
+        fontSize: '.5em',
+        marginTop: '5%'
     }
 }
 

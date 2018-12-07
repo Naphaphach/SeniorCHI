@@ -19,6 +19,7 @@ import {register} from '../store/actions/authAction'
 import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ErrMessage from '../components/main/errMessage';
+import { Progress } from 'reactstrap';
 
 const styles = theme => ({
   main: {
@@ -71,7 +72,8 @@ class SignUp extends Component{
       BOD: '1997-01-01',
       Photo: null,
       filename: '',
-      err: null
+      err: null,
+      progress: 0
     };
     this.handleChangePhoto = this.handleChangePhoto.bind(this)
   }
@@ -84,10 +86,12 @@ class SignUp extends Component{
   };
 
   handleChangePhoto(event) {
-    this.setState({
-      Photo: event.target.files[0],
-      filename: event.target.files[0].name
-    })
+    if (event.target.files[0]){
+      this.setState({
+        Photo: event.target.files[0],
+        filename: event.target.files[0].name
+      })
+    }
   }
 
   handleClick(e){
@@ -154,6 +158,7 @@ class SignUp extends Component{
             <Label for="exampleCustomFileBrowser" style={{fontSize: 15, float:'left'}}><b>profile image:</b></Label>
             <CustomInput style={{fontSize: 1}} type="file" id="exampleCustomFileBrowser" accept="image/*" name="customFile" onChange={ (event) => this.handleChangePhoto(event) } label={this.state.filename}/>
           </FormGroup>
+          {this.state.progress !== 0 ? <Progress animated color="success" value="25" /> : null}
           <Button
             type="submit"
             fullWidth
@@ -165,7 +170,8 @@ class SignUp extends Component{
           </Button>
           <br/>
           <ErrMessage err={err}/>
-          <br/> <ErrMessage err={this.state.err}/>
+          <br/> 
+          <ErrMessage err={this.state.err}/>
           <br/>
           <Link to="/in" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'backward']} /> Back</Link> <Link to="/" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'ban']} /> Cancel</Link>
         </form>

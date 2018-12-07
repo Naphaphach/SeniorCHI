@@ -237,8 +237,9 @@ class Header extends Component {
                       aria-haspopup="true"
                       onClick={this.handleProfileMenuOpen}
                       color="inherit"
+                      className={classes.but}
                     >
-                      <Avatar name={profile.displayName} size="35" src={''} round={true} style={{marginRight: 12}}/>
+                      <Avatar name={profile.displayName} size="45" src={profile.Photo} round={true}/>
                       </IconButton>
                     : <Button color="inherit" className={classes.but}><Link to="/in" style={{
                       fontWeight: "bold",

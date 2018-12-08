@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 //import map from '../assets/map.svg';
 import injectSheet from 'react-jss';
-import Home from '../layouts/Home'
-import Detail from '../components/map/detail'
+import Home from '../../layouts/Home'
+import Detail from '../../components/map/detail'
 import { Row, Col } from 'reactstrap';
 import { connect } from 'react-redux'
-import { changeState } from '../store/actions/mapAction'
+import { changeState } from '../../store/actions/mapAction'
 import { Element, scroller } from 'react-scroll'
-import Result from '../components/map/searchResult'
+import Result from '../../components/map/searchResult'
 // Create your Styles. Remember, since React-JSS uses the default preset,
 // most plugins are available without further configuration needed.
 const styles = {

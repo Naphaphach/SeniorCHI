@@ -241,7 +241,7 @@ class Header extends Component {
                     >
                       <Avatar name={profile.displayName} size="45" src={profile.Photo} round={true}/>
                       </IconButton>
-                    : <Button color="inherit" className={classes.but}><Link to="/in" style={{
+                    : <Button color="inherit" className={classes.but}><Link to="/upin" style={{
                       fontWeight: "bold",
                       color: "white"
                     }}> Login </Link> </Button>}

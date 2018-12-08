@@ -20,37 +20,42 @@ const LoadingComponant = ({ isLoading, error }) => {
 }
 
 const SignIn = Loadable({
-    loader: () => import('./views/SignIn'),
+    loader: () => import('./views/Main/SignIn'),
     loading: LoadingComponant
 })
 
 const SignUp = Loadable({
-    loader: () => import('./views/SignUp'),
+    loader: () => import('./views/Main/SignUp'),
+    loading: LoadingComponant
+})
+
+const InUp = Loadable({
+    loader: () => import('./views/Main/IncludeInUp'),
     loading: LoadingComponant
 })
 
 const Map = Loadable({
-    loader: () => import('./views/Map'),
+    loader: () => import('./views/Activity/Map'),
     loading: LoadingComponant
 })
 
 const Diary = Loadable({
-    loader: () => import('./views/Diary'),
+    loader: () => import('./views/Activity/Diary'),
     loading: LoadingComponant
 })
 
 const Book = Loadable({
-    loader: () => import('./views/Book'),
+    loader: () => import('./views/Activity/Book'),
     loading: LoadingComponant
 })
 
 const Feed = Loadable({
-    loader: () => import('./views/Feed'),
+    loader: () => import('./views/Activity/Feed'),
     loading: LoadingComponant
 })
 
 const Notice = Loadable({
-    loader: () => import('./views/Notice'),
+    loader: () => import('./views/Activity/Notice'),
     loading: LoadingComponant
 })
 
@@ -61,6 +66,7 @@ const Routes = props => {
                 <Switch>
                     <Route exact path="/in" component={SignIn} />
                     <Route exact path="/up" component={SignUp} />
+                    <Route exact path="/upin" component={InUp} />
                     <Route exact path="/diary" component={Diary} />
                     <Route exact path="/feed" component={Feed} />
                     <Route exact path="/bookmark" component={Book} />

@@ -1,21 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import {Button, CssBaseline, FormControl, Input, InputLabel, Paper, Typography} from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Logo from '../assets/logo.png';
-import Header from '../components/main/header'
-import { Link } from 'react-router-dom'
-import Co from '../components/main/cooperate'
-import { Redirect } from 'react-router-dom'
+import Logo from '../../assets/logo.png';
+import Header from '../../components/main/header'
+import Co from '../../components/main/cooperate'
+import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {signin} from '../store/actions/authAction'
-import ErrMessage from '../components/main/errMessage';
+import { signin } from '../../store/actions/authAction'
+import ErrMessage from '../../components/main/errMessage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const styles = theme => ({
   main: {
@@ -129,7 +123,7 @@ class SignIn extends Component {
             <br/>
           </form>
           <br/>
-          <Link to="/" style={{fontSize:13}}>Cancel</Link>
+          <Link to="/upin" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'backward']} /> Back</Link> <Link to="/" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'ban']} /> Cancel</Link>
           <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
           <Co/>
         </Paper>

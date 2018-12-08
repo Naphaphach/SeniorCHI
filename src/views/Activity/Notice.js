@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Home from '../layouts/Home'
+import Home from '../../layouts/Home'
 
 class Notice extends Component {
     render() {

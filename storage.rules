@@ -1,7 +1,7 @@
 service firebase.storage {
   match /b/{bucket}/o {
     match /profile {
-      allow read: if request.auth != null,
+      allow read: if request.auth != null;
       allow write;
     }
 

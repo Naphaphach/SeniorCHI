@@ -9,17 +9,16 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Logo from '../assets/logo.png';
-import Header from '../components/main/header'
+import Logo from '../../assets/logo.png';
+import Header from '../../components/main/header'
 import { Link } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
-import Co from '../components/main/cooperate'
+import Co from '../../components/main/cooperate'
 import { connect } from 'react-redux'
-import {register} from '../store/actions/authAction'
+import {register} from '../../store/actions/authAction'
 import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ErrMessage from '../components/main/errMessage';
-import { Progress } from 'reactstrap';
+import ErrMessage from '../../components/main/errMessage';
 
 const styles = theme => ({
   main: {
@@ -158,7 +157,6 @@ class SignUp extends Component{
             <Label for="exampleCustomFileBrowser" style={{fontSize: 15, float:'left'}}><b>profile image:</b></Label>
             <CustomInput style={{fontSize: 1}} type="file" id="exampleCustomFileBrowser" accept="image/*" name="customFile" onChange={ (event) => this.handleChangePhoto(event) } label={this.state.filename}/>
           </FormGroup>
-          {this.state.progress !== 0 ? <Progress animated color="success" value="25" /> : null}
           <Button
             type="submit"
             fullWidth
@@ -173,7 +171,7 @@ class SignUp extends Component{
           <br/> 
           <ErrMessage err={this.state.err}/>
           <br/>
-          <Link to="/in" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'backward']} /> Back</Link> <Link to="/" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'ban']} /> Cancel</Link>
+          <Link to="/upin" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'backward']} /> Back</Link> <Link to="/" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'ban']} /> Cancel</Link>
         </form>
         <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
         <Co/>

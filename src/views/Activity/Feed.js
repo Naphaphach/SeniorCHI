@@ -1,14 +1,25 @@
 import React, {Component} from 'react'
 import Home from '../../layouts/Home'
-
+import { connect } from 'react-redux'
+import Unregist from '../../components/main/unregist'
 class Feed extends Component {
     render() {
         return(
             <Home>
-                Feed is not available
+                {this.props.auth.uid ?
+                'Feed is not available'
+                : <Unregist name='Feed'/>}
             </Home>
         )
     }
 }
 
-export default Feed
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        auth: state.firebase.auth,
+    }
+  }
+
+
+export default connect(mapStateToProps)(Feed)

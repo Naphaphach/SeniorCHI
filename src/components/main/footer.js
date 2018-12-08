@@ -40,7 +40,9 @@ class Footer extends Component {
     };
 
     renderRedirect = (value) => {
-        return <Redirect to={value} />
+        if (value !== window.location.pathname) {
+            return <Redirect to={value} />   
+        }
     }
 
 

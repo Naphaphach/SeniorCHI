@@ -81,7 +81,6 @@ class SignUp extends Component{
     this.setState({
       [name]: event.target.value,
     });
-    console.log(this.state);
   };
 
   handleChangePhoto(event) {
@@ -95,7 +94,6 @@ class SignUp extends Component{
 
   handleClick(e){
     e.preventDefault();
-    console.log(this.state);
     if (this.state.Password === this.state.RePassword && this.state.Name !== '' && this.state.Email !== '') {
       this.props.register(this.state)
     } else {
@@ -186,7 +184,6 @@ SignUp.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     err: state.auth.err,
     auth: state.firebase.auth,

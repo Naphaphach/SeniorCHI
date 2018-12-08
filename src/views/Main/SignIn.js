@@ -69,12 +69,10 @@ class SignIn extends Component {
     this.setState({
       [name]: event.target.value,
     });
-    console.log(this.state);
   };
 
   handleClick(e){
     e.preventDefault();
-    console.log(this.state);
     this.props.signin(this.state)
   }
 

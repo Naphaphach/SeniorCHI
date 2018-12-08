@@ -1,14 +1,23 @@
 import React, {Component} from 'react'
 import Home from '../../layouts/Home'
-
+import { connect } from 'react-redux'
+import Unregist from '../../components/main/unregist'
 class Notice extends Component {
     render() {
         return(
             <Home>
-                Notice is not available
+                {this.props.auth.uid ?
+                'Notice is not available'
+                : <Unregist name='Notice'/>}
             </Home>
         )
     }
 }
 
-export default Notice
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        auth: state.firebase.auth,
+    }
+  }
+export default connect(mapStateToProps)(Notice)

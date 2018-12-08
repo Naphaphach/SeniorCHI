@@ -5,13 +5,14 @@ import { withStyles } from '@material-ui/core/styles';
 import {Drawer, MenuItem, Menu, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, InputBase, Button} from '@material-ui/core';
 import {Menu as MenuIcon, ChevronLeft as ChevronLeftIcon,ChevronRight as ChevronRightIcon, Search as SearchIcon} from '@material-ui/icons';
 import logo from '../../assets/logo.png'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { searchMap } from '../../store/actions/mapAction'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Co from '../../components/main/cooperate'
 import Avatar from 'react-avatar'
 import {signout} from '../../store/actions/authAction'
+import { changeMenu } from "../../store/actions/mapAction";
 
 const drawerWidth = 240;
 
@@ -111,10 +112,7 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: theme.spacing.unit * 7 + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9 + 1,
-    },
+    width: theme.spacing.unit * 8 ,
   },
   toolbar: {
     display: 'flex',
@@ -136,13 +134,15 @@ class Header extends Component {
       open: false,
       search: this.props.valueSearch,
       anchorEl: null,
+      value: this.props.Menu,
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleChange(event, t) {
+    this.setState({value: t});
+    this.props.changeMenu(t)
   }
 
   handleDrawerOpen = () => {
@@ -170,12 +170,24 @@ class Header extends Component {
     this.setState({ anchorEl: null });
   };
 
+  handleProfile = () => {
+    this.setState({ anchorEl: null });
+    this.setState({value: '/profile'});
+    this.props.changeMenu('/profile')
+  }
+
+  renderRedirect = (value) => {
+    console.log(value);
+    if (value !== window.location.pathname) {
+        return <Redirect to={value} />   
+    }
+  }
 
   render() {
     const { classes, theme, valueSearch, profile } = this.props;
-    const { anchorEl } = this.state;
+    const { anchorEl, value } = this.state;
     const isMenuOpen = Boolean(anchorEl);
-    
+
     const renderMenu = (
       <Menu
         anchorEl={anchorEl}
@@ -184,8 +196,7 @@ class Header extends Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
         <MenuItem onClick={this.handleclick}>Sign Out</MenuItem>
       </Menu>
     );
@@ -215,7 +226,7 @@ class Header extends Component {
             <Typography variant="h6" color="inherit">
                 <Link to="/"><img src={logo} alt='CHI' className={classes.logo}/></Link>
             </Typography>
-            {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 ? 
+            {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && window.location.pathname.search('profile') === -1 ? 
             <Fragment>
               <div className={classes.search} style={{width: '100%', marginLeft: 0}}>
                         <div className={classes.searchIcon}>
@@ -239,6 +250,7 @@ class Header extends Component {
                       color="inherit"
                       className={classes.but}
                     >
+                    {this.renderRedirect(value)}
                       <Avatar name={profile.displayName} size="45" src={profile.Photo} round={true}/>
                       </IconButton>
                     : <Button color="inherit" className={classes.but}><Link to="/upin" style={{
@@ -271,8 +283,8 @@ class Header extends Component {
           </div>
           <Divider />
           <List>
-            {['map', 'diary', 'feed', 'bookmark', 'notification'].map((text, index) => (
-              <ListItem button key={text}>
+            {['/', '/diary', '/feed', '/bookmark', '/notice'].map((text, index) => (
+              <ListItem button key={text} selected={this.props.Menu === text} onClick={event => this.handleChange(event, text)}>
                 <ListItemIcon>
                 {index === 0 ? 
                 <FontAwesomeIcon icon={['fas', 'map-marked-alt']} /> : 
@@ -282,21 +294,13 @@ class Header extends Component {
                 <FontAwesomeIcon icon={['fas', 'newspaper']} /> : 
                 index === 3 ? 
                 <FontAwesomeIcon icon={['fas', 'bookmark']} /> :
-                <FontAwesomeIcon icon={['fas', 'bell']} />}</ListItemIcon>
-                <ListItemText primary={text} />
+                <FontAwesomeIcon icon={['fas', 'bell']} />}
+                </ListItemIcon>
+                {index === 0 ? <ListItemText primary={'map'} />: <ListItemText primary={text.replace('/','  ')} />}
               </ListItem>
             ))}
           </List>
           <Divider />
-
-          {/* <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List> */}
           <Co/>
         </Drawer>
          :null}
@@ -318,13 +322,15 @@ const mapStateToProps = (state) => {
       valueSearch: state.map.valueSearch,
       auth: state.firebase.auth,
       profile: state.firebase.profile,
+      Menu: state.map.Menu,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
       searchMap: valueSearch => dispatch(searchMap(valueSearch)),
-      signout: () => dispatch(signout())
+      signout: () => dispatch(signout()),
+      changeMenu: Menu => dispatch(changeMenu(Menu))
   }
 }
 

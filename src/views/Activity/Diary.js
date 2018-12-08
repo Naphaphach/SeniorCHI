@@ -1,14 +1,24 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
 import Home from '../../layouts/Home'
-
+import Unregist from '../../components/main/unregist'
 class Diary extends Component {
     render() {
         return(
             <Home>
-                Diary is not available
+                {this.props.auth.uid ?
+                'Diary is not available'
+                : <Unregist name='Diary'/>}
             </Home>
         )
     }
 }
 
-export default Diary
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        auth: state.firebase.auth,
+    }
+  }
+
+export default connect(mapStateToProps)(Diary)

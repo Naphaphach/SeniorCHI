@@ -9,6 +9,7 @@ import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Button, Container, Row, Col } from 'reactstrap';
 import { signinwithfb } from '../../store/actions/authAction'
+import ErrMessage from '../../components/main/errMessage';
 
 const styles = theme => ({
   main: {
@@ -63,7 +64,7 @@ class InUp extends Component {
   }
 
   render(){
-    const { classes } = this.props;
+    const { classes, err} = this.props;
     return (
       <main className={classes.main}>
       {this.renderRedirect()}
@@ -80,6 +81,7 @@ class InUp extends Component {
                     <Button color="primary" className={classes.form} onClick={() => this.signinwithfb()}>Continue with Facebook</Button>
                 </Col>
             </Row>
+          <ErrMessage err={err}/>
             <Row>
                 <Col>
                     <Link to='/up'>
@@ -114,6 +116,7 @@ InUp.propTypes = {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
+    err: state.auth.err,
   }
 }
 

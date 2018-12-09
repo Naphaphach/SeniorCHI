@@ -58,6 +58,10 @@ export const signinwithfb = () => {
                     })
                 }
             })
+        }).then(() => {
+            dispatch({ type: 'SIGNIN_SUCCESS' })
+        }).catch(err => {
+            dispatch({ type: 'SIGNIN_ERROR', err })
         })
     }
 }

@@ -177,7 +177,6 @@ class Header extends Component {
   }
 
   renderRedirect = (value) => {
-    console.log(value);
     if (value !== window.location.pathname) {
         return <Redirect to={value} />   
     }
@@ -220,11 +219,12 @@ class Header extends Component {
                 [classes.hide]: this.state.open,
               })}
             >
+            {this.renderRedirect(value)}
                <MenuIcon /> 
             </IconButton>
              : null} 
             <Typography variant="h6" color="inherit">
-                <Link to="/"><img src={logo} alt='CHI' className={classes.logo}/></Link>
+                <Link to="/" onClick={() => this.props.changeMenu("/")}><img src={logo} alt='CHI' className={classes.logo}/></Link>
             </Typography>
             {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && window.location.pathname.search('profile') === -1 ? 
             <Fragment>
@@ -250,7 +250,6 @@ class Header extends Component {
                       color="inherit"
                       className={classes.but}
                     >
-                    {this.renderRedirect(value)}
                       <Avatar name={profile.displayName} size="45" src={profile.Photo} round={true}/>
                       </IconButton>
                     : <Button color="inherit" className={classes.but}><Link to="/upin" style={{
@@ -284,7 +283,7 @@ class Header extends Component {
           <Divider />
           <List>
             {['/', '/diary', '/feed', '/bookmark', '/notice'].map((text, index) => (
-              <ListItem button key={text} selected={this.props.Menu === text} onClick={event => this.handleChange(event, text)}>
+              <ListItem button key={text} selected={this.props.Menu === text} onClick={(event) => this.handleChange(event, text)}>
                 <ListItemIcon>
                 {index === 0 ? 
                 <FontAwesomeIcon icon={['fas', 'map-marked-alt']} /> : 
@@ -317,7 +316,6 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
       valueSearch: state.map.valueSearch,
       auth: state.firebase.auth,

@@ -45,7 +45,11 @@ export const signinwithfb = () => {
         const firebase = getFirebase()
         const firestore = getFirestore()
 
-        const provider = new firebase.auth.FacebookAuthProvider();
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().useDeviceLanguage();
+        provider.setCustomParameters({
+            'display': 'popup'
+        });
         firebase.auth().signInWithPopup(provider).then(({ user }) => {
             firestore.collection('user').doc(user.uid).get().then(u => {
                 if (!u.exists){

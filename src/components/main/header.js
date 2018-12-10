@@ -316,6 +316,7 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
       valueSearch: state.map.valueSearch,
       auth: state.firebase.auth,

@@ -7,6 +7,8 @@ import Avatar from 'react-avatar'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {updateNameEmailDOB} from '../../store/actions/authAction'
+import { changeMenu } from "../../store/actions/mapAction";
+import { Redirect } from 'react-router-dom'
 
 const styles = theme => ({
     main:{
@@ -74,11 +76,21 @@ class Profile extends Component{
         this.props.updateNameEmailDOB(this.state)
     }
     
+    renderRedirect = () => {
+        if (this.props.auth.uid){
+            if (this.props.Menu !== window.location.pathname){
+                return <Redirect to={this.props.Menu} />
+            }
+        } else {
+            return <Redirect to={'/'} />
+        }
+      }
+
     render(){
-        console.log(this.state);
         const { classes, profile} = this.props;
         return(
             <Home>
+                {this.renderRedirect()}
                 <Container fluid>
                     <Paper className={classes.main}>
                         <Row className={classes.row}>
@@ -124,10 +136,10 @@ class Profile extends Component{
                                 </form>
                                 <Row>
                                     <Col className={classes.row}>
-                                        <ButtomPW>update password</ButtomPW>
+                                        <ButtomPW onClick={() => this.props.changeMenu('/profile/pwd')}>update password</ButtomPW>
                                     </Col>
                                     <Col className={classes.row}>
-                                        <ButtomPW>update profile image</ButtomPW>
+                                        <ButtomPW onClick={() => this.props.changeMenu('/profile/img')}>update profile image</ButtomPW>
                                     </Col>
                                 </Row>
                             </Col>
@@ -139,16 +151,17 @@ class Profile extends Component{
     }
 }
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile,
+        Menu: state.map.Menu,
     }
   }
 
   const mapDispatchToProps = (dispatch) => {
     return {
-        updateNameEmailDOB: valueState => dispatch(updateNameEmailDOB(valueState))
+        updateNameEmailDOB: valueState => dispatch(updateNameEmailDOB(valueState)),
+        changeMenu: Menu => dispatch(changeMenu(Menu))
     }
   }
   

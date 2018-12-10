@@ -89,3 +89,22 @@ export const signout = () => {
     }
 }
 
+export const updateNameEmailDOB = (credentials) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase()
+        const firestore = getFirestore()
+
+        firebase.auth().currentUser.updateEmail(credentials.newEmail).then(function() {
+            // Update successful.
+            console.log('success');
+        }).catch(function(error) {
+            // An error happened.
+            console.log(error);
+        });
+        
+        firestore.collection('user').doc(credentials.uid).update({
+            displayName: credentials.displayName,
+            BOD: credentials.BOD,
+        })
+    }
+}

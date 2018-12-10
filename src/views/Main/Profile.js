@@ -6,6 +6,7 @@ import {Container, Col, Row, Button as ButtomPW} from 'reactstrap'
 import Avatar from 'react-avatar'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {updateNameEmailDOB} from '../../store/actions/authAction'
 
 const styles = theme => ({
     main:{
@@ -49,8 +50,33 @@ const styles = theme => ({
     }
 })
 class Profile extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            newEmail: this.props.auth.email,
+            oldPassword: this.props.auth.email,
+            uid: this.props.auth.uid,
+            BOD: this.props.profile.BOD,
+            displayName: this.props.profile.displayName
+        };
+    
+        this.handleChange = this.handleChange.bind(this);
+    }
+    
+    handleChange = name => event => {
+        this.setState({
+          [name]: event.target.value,
+        });
+    };
+
+    handleClick(e){
+        e.preventDefault();
+        this.props.updateNameEmailDOB(this.state)
+    }
+    
     render(){
-        const { classes, profile, auth} = this.props;
+        console.log(this.state);
+        const { classes, profile} = this.props;
         return(
             <Home>
                 <Container fluid>
@@ -63,14 +89,14 @@ class Profile extends Component{
                                 <Row className={classes.row}>
                                     <FontAwesomeIcon icon={['fas', 'coins']} className={classes.coin}/>{' '}{profile.token}{' token'}
                                 </Row>
-                                <form className={classes.form} method="post">
+                                <form className={classes.form} method="post" onSubmit={(event) => this.handleClick(event)}>
                                     <FormControl margin="normal" required fullWidth>
                                         <InputLabel htmlFor="name">Display name</InputLabel>
-                                        <Input id="name" name="name"  value={profile.displayName}/>
+                                        <Input id="name" name="name"  value={this.state.displayName} onChange={this.handleChange('displayName')}/>
                                     </FormControl>
                                     <FormControl margin="normal" required fullWidth>
                                         <InputLabel htmlFor="email">Email Address</InputLabel>
-                                        <Input id="email" name="email" value={auth.email}/>
+                                        <Input id="email" name="email" value={this.state.newEmail} onChange={this.handleChange('newEmail')}/>
                                     </FormControl>
                                     <div style={{marginTop: 10}}>
                                         <b style={{fontSize: 15, float:'left'}}>Birthday: </b>
@@ -78,11 +104,12 @@ class Profile extends Component{
                                             id="date"
                                             name="Birthday"
                                             type="date"
-                                            defaultValue={profile.BOD}
+                                            defaultValue={this.state.BOD}
                                             className={classes.textField}
                                             InputLabelProps={{
                                             shrink: true,
                                             }}
+                                            onChange={this.handleChange('BOD')}
                                         />
                                     </div>
                                     <Button
@@ -112,9 +139,17 @@ class Profile extends Component{
     }
 }
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile,
     }
   }
-export default withStyles(styles)(connect(mapStateToProps)(Profile))
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        updateNameEmailDOB: valueState => dispatch(updateNameEmailDOB(valueState))
+    }
+  }
+  
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Profile))

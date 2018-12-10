@@ -74,11 +74,23 @@ const UpdateIMG = Loadable({
     loading: LoadingComponant
 })
 
+const Term = Loadable({
+    loader: () => import('./views/ETC/TermsofService'),
+    loading: LoadingComponant
+})
+
+const Privacy = Loadable({
+    loader: () => import('./views/ETC/PrivacyPolicy'),
+    loading: LoadingComponant
+})
+
 const Routes = props => {
     return (
         <App>
             <Router history={history}>
                 <Switch>
+                    <Route exact path="/Privacy" component={Privacy} />
+                    <Route exact path="/Terms" component={Term} />
                     <Route exact path="/in" component={SignIn} />
                     <Route exact path="/up" component={SignUp} />
                     <Route exact path="/upin" component={InUp} />

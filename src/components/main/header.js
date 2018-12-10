@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import {Drawer, MenuItem, Menu, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, InputBase, Button} from '@material-ui/core';
+import {Icon, Drawer, MenuItem, Menu, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, InputBase, Button} from '@material-ui/core';
 import {Menu as MenuIcon, ChevronLeft as ChevronLeftIcon,ChevronRight as ChevronRightIcon, Search as SearchIcon} from '@material-ui/icons';
 import logo from '../../assets/logo.png'
 import { Link, Redirect } from 'react-router-dom'
@@ -125,6 +125,11 @@ const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
   },
+  icon: {
+    fontSize: '0.45em',
+    width: 'auto',
+    height: 'auto',
+  }
 });
 
 class Header extends Component {
@@ -170,10 +175,10 @@ class Header extends Component {
     this.setState({ anchorEl: null });
   };
 
-  handleProfile = () => {
+  handleProfile = (value) => {
     this.setState({ anchorEl: null });
-    this.setState({value: '/profile'});
-    this.props.changeMenu('/profile')
+    this.setState({value});
+    this.props.changeMenu(value)
   }
 
   renderRedirect = (value) => {
@@ -195,7 +200,9 @@ class Header extends Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
+        <MenuItem onClick={() => this.handleProfile('/profile')}>Profile</MenuItem>
+        <MenuItem onClick={() =>  this.handleProfile('/Privacy')}>PrivacyPolicy</MenuItem>
+        <MenuItem onClick={() =>  this.handleProfile('/Terms')}>TermsofService</MenuItem>
         <MenuItem onClick={this.handleclick}>Sign Out</MenuItem>
       </Menu>
     );
@@ -300,6 +307,19 @@ class Header extends Component {
             ))}
           </List>
           <Divider />
+          <List>
+            {['/Privacy', '/Terms'].map((text, index) => (
+              <ListItem button key={text} selected={this.props.Menu === text} onClick={(event) => this.handleChange(event, text)}>
+                <ListItemIcon>
+                {index === 0 ? 
+                <Icon className={classes.icon}>Privacy</Icon> : 
+                <Icon className={classes.icon}>Terms</Icon>
+                }
+                </ListItemIcon>
+                {index === 0 ? <ListItemText primary={'Privacy Policy'} />: <ListItemText primary={'Terms of Service'} />}
+              </ListItem>
+            ))}
+          </List>
           <Co/>
         </Drawer>
          :null}

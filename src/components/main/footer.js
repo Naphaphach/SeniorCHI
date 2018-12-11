@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom'
 import { changeMenu } from "../../store/actions/mapAction";
 import { connect } from 'react-redux'
 
-const styles = theme => ( {
+const styles =  {
     root:{
         width: '100%',
         position: 'fixed',
@@ -21,7 +21,7 @@ const styles = theme => ( {
         minWidth: '0 !important',
         padding: '0 !important',
     }
-})
+}
 
 class Footer extends Component {
     constructor(props) {

@@ -221,7 +221,6 @@ class Header extends Component {
                 [classes.hide]: this.state.open,
               })}
             >
-            {this.renderRedirect(value)}
                <MenuIcon /> 
             </IconButton>
              : null} 
@@ -252,6 +251,7 @@ class Header extends Component {
                       color="inherit"
                       className={classes.but}
                     >
+                    {this.renderRedirect(value)}
                       <Avatar name={profile.displayName} size="45" src={profile.Photo} round={true}/>
                       </IconButton>
                     : <Button color="inherit" className={classes.but}><Link to="/upin" style={{

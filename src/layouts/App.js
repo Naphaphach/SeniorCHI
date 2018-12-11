@@ -9,7 +9,7 @@ class App extends Component {
     this.state = { showInstallMessage: false };
   }
 
-  componentDidMount(){
+  componentWillUpdate(){
     // Detects if device is on iOS 
     const isIos = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();

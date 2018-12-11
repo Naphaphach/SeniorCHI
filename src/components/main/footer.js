@@ -15,9 +15,6 @@ const styles = theme => ( {
         bottom: 0,
         backgroundColor: 'rgb(162,224,120)',
         color: 'green',
-        [theme.breakpoints.up('md')]: {
-            display: "none"
-        },
         fontSize: '1.5em',
     },
     choice:{

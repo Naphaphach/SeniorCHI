@@ -25,13 +25,13 @@ class Cooperate extends Component {
             <Container>
                 <Row>
                     <Col>
-                        <img src={ICT} alt="ICT" className={classes.mulogo}/>
+                        <a href='https://www.ict.mahidol.ac.th/en/' target="_blank" rel="noopener noreferrer"><img src={ICT} alt="ICT" className={classes.mulogo}/></a>
                     </Col>
                     <Col>
-                        <img src={Mu} alt="Mu" className={classes.mulogo}/>
+                        <a href='https://mahidol.ac.th' target="_blank" rel="noopener noreferrer"><img src={Mu} alt="Mu" className={classes.mulogo}/></a>
                     </Col>
                     <Col>
-                        <img src={Bh} alt="Bh" className={classes.mulogo}/>
+                        <a href='http://www.bharat.lc.mahidol.ac.th' target="_blank" rel="noopener noreferrer"><img src={Bh} alt="Bh" className={classes.mulogo}/></a>
                     </Col>
                 </Row>
             </Container>

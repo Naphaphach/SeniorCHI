@@ -13,6 +13,7 @@ import Co from '../../components/main/cooperate'
 import Avatar from 'react-avatar'
 import {signout} from '../../store/actions/authAction'
 import { changeMenu } from "../../store/actions/mapAction";
+import {isMobile, isTablet} from "react-device-detect";
 
 const drawerWidth = 240;
 
@@ -84,9 +85,6 @@ const styles = theme => ({
   },
   menuButton: {
     marginLeft: 12,
-    [theme.breakpoints.down('sm')]: {
-        display: "none"
-    },
   },
   hide: {
     display: 'none',
@@ -95,9 +93,6 @@ const styles = theme => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
-    [theme.breakpoints.down('sm')]: {
-        display: "none"
-    },
   },
   drawerOpen: {
     width: drawerWidth,
@@ -201,8 +196,8 @@ class Header extends Component {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={() => this.handleProfile('/profile')}>Profile</MenuItem>
-        <MenuItem onClick={() =>  this.handleProfile('/Privacy')}>PrivacyPolicy</MenuItem>
-        <MenuItem onClick={() =>  this.handleProfile('/Terms')}>TermsofService</MenuItem>
+        <MenuItem onClick={() =>  this.handleProfile('/Privacy')}>Privacy Policy</MenuItem>
+        <MenuItem onClick={() =>  this.handleProfile('/Terms')}>Terms of Service</MenuItem>
         <MenuItem onClick={this.handleclick}>Sign Out</MenuItem>
       </Menu>
     );
@@ -217,7 +212,7 @@ class Header extends Component {
           })}
         >
           <Toolbar disableGutters={!this.state.open}>
-          {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && this.props.auth.uid ?
+          {!isTablet && !isMobile && window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && this.props.auth.uid ?
             <IconButton
               color="inherit"
               aria-label="Open drawer"
@@ -267,7 +262,7 @@ class Header extends Component {
             :null}
           </Toolbar>
         </AppBar>
-        {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && this.props.auth.uid ?
+        {!isTablet && !isMobile && window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && this.props.auth.uid ?
         <Drawer
           variant="permanent"
           className={classNames(classes.drawer, {

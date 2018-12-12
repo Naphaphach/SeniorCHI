@@ -78,6 +78,9 @@ class SignIn extends Component {
 
   renderRedirect = () => {
     if (typeof(this.props.auth.uid) !== 'undefined'){
+      if(this.props.auth.email && !this.props.auth.emailVerified){
+        window.open('https://www.'+this.props.auth.email.split("@")[1], '_blank');
+      }
       return <Redirect to={'/'} />
     }
   }
@@ -90,9 +93,6 @@ class SignIn extends Component {
       <Header/>
         <CssBaseline />
         <Paper className={classes.paper}>
-          {/*<Avatar className={classes.avatar}>
-            <LockIcon />
-          </Avatar>*/}
           <img src={Logo} width="20%" alt="Logo"/>
           <Typography component="h1" variant="h5">
             Sign in
@@ -137,7 +137,7 @@ SignIn.propTypes = {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    err: state.auth.err,
+    err: state.auth.errsignin,
   }
 }
 

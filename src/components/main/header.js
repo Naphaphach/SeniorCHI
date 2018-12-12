@@ -205,6 +205,7 @@ class Header extends Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
+        {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 ? this.renderRedirect(value) : null}
         <AppBar
           position="fixed"
           className={classNames(classes.appBar, {
@@ -251,7 +252,6 @@ class Header extends Component {
                       color="inherit"
                       className={classes.but}
                     >
-                    {this.renderRedirect(value)}
                       <Avatar name={profile.displayName} size="45" src={profile.Photo} round={true}/>
                       </IconButton>
                     : <Button color="inherit" className={classes.but}><Link to="/upin" style={{
@@ -303,18 +303,28 @@ class Header extends Component {
           </List>
           <Divider />
           <List>
-            {['/Privacy', '/Terms'].map((text, index) => (
+            {['/profile', '/Terms', '/Privacy'].map((text, index) => (
               <ListItem button key={text} selected={this.props.Menu === text} onClick={(event) => this.handleChange(event, text)}>
                 <ListItemIcon>
                 {index === 0 ? 
-                <Icon className={classes.icon}>Privacy</Icon> : 
-                <Icon className={classes.icon}>Terms</Icon>
+                <Icon className={classes.icon}>Profile</Icon> : 
+                index === 1 ? 
+                <Icon className={classes.icon}>Terms</Icon> :
+                <Icon className={classes.icon}>Privacy</Icon>
                 }
                 </ListItemIcon>
-                {index === 0 ? <ListItemText primary={'Privacy Policy'} />: <ListItemText primary={'Terms of Service'} />}
+                {index === 0 ? <ListItemText primary={'Profile'} />: index === 1 ?   <ListItemText primary={'Terms of Service'} />:  <ListItemText primary={'Privacy Policy'} />}
               </ListItem>
             ))}
           </List>
+          <Divider />
+            <ListItem button onClick={this.handleclick}>
+                <ListItemIcon>
+                <FontAwesomeIcon icon={['fas', 'sign-out-alt']} />
+                </ListItemIcon>
+                <ListItemText primary={'Sign Out'} />
+              </ListItem>
+          <Divider />
           <Co/>
         </Drawer>
          :null}
@@ -331,7 +341,6 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
       valueSearch: state.map.valueSearch,
       auth: state.firebase.auth,

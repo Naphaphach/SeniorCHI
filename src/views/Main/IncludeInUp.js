@@ -52,19 +52,28 @@ const styles = theme => ({
 });
 
 class InUp extends Component {
-
+  constructor(props){
+    super(props);
+    this.state = {err: null};
+  }
+  
   renderRedirect = () => {
     if (typeof(this.props.auth.uid) !== 'undefined'){
+      if(this.props.auth.email && !this.props.auth.emailVerified){
+        window.open('https://www.'+this.props.auth.email.split("@")[1], '_blank');
+      }
       return <Redirect to={'/'} />
     }
   }
 
   signinwithfb = () => {
       this.props.signinwithfb()
+      this.setState({err: this.props.err})
   }
 
   render(){
-    const { classes, err} = this.props;
+    const { classes } = this.props;
+    const { err } = this.state;
     return (
       <main className={classes.main}>
       {this.renderRedirect()}
@@ -116,7 +125,7 @@ InUp.propTypes = {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    err: state.auth.err,
+    err: state.auth.errsignin,
   }
 }
 

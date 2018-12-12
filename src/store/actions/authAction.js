@@ -7,31 +7,66 @@ export const register = (U) => {
             U.Email,
             U.Password,
         ).then((resp) => {
-            const uploadTask = firebase.storage().ref(`profile/${U.Photo.name}`).put(U.Photo);
-            uploadTask.on('state_changed',
-            (snapshot) => {
+            if(U.Photo !== null){
+                const uploadTask = firebase.storage().ref(`profile/${U.Photo.name}`).put(U.Photo);
+                uploadTask.on('state_changed',
+                (snapshot) => {
 
-            },
-            (error) => {
-                return firestore.collection('user').doc(resp.user.uid).set({
-                    displayName: U.Name,
-                    BOD: U.BOD,
-                    Photo: null,
-                    token: 0,
-                    created: Date()
+                },
+                (error) => {
+                    resp.user.updateProfile({
+                        displayName: U.Name,
+                    })
+                    resp.user.sendEmailVerification().then(function() {
+                        return firestore.collection('user').doc(resp.user.uid).set({
+                            displayName: U.Name,
+                            BOD: U.BOD,
+                            Photo: null,
+                            token: 0,
+                            created: Date()
+                        })
+                    }).catch(function(err) {
+                      // An error happened.
+                      dispatch({ type: 'SIGNUP_ERROR', err })
+                    });
+                },
+                () => {
+                    firebase.storage().ref('profile').child(U.Photo.name).getDownloadURL().then(url => {
+                        resp.user.updateProfile({
+                            displayName: U.Name,
+                            photoURL: url
+                        })
+                        resp.user.sendEmailVerification().then(function() {
+                            return firestore.collection('user').doc(resp.user.uid).set({
+                                displayName: U.Name,
+                                BOD: U.BOD,
+                                Photo: url,
+                                token: 0,
+                                created: Date()
+                            })
+                        }).catch(function(err) {
+                          // An error happened.
+                          dispatch({ type: 'VERIFY_ERROR', err })
+                        });
+                    })
                 })
-            },
-            () => {
-                firebase.storage().ref('profile').child(U.Photo.name).getDownloadURL().then(url => {
+            } else{
+                resp.user.updateProfile({
+                    displayName: U.Name
+                })
+                resp.user.sendEmailVerification().then(function() {
                     return firestore.collection('user').doc(resp.user.uid).set({
                         displayName: U.Name,
                         BOD: U.BOD,
-                        Photo: url,
+                        Photo: null,
                         token: 0,
                         created: Date()
                     })
-                })
-            })
+                }).catch(function(err) {
+                  // An error happened.
+                  dispatch({ type: 'VERIFY_ERROR', err })
+                });
+            }
         }).then(() => {
             dispatch({ type: 'SIGNIN_SUCCESS' })
         }).catch(err => {
@@ -60,6 +95,15 @@ export const signinwithfb = () => {
                 }
             })
         }).then(() => {
+            var user = firebase.auth().currentUser;
+            if(!user.emailVerified){
+                user.sendEmailVerification().then(function() {
+                // Email sent.
+                }).catch(function(err) {
+                // An error happened.
+                    dispatch({ type: 'VERIFY_ERROR', err })
+                });
+            }
             dispatch({ type: 'SIGNIN_SUCCESS' })
         }).catch(err => {
             dispatch({ type: 'SIGNIN_ERROR', err })
@@ -74,6 +118,15 @@ export const signin = (credentials) => {
             credentials.Email,
             credentials.Password
         ).then(() => {
+            var user = firebase.auth().currentUser;
+            if(!user.emailVerified){
+                user.sendEmailVerification().then(function() {
+                // Email sent.
+                }).catch(function(err) {
+                // An error happened.
+                    dispatch({ type: 'VERIFY_ERROR', err })
+                });
+            }
             dispatch({ type: 'SIGNIN_SUCCESS' })
         }).catch(err => {
             dispatch({ type: 'SIGNIN_ERROR', err })
@@ -97,15 +150,29 @@ export const updateNameEmailDOB = (credentials) => {
 
         firebase.auth().currentUser.updateEmail(credentials.newEmail).then(function() {
             // Update successful.
-            console.log('success');
-        }).catch(function(error) {
+            firestore.collection('user').doc(credentials.uid).update({
+                displayName: credentials.displayName,
+                BOD: credentials.BOD,
+            })
+            dispatch({ type: 'UPDATE_EMAIL_SUCCESS' })
+        }).catch(function(err) {
             // An error happened.
-            console.log(error);
+            dispatch({ type: 'UPDATE_EMAIL_ERROR', err })
         });
-        
-        firestore.collection('user').doc(credentials.uid).update({
-            displayName: credentials.displayName,
-            BOD: credentials.BOD,
-        })
+    }
+}
+
+export const updatePWD = (credentials) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase()
+        var auth = firebase.auth();
+        var emailAddress = credentials.newEmail;
+
+        auth.sendPasswordResetEmail(emailAddress).then(function() {
+          // Email sent.
+        }).catch(function(err) {
+          // An error happened.
+          dispatch({ type: 'SIGNIN_ERROR', err })
+        });
     }
 }

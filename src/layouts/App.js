@@ -8,9 +8,7 @@ class App extends Component {
     // Don't call this.setState() here!
     this.state = { showInstallMessage: false };
   }
-
-  componentWillUpdate(){
-    // Detects if device is on iOS 
+  render() {
     const isIos = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();
       return /iphone|ipad|ipod/.test( userAgent );
@@ -23,9 +21,6 @@ class App extends Component {
       this.setState({ showInstallMessage: true });
       
     }
-  }
-
-  render() {
     return (
       <div className="App">
         <header className="App-header">

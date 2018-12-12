@@ -88,7 +88,7 @@ class SignUp extends Component{
   handleClick(e){
     e.preventDefault();
     if (this.state.Password === this.state.RePassword && this.state.Name !== '' && this.state.Email !== '') {
-      this.props.register(this.state)
+        this.props.register(this.state)
     } else {
       this.setState({err: 'some field are missing'})
     }
@@ -96,6 +96,9 @@ class SignUp extends Component{
 
   renderRedirect = () => {
     if (typeof(this.props.auth.uid) !== 'undefined'){
+      if(this.props.auth.email && !this.props.auth.emailVerified){
+        window.open('https://www.'+this.props.auth.email.split("@")[1], '_blank');
+      }
       return <Redirect to={'/'} />
     }
   }
@@ -178,7 +181,7 @@ SignUp.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    err: state.auth.err,
+    err: state.auth.errsignup,
     auth: state.firebase.auth,
   }
 }

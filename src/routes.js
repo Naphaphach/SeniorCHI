@@ -64,11 +64,6 @@ const Profile = Loadable({
     loading: LoadingComponant
 })
 
-const UpdatePWD = Loadable({
-    loader: () => import('./views/Main/UpdatePWD'),
-    loading: LoadingComponant
-})
-
 const UpdateIMG = Loadable({
     loader: () => import('./views/Main/UpdateIMG'),
     loading: LoadingComponant
@@ -99,7 +94,6 @@ const Routes = props => {
                     <Route exact path="/bookmark" component={Book} />
                     <Route exact path="/notice" component={Notice} />
                     <Route exact path="/profile" component={Profile} />
-                    <Route exact path="/profile/pwd" component={UpdatePWD} />
                     <Route exact path="/profile/img" component={UpdateIMG} />
                     <Route exact path="/" component={Map} />
                 </Switch>

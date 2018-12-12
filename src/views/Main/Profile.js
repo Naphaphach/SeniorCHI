@@ -155,9 +155,12 @@ class Profile extends Component{
                                     </Button>
                                 </form>
                                 <Row>
+                                    {this.state.newEmail?
                                     <Col className={classes.row}>
-                                        <ButtomPW onClick={() => this.props.updatePWD(this.state)}>update password</ButtomPW>
-                                    </Col>
+                                         <a href={'https://www.'+this.state.newEmail.split("@")[1]} target="_blank" rel="noopener noreferrer">
+                                            <ButtomPW onClick={() => this.props.updatePWD(this.state)}>update password</ButtomPW>
+                                        </a>
+                                    </Col>: null}
                                     <Col className={classes.row}>
                                         <ButtomPW>update profile image</ButtomPW>
                                     </Col>

@@ -170,9 +170,10 @@ export const updatePWD = (credentials) => {
 
         auth.sendPasswordResetEmail(emailAddress).then(function() {
           // Email sent.
+          dispatch({ type: 'UPDATE_EMAIL_SUCCESS' })
         }).catch(function(err) {
           // An error happened.
-          dispatch({ type: 'SIGNIN_ERROR', err })
+          dispatch({ type: 'UPDATE_EMAIL_ERROR', err })
         });
     }
 }

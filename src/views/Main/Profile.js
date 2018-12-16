@@ -55,7 +55,7 @@ const styles = theme => ({
         fontSize: '0.75em',
     },
     notise:{
-        fontSize: '0.25em',
+        fontSize: '0.5em',
     }
 })
 class Profile extends Component{

@@ -8,10 +8,11 @@ class App extends Component {
     // Don't call this.setState() here!
     this.state = { showInstallMessage: false };
   }
-  render() {
+
+  componentDidMount() {
     const isIos = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();
-      return /iphone|ipad|ipod/.test( userAgent );
+      return /iphone|ipad|ipod/.test(userAgent);
     }
     // Detects if device is in standalone mode
     const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
@@ -19,8 +20,11 @@ class App extends Component {
     // Checks if should display install popup notification:
     if (isIos() && !isInStandaloneMode()) {
       this.setState({ showInstallMessage: true });
-      
+
     }
+  }
+
+  render() {
     return (
       <div className="App">
         <header className="App-header">

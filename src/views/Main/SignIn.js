@@ -9,7 +9,6 @@ import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { signin } from '../../store/actions/authAction'
 import ErrMessage from '../../components/main/errMessage';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const styles = theme => ({
   main: {
@@ -72,7 +71,7 @@ class SignIn extends Component {
   };
 
   handleClick(e){
-    e.preventDefault();
+    e.preventDefault()
     this.props.signin(this.state)
   }
 
@@ -121,7 +120,7 @@ class SignIn extends Component {
             <br/>
           </form>
           <br/>
-          <Link to="/upin" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'backward']} /> Back</Link> <Link to="/" style={{fontSize:13}}> <FontAwesomeIcon icon={['fas', 'ban']} /> Cancel</Link>
+          <Link to="/upin" style={{fontSize:13}}> Cancel</Link>
           <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
           <Co/>
         </Paper>

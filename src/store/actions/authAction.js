@@ -134,3 +134,23 @@ export const updatePWD = (credentials) => {
         });
     }
 }
+
+export const updateProImg = () => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firestore = getFirestore()
+        const state = getState()
+        console.log(state);
+        if(state.img.imgPro){
+            firestore.collection('user').doc(state.firebase.auth.uid).update({
+                Photo: state.img.imgPro
+            }).then(function () {
+                // Email sent.
+                dispatch({ type: 'UPDATE_PHOTO_SUCCESS' })
+            }).catch(function (err) {
+                // An error happened.
+                dispatch({ type: 'UPDATE_PHOTO_ERROR', err })
+            });
+        }
+    }
+}
+

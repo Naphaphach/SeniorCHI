@@ -65,7 +65,7 @@ const Profile = Loadable({
 })
 
 const UpdateIMG = Loadable({
-    loader: () => import('./views/Main/UpdateIMG'),
+    loader: () => import('./components/inup/UpdateIMG'),
     loading: LoadingComponant
 })
 

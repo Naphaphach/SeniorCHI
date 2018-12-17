@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {updateNameEmailDOB, updatePWD} from '../../store/actions/authAction'
 import ErrMessage from '../../components/main/errMessage';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { changeMenu } from "../../store/actions/mapAction";
 
 const styles = theme => ({
@@ -30,7 +30,8 @@ const styles = theme => ({
     },
     profileimg:{
         margin: '1%',
-        width: '100%',
+        width: '90% !important',
+        height: '100% !important',
     },
     img:{
         textAlign: 'center',
@@ -55,7 +56,7 @@ const styles = theme => ({
         fontSize: '0.75em',
     },
     notise:{
-        fontSize: '0.5em',
+        fontSize: '0.6em',
     }
 })
 class Profile extends Component{
@@ -93,7 +94,7 @@ class Profile extends Component{
         if (typeof(this.props.auth.uid) === 'undefined'){
           return <Redirect to={'/'} />
         }
-      }
+    }
 
     render(){
         const { classes, profile, errprofile, erremail, success, auth} = this.props;
@@ -162,7 +163,7 @@ class Profile extends Component{
                                         </a>
                                     </Col>: null}
                                     <Col className={classes.row}>
-                                        <ButtomPW>update profile image</ButtomPW>
+                                        <Link to='/profile/img'><ButtomPW onClick={() => this.props.changeMenu('/profile/img')}>update profile image</ButtomPW></Link>
                                     </Col>
                                 </Row>
                             </Col>

@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import Home from '../../layouts/Home'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Button, Paper } from '@material-ui/core';
-import { Container, Col, Row, CustomInput, FormGroup, Label } from 'reactstrap'
+import { Container, Col, Row, CustomInput, FormGroup, Label, Button as ButtomPW } from 'reactstrap'
 import withStyles from '@material-ui/core/styles/withStyles';
 import AvatarE from './avatar'
 import Avatar from 'react-avatar'
 import { updateProImg } from '../../store/actions/authAction'
 import ErrMessage from '../../components/main/errMessage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { changeMenu } from "../../store/actions/mapAction";
+import { Redirect } from 'react-router-dom'
 
 const styles = theme => ({
     main: {
@@ -41,7 +43,7 @@ const styles = theme => ({
         width: '100%',
         margin: '2%'
     },
-    row:{
+    row: {
         display: 'block'
     }
 })
@@ -52,13 +54,8 @@ class UpdateIMG extends Component {
         this.state = {
             filename: null,
             Photo: null,
-            show: true
-        }
-    }
-
-    renderRedirect = () => {
-        if (typeof (this.props.auth.uid) === 'undefined') {
-            return <Redirect to={'/'} />
+            show: true,
+            menu: '/profile/img'
         }
     }
 
@@ -82,6 +79,10 @@ class UpdateIMG extends Component {
                 this.setState({ show: true })
             }
         }
+        if (this.props.menu) {
+            this.props.changeMenu(this.props.menu);
+
+        }
     }
 
     handleChangePhoto(event) {
@@ -99,18 +100,30 @@ class UpdateIMG extends Component {
         this.props.updateProImg(this.state)
     }
 
+    renderRedirect = (value) => {
+        if (value !== window.location.pathname) {
+            this.props.changeMenu(value);
+            return <Redirect to={value} />
+        }
+    }
+
     render() {
         const { classes, profile, errproimg, success } = this.props;
-        const { filename, Photo, show } = this.state
+        const { filename, Photo, show, menu } = this.state
         return (
             <Home>
-                {this.renderRedirect()}
+                {this.renderRedirect(menu)}
                 <Container>
                     <Paper className={classes.main}>
                         <Container>
                             <Row>
                                 <Col md='3' xs='12'>
-                                    <Label for="exampleCustomFileBrowser" style={{ fontSize: '1em', float: 'left' }}><b>profile image:</b></Label>
+                                    <Row>
+                                        <Col xs='1'><ButtomPW color="link" onClick={() => { this.setState({ menu: '/profile' }) }}><FontAwesomeIcon icon={['fas', 'chevron-left']} /></ButtomPW></Col>
+                                        <Col xs='11'>
+                                            <Label for="exampleCustomFileBrowser" style={{ fontSize: '1em', float: 'left' }}><b>profile image:</b></Label>
+                                        </Col>
+                                    </Row>
                                 </Col>
                                 <Col>
                                     <Row className={classes.row}>
@@ -126,7 +139,7 @@ class UpdateIMG extends Component {
                                                 <CustomInput type="file" id="exampleCustomFileBrowser" accept="image/*" name="customFile" onChange={(event) => this.handleChangePhoto(event)} label={filename} />
                                             </FormGroup>
                                             <ErrMessage err={errproimg} />
-                                            <ErrMessage cor={success}/>
+                                            <ErrMessage cor={success} />
                                             <Button
                                                 type="submit"
                                                 fullWidth
@@ -155,12 +168,14 @@ const mapStateToProps = (state) => {
         errproimg: state.auth.errproimg,
         erremail: state.auth.erremail,
         success: state.auth.success,
+        menu: state.map.Menu,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateProImg: () => dispatch(updateProImg())
+        updateProImg: () => dispatch(updateProImg()),
+        changeMenu: Menu => dispatch(changeMenu(Menu))
     }
 }
 

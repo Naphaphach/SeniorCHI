@@ -5,11 +5,11 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    // Don't call this.setState() here!
+    // Don't call this.setState() here9!
     this.state = { showInstallMessage: false };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const isIos = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();
       return /iphone|ipad|ipod/.test(userAgent);

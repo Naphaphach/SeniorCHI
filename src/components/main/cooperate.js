@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import injectSheet from 'react-jss';
 import PropTypes from 'prop-types'
 import Mu from '../../assets/MU Symbol- Full Colour.png'
 import ICT from '../../assets/customLogo.gif.png'
 import Bh from '../../assets/Logo_BharatMahidol_Feb2016.png'
-import {Container, Row, Col} from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 
 const styles = {
-    mulogo:{
+    mulogo: {
         width: '100%',
         verticalAlign: 'bottom',
         top: '50%',
@@ -21,17 +21,17 @@ class Cooperate extends Component {
     render() {
         const { classes } = this.props;
 
-        return(
+        return (
             <Container>
                 <Row>
                     <Col>
-                        <a href='https://www.ict.mahidol.ac.th/en/' target="_blank" rel="noopener noreferrer"><img src={ICT} alt="ICT" className={classes.mulogo}/></a>
+                        <a href='https://www.ict.mahidol.ac.th/en/' target="_blank" rel="noopener noreferrer"><img src={ICT} alt="ICT" className={classes.mulogo} /></a>
                     </Col>
                     <Col>
-                        <a href='https://mahidol.ac.th' target="_blank" rel="noopener noreferrer"><img src={Mu} alt="Mu" className={classes.mulogo}/></a>
+                        <a href='https://mahidol.ac.th' target="_blank" rel="noopener noreferrer"><img src={Mu} alt="Mu" className={classes.mulogo} /></a>
                     </Col>
                     <Col>
-                        <a href='http://www.bharat.lc.mahidol.ac.th' target="_blank" rel="noopener noreferrer"><img src={Bh} alt="Bh" className={classes.mulogo}/></a>
+                        <a href='http://www.bharat.lc.mahidol.ac.th' target="_blank" rel="noopener noreferrer"><img src={Bh} alt="Bh" className={classes.mulogo} /></a>
                     </Col>
                 </Row>
             </Container>

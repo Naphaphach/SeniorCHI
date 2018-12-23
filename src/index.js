@@ -5,8 +5,8 @@ import Router from './routes';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {faRedo, faUndo ,faSignOutAlt, faMapMarkedAlt, faFileSignature, faNewspaper, faBookmark, faBell, faSpinner, faArrowRight, faCoins } from '@fortawesome/free-solid-svg-icons'
-import { faImages} from '@fortawesome/free-regular-svg-icons'
+import { faChevronLeft ,faRedo, faUndo, faSignOutAlt, faMapMarkedAlt, faFileSignature, faNewspaper, faBookmark, faBell, faSpinner, faArrowRight, faCoins } from '@fortawesome/free-solid-svg-icons'
+import { faImages } from '@fortawesome/free-regular-svg-icons'
 import { Provider } from 'react-redux'
 import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from './store/reducers/rootReducer'
@@ -17,7 +17,7 @@ import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 import fbConfig from './configs/fbConfig'
 
-library.add(faRedo, faUndo, faImages, faSignOutAlt, faMapMarkedAlt, faFileSignature, faNewspaper, faBookmark, faBell, faSpinner, faArrowRight, faCoins);
+library.add(faChevronLeft, faRedo, faUndo, faImages, faSignOutAlt, faMapMarkedAlt, faFileSignature, faNewspaper, faBookmark, faBell, faSpinner, faArrowRight, faCoins);
 
 const store = createStore(
     rootReducer,

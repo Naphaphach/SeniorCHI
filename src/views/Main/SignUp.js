@@ -84,8 +84,8 @@ class SignUp extends Component {
     }
   }
 
-  componentWillMount(){
-    this.setState({Img64: this.props.img})
+  componentWillMount() {
+    this.setState({ Img64: this.props.img })
     console.log(this.state);
   }
 

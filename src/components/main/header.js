@@ -1,9 +1,9 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import {Icon, Drawer, MenuItem, Menu, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, InputBase, Button} from '@material-ui/core';
-import {Menu as MenuIcon, ChevronLeft as ChevronLeftIcon,ChevronRight as ChevronRightIcon, Search as SearchIcon} from '@material-ui/icons';
+import { Icon, Drawer, MenuItem, Menu, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, InputBase, Button } from '@material-ui/core';
+import { Menu as MenuIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Search as SearchIcon } from '@material-ui/icons';
 import logo from '../../assets/logo.png'
 import { Link, Redirect } from 'react-router-dom'
 import { searchMap } from '../../store/actions/mapAction'
@@ -11,20 +11,20 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Co from '../../components/main/cooperate'
 import Avatar from 'react-avatar'
-import {signout} from '../../store/actions/authAction'
+import { signout } from '../../store/actions/authAction'
 import { changeMenu } from "../../store/actions/mapAction";
-import {isMobile, isTablet} from "react-device-detect";
+import { isMobile, isTablet } from "react-device-detect";
 
 const drawerWidth = 240;
 
 const styles = theme => ({
-  but:{
+  but: {
     marginRight: 12,
   },
   root: {
     display: 'flex',
   },
-  logo:{
+  logo: {
     width: '2.5rem',
     marginRight: 12,
     marginLeft: 12,
@@ -107,7 +107,7 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: theme.spacing.unit * 8 ,
+    width: theme.spacing.unit * 8,
   },
   toolbar: {
     display: 'flex',
@@ -141,7 +141,7 @@ class Header extends Component {
   }
 
   handleChange(event, t) {
-    this.setState({value: t});
+    this.setState({ value: t });
     this.props.changeMenu(t)
   }
 
@@ -172,13 +172,13 @@ class Header extends Component {
 
   handleProfile = (value) => {
     this.setState({ anchorEl: null });
-    this.setState({value});
+    this.setState({ value });
     this.props.changeMenu(value)
   }
 
   renderRedirect = (value) => {
     if (value !== window.location.pathname) {
-        return <Redirect to={value} />   
+      return <Redirect to={value} />
     }
   }
 
@@ -196,8 +196,8 @@ class Header extends Component {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={() => this.handleProfile('/profile')}>Profile</MenuItem>
-        <MenuItem onClick={() =>  this.handleProfile('/Privacy')}>Privacy Policy</MenuItem>
-        <MenuItem onClick={() =>  this.handleProfile('/Terms')}>Terms of Service</MenuItem>
+        <MenuItem onClick={() => this.handleProfile('/Privacy')}>Privacy Policy</MenuItem>
+        <MenuItem onClick={() => this.handleProfile('/Terms')}>Terms of Service</MenuItem>
         <MenuItem onClick={this.handleclick}>Sign Out</MenuItem>
       </Menu>
     );
@@ -213,122 +213,122 @@ class Header extends Component {
           })}
         >
           <Toolbar disableGutters={!this.state.open}>
-          {!isTablet && !isMobile && window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && this.props.auth.uid ?
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, {
-                [classes.hide]: this.state.open,
-              })}
-            >
-               <MenuIcon /> 
-            </IconButton>
-             : null} 
+            {!isTablet && !isMobile && window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && this.props.auth.uid ?
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerOpen}
+                className={classNames(classes.menuButton, {
+                  [classes.hide]: this.state.open,
+                })}
+              >
+                <MenuIcon />
+              </IconButton>
+              : null}
             <Typography variant="h6" color="inherit">
-                <Link to="/" onClick={() => this.props.changeMenu("/")}><img src={logo} alt='CHI' className={classes.logo}/></Link>
+              <Link to="/" onClick={() => this.props.changeMenu("/")}><img src={logo} alt='CHI' className={classes.logo} /></Link>
             </Typography>
-            {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && window.location.pathname.search('profile') === -1 ? 
-            <Fragment>
-              <div className={classes.search} style={{width: '100%', marginLeft: 0}}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                            }}
-                            value={valueSearch}
-                            onChange={this.handleChangeSearch}
-                        />
-                    </div>
-                    {this.props.auth.uid ?
-                    <IconButton
-                      aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                      aria-haspopup="true"
-                      onClick={this.handleProfileMenuOpen}
-                      color="inherit"
-                      className={classes.but}
-                    >
-                      <Avatar name={profile.displayName} size="45" src={profile.Photo} round={true}/>
-                      </IconButton>
-                    : <Button color="inherit" className={classes.but}><Link to="/upin" style={{
-                      fontWeight: "bold",
-                      color: "white"
-                    }}> Login </Link> </Button>}
-            </Fragment>
-            :null}
+            {window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && window.location.pathname.search('profile') === -1 ?
+              <Fragment>
+                <div className={classes.search} style={{ width: '100%', marginLeft: 0 }}>
+                  <div className={classes.searchIcon}>
+                    <SearchIcon />
+                  </div>
+                  <InputBase
+                    placeholder="Search…"
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput,
+                    }}
+                    value={valueSearch}
+                    onChange={this.handleChangeSearch}
+                  />
+                </div>
+                {this.props.auth.uid ?
+                  <IconButton
+                    aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                    aria-haspopup="true"
+                    onClick={this.handleProfileMenuOpen}
+                    color="inherit"
+                    className={classes.but}
+                  >
+                    <Avatar name={profile.displayName} size="45" src={profile.Photo} round={true} />
+                  </IconButton>
+                  : <Button color="inherit" className={classes.but}><Link to="/upin" style={{
+                    fontWeight: "bold",
+                    color: "white"
+                  }}> Login </Link> </Button>}
+              </Fragment>
+              : null}
           </Toolbar>
         </AppBar>
         {!isTablet && !isMobile && window.location.pathname.search('in') === -1 && window.location.pathname.search('up') === -1 && this.props.auth.uid ?
-        <Drawer
-          variant="permanent"
-          className={classNames(classes.drawer, {
-            [classes.drawerOpen]: this.state.open,
-            [classes.drawerClose]: !this.state.open,
-          })}
-          classes={{
-            paper: classNames({
+          <Drawer
+            variant="permanent"
+            className={classNames(classes.drawer, {
               [classes.drawerOpen]: this.state.open,
               [classes.drawerClose]: !this.state.open,
-            }),
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
-          </div>
-          <Divider />
-          <List>
-            {['/', '/diary', '/feed', '/bookmark', '/notice'].map((text, index) => (
-              <ListItem button key={text} selected={this.props.Menu === text} onClick={(event) => this.handleChange(event, text)}>
-                <ListItemIcon>
-                {index === 0 ? 
-                <FontAwesomeIcon icon={['fas', 'map-marked-alt']} /> : 
-                index === 1 ? 
-                <FontAwesomeIcon icon={['fas', 'file-signature']} /> : 
-                index === 2 ? 
-                <FontAwesomeIcon icon={['fas', 'newspaper']} /> : 
-                index === 3 ? 
-                <FontAwesomeIcon icon={['fas', 'bookmark']} /> :
-                <FontAwesomeIcon icon={['fas', 'bell']} />}
-                </ListItemIcon>
-                {index === 0 ? <ListItemText primary={'map'} />: <ListItemText primary={text.replace('/','  ')} />}
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['/profile', '/Terms', '/Privacy'].map((text, index) => (
-              <ListItem button key={text} selected={this.props.Menu === text} onClick={(event) => this.handleChange(event, text)}>
-                <ListItemIcon>
-                {index === 0 ? 
-                <Icon className={classes.icon}>Profile</Icon> : 
-                index === 1 ? 
-                <Icon className={classes.icon}>Terms</Icon> :
-                <Icon className={classes.icon}>Privacy</Icon>
-                }
-                </ListItemIcon>
-                {index === 0 ? <ListItemText primary={'Profile'} />: index === 1 ?   <ListItemText primary={'Terms of Service'} />:  <ListItemText primary={'Privacy Policy'} />}
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
+            })}
+            classes={{
+              paper: classNames({
+                [classes.drawerOpen]: this.state.open,
+                [classes.drawerClose]: !this.state.open,
+              }),
+            }}
+            open={this.state.open}
+          >
+            <div className={classes.toolbar}>
+              <IconButton onClick={this.handleDrawerClose}>
+                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+              </IconButton>
+            </div>
+            <Divider />
+            <List>
+              {['/', '/diary', '/feed', '/bookmark', '/notice'].map((text, index) => (
+                <ListItem button key={text} selected={this.props.Menu === text} onClick={(event) => this.handleChange(event, text)}>
+                  <ListItemIcon>
+                    {index === 0 ?
+                      <FontAwesomeIcon icon={['fas', 'map-marked-alt']} /> :
+                      index === 1 ?
+                        <FontAwesomeIcon icon={['fas', 'file-signature']} /> :
+                        index === 2 ?
+                          <FontAwesomeIcon icon={['fas', 'newspaper']} /> :
+                          index === 3 ?
+                            <FontAwesomeIcon icon={['fas', 'bookmark']} /> :
+                            <FontAwesomeIcon icon={['fas', 'bell']} />}
+                  </ListItemIcon>
+                  {index === 0 ? <ListItemText primary={'map'} /> : <ListItemText primary={text.replace('/', '  ')} />}
+                </ListItem>
+              ))}
+            </List>
+            <Divider />
+            <List>
+              {['/profile', '/Terms', '/Privacy'].map((text, index) => (
+                <ListItem button key={text} selected={this.props.Menu === text} onClick={(event) => this.handleChange(event, text)}>
+                  <ListItemIcon>
+                    {index === 0 ?
+                      <Icon className={classes.icon}>Profile</Icon> :
+                      index === 1 ?
+                        <Icon className={classes.icon}>Terms</Icon> :
+                        <Icon className={classes.icon}>Privacy</Icon>
+                    }
+                  </ListItemIcon>
+                  {index === 0 ? <ListItemText primary={'Profile'} /> : index === 1 ? <ListItemText primary={'Terms of Service'} /> : <ListItemText primary={'Privacy Policy'} />}
+                </ListItem>
+              ))}
+            </List>
+            <Divider />
             <ListItem button onClick={this.handleclick}>
-                <ListItemIcon>
+              <ListItemIcon>
                 <FontAwesomeIcon icon={['fas', 'sign-out-alt']} />
-                </ListItemIcon>
-                <ListItemText primary={'Sign Out'} />
-              </ListItem>
-          <Divider />
-          <Co/>
-        </Drawer>
-         :null}
-         {renderMenu}  
+              </ListItemIcon>
+              <ListItemText primary={'Sign Out'} />
+            </ListItem>
+            <Divider />
+            <Co />
+          </Drawer>
+          : null}
+        {renderMenu}
       </div>
     );
   }
@@ -342,18 +342,18 @@ Header.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-      valueSearch: state.map.valueSearch,
-      auth: state.firebase.auth,
-      profile: state.firebase.profile,
-      Menu: state.map.Menu,
+    valueSearch: state.map.valueSearch,
+    auth: state.firebase.auth,
+    profile: state.firebase.profile,
+    Menu: state.map.Menu,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      searchMap: valueSearch => dispatch(searchMap(valueSearch)),
-      signout: () => dispatch(signout()),
-      changeMenu: Menu => dispatch(changeMenu(Menu))
+    searchMap: valueSearch => dispatch(searchMap(valueSearch)),
+    signout: () => dispatch(signout()),
+    changeMenu: Menu => dispatch(changeMenu(Menu))
   }
 }
 

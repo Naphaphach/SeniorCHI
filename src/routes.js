@@ -79,6 +79,11 @@ const Privacy = Loadable({
     loading: LoadingComponant
 })
 
+const NotFound = Loadable({
+    loader: () => import('./views/ETC/PrivacyPolicy'),
+    loading: LoadingComponant
+})
+
 const Routes = props => {
     return (
         <App>
@@ -96,6 +101,7 @@ const Routes = props => {
                     <Route exact path="/profile" component={Profile} />
                     <Route exact path="/profile/img" component={UpdateIMG} />
                     <Route exact path="/" component={Map} />
+                    <Route path="*" component={NotFound} />
                 </Switch>
             </Router>
         </App>

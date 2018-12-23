@@ -21,11 +21,11 @@ self.addEventListener('activate', event => {
 });
 
 // This triggers when user starts the app
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
   if (doCache) {
     event.waitUntil(
       caches.open(CACHE_NAME)
-        .then(function(cache) {
+        .then(function (cache) {
           fetch('asset-manifest.json')
             .then(response => {
               response.json();
@@ -45,10 +45,10 @@ self.addEventListener('install', function(event) {
 });
 
 // Here we intercept request and serve up the matching files
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function (event) {
   if (doCache) {
     event.respondWith(
-      caches.match(event.request).then(function(response) {
+      caches.match(event.request).then(function (response) {
         return response || fetch(event.request);
       })
     );

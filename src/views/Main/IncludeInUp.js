@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {CssBaseline, Paper, Typography} from '@material-ui/core';
+import { CssBaseline, Paper, Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Logo from '../../assets/logo.png';
 import Header from '../../components/main/header'
@@ -24,17 +24,17 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
-    [theme.breakpoints.up('sm')]:{
+    [theme.breakpoints.up('sm')]: {
       marginTop: '12%',
       marginBottom: '9%',
     },
-    [theme.breakpoints.down('sm')]:{
+    [theme.breakpoints.down('sm')]: {
       marginTop: '20%',
       marginBottom: '9%',
     },
   },
   paper: {
-    marginTop: theme.spacing.unit ,
+    marginTop: theme.spacing.unit,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -44,7 +44,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     width: '100%', // Fix IE 11 issue.
   },
-  in:{
+  in: {
     marginTop: theme.spacing.unit * 5,
     width: '100%', // Fix IE 11 issue.
     backgroundColor: 'DarkGray'
@@ -52,66 +52,66 @@ const styles = theme => ({
 });
 
 class InUp extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {err: null};
+    this.state = { err: null };
   }
-  
+
   renderRedirect = () => {
-    if (typeof(this.props.auth.uid) !== 'undefined'){
-      if(this.props.auth.email && !this.props.auth.emailVerified){
-        window.open('https://www.'+this.props.auth.email.split("@")[1], '_blank');
+    if (this.props.auth.uid) {
+      if (this.props.auth.email && !this.props.auth.emailVerified) {
+        window.open('https://www.' + this.props.auth.email.split("@")[1], '_blank');
       }
       return <Redirect to={'/'} />
     }
   }
 
   signinwithfb = () => {
-      this.props.signinwithfb()
-      this.setState({err: this.props.err})
+    this.props.signinwithfb()
+    this.setState({ err: this.props.err })
   }
 
-  render(){
+  render() {
     const { classes } = this.props;
     const { err } = this.state;
     return (
       <main className={classes.main}>
-      {this.renderRedirect()}
-      <Header/>
+        {this.renderRedirect()}
+        <Header />
         <CssBaseline />
         <Paper className={classes.paper}>
-          <img src={Logo} width="50%" alt="Logo"/>
+          <img src={Logo} width="50%" alt="Logo" />
           <Typography component="h1" variant="h5">
             Learn india culture with Chi 𝜒
           </Typography>
           <Container>
-              <Row>
-                <Col>
-                    <Button color="primary" className={classes.form} onClick={() => this.signinwithfb()}>Continue with Facebook</Button>
-                </Col>
-            </Row>
-          <ErrMessage err={err}/>
             <Row>
-                <Col>
-                    <Link to='/up'>
-                        <Button color="success" className={classes.form}>Sign up with email</Button>
-                    </Link>
-                </Col>
+              <Col>
+                <Button color="primary" className={classes.form} onClick={() => this.signinwithfb()}>Continue with Facebook</Button>
+              </Col>
+            </Row>
+            <ErrMessage err={err} />
+            <Row>
+              <Col>
+                <Link to='/up'>
+                  <Button color="success" className={classes.form}>Sign up with email</Button>
+                </Link>
+              </Col>
             </Row>
           </Container>
           <Container>
             <Row>
-                <Col>
-                    <Link to='/in'>
-                        <Button className={classes.in}>Log in</Button>
-                    </Link>
-                </Col>
+              <Col>
+                <Link to='/in'>
+                  <Button className={classes.in}>Log in</Button>
+                </Link>
+              </Col>
             </Row>
           </Container>
-          <br/>
-          <Link to="/" style={{fontSize:13}}>Cancel</Link>
-          <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
-          <Co/>
+          <br />
+          <Link to="/" style={{ fontSize: 13 }}>Cancel</Link>
+          <p style={{ color: 'black', fontSize: 12 }}>CHI &#174; 2018</p>
+          <Co />
         </Paper>
       </main>
     )
@@ -130,9 +130,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        signinwithfb: () => dispatch(signinwithfb())
-    }
+  return {
+    signinwithfb: () => dispatch(signinwithfb())
+  }
 }
 
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(InUp));

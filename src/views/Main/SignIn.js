@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Button, CssBaseline, FormControl, Input, InputLabel, Paper, Typography} from '@material-ui/core';
+import { Button, CssBaseline, FormControl, Input, InputLabel, Paper, Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Logo from '../../assets/logo.png';
 import Header from '../../components/main/header'
@@ -23,17 +23,17 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
-    [theme.breakpoints.up('sm')]:{
+    [theme.breakpoints.up('sm')]: {
       marginTop: '12%',
       marginBottom: '9%',
     },
-    [theme.breakpoints.down('sm')]:{
+    [theme.breakpoints.down('sm')]: {
       marginTop: '20%',
       marginBottom: '9%',
     },
   },
   paper: {
-    marginTop: theme.spacing.unit ,
+    marginTop: theme.spacing.unit,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -55,7 +55,7 @@ const styles = theme => ({
 
 class SignIn extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       Email: '',
@@ -70,44 +70,44 @@ class SignIn extends Component {
     });
   };
 
-  handleClick(e){
+  handleClick(e) {
     e.preventDefault()
     this.props.signin(this.state)
   }
 
   renderRedirect = () => {
-    if (typeof(this.props.auth.uid) !== 'undefined'){
-      if(this.props.auth.email && !this.props.auth.emailVerified){
-        window.open('https://www.'+this.props.auth.email.split("@")[1], '_blank');
+    if (typeof (this.props.auth.uid) !== 'undefined') {
+      if (this.props.auth.email && !this.props.auth.emailVerified) {
+        window.open('https://www.' + this.props.auth.email.split("@")[1], '_blank');
       }
       return <Redirect to={'/'} />
     }
   }
 
-  render(){
+  render() {
     const { classes, err } = this.props;
     return (
       <main className={classes.main}>
-      {this.renderRedirect()}
-      <Header/>
+        {this.renderRedirect()}
+        <Header />
         <CssBaseline />
         <Paper className={classes.paper}>
-          <img src={Logo} width="20%" alt="Logo"/>
+          <img src={Logo} width="20%" alt="Logo" />
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
           <form className={classes.form} method="post" onSubmit={(event) => this.handleClick(event)}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange('Email')}/>
+              <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange('Email')} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
-              <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange('Password')}/>
+              <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange('Password')} />
             </FormControl>
-            <Link to="/up" style={{fontSize:13}}>Do you have an account?</Link>
-            <br/>
-            <ErrMessage err={err}/>
+            <Link to="/up" style={{ fontSize: 13 }}>Do you have an account?</Link>
+            <br />
+            <ErrMessage err={err} />
             <Button
               type="submit"
               fullWidth
@@ -117,12 +117,12 @@ class SignIn extends Component {
             >
               Sign in
             </Button>
-            <br/>
+            <br />
           </form>
-          <br/>
-          <Link to="/upin" style={{fontSize:13}}> Cancel</Link>
-          <p style={{color: 'black', fontSize:12}}>CHI &#174; 2018</p>
-          <Co/>
+          <br />
+          <Link to="/upin" style={{ fontSize: 13 }}> Cancel</Link>
+          <p style={{ color: 'black', fontSize: 12 }}>CHI &#174; 2018</p>
+          <Co />
         </Paper>
       </main>
     )
@@ -146,4 +146,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withStyles(styles)(connect(mapStateToProps,mapDispatchToProps)(SignIn));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(SignIn));

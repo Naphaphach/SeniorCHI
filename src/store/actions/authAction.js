@@ -3,7 +3,7 @@ export const register = (U) => {
         const firebase = getFirebase()
         const firestore = getFirestore()
         const state = getState()
-        
+
         firebase.auth().createUserWithEmailAndPassword(
             U.Email,
             U.Password,
@@ -13,7 +13,7 @@ export const register = (U) => {
             })
             resp.user.sendEmailVerification().then(function () {
                 console.log(U);
-                
+
                 firestore.collection('user').doc(resp.user.uid).set({
                     displayName: U.Name,
                     BOD: U.BOD,
@@ -140,7 +140,7 @@ export const updateProImg = () => {
         const firestore = getFirestore()
         const state = getState()
         console.log(state);
-        if(state.img.imgPro){
+        if (state.img.imgPro) {
             firestore.collection('user').doc(state.firebase.auth.uid).update({
                 Photo: state.img.imgPro
             }).then(function () {

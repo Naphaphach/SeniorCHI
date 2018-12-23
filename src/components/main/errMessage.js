@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, { Component, Fragment } from 'react'
 import injectSheet from 'react-jss';
 import PropTypes from 'prop-types'
 
@@ -8,7 +8,7 @@ const styles = {
         fontSize: '.5em',
         marginTop: '5%'
     },
-    suc:{
+    suc: {
         color: 'Green',
         fontSize: '.5em',
         marginTop: '5%'
@@ -17,12 +17,12 @@ const styles = {
 
 
 class errMessage extends Component {
-    render(){
-        const {classes, err, cor} = this.props
-        return(
+    render() {
+        const { classes, err, cor } = this.props
+        return (
             <Fragment>
-                {err ? <p className={classes.err}> {err} </p>: null}
-                {cor ? <p className={classes.suc}> success and you need to login agian </p>: null}
+                {err ? <p className={classes.err}> {err} </p> : null}
+                {cor ? <p className={classes.suc}> success and you need to login agian </p> : null}
             </Fragment>
         )
     }

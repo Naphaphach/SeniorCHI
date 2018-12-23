@@ -8,8 +8,8 @@ import { Redirect } from 'react-router-dom'
 import { changeMenu } from "../../store/actions/mapAction";
 import { connect } from 'react-redux'
 
-const styles =  {
-    root:{
+const styles = {
+    root: {
         width: '100%',
         position: 'fixed',
         bottom: 0,
@@ -17,7 +17,7 @@ const styles =  {
         color: 'green',
         fontSize: '1.5em',
     },
-    choice:{
+    choice: {
         minWidth: '0 !important',
         padding: '0 !important',
     }
@@ -32,21 +32,20 @@ class Footer extends Component {
     }
 
     handleChange = (event, value) => {
-        this.setState({value})
+        this.setState({ value })
         this.props.changeMenu(value)
     };
 
     renderRedirect = (value) => {
         if (value !== window.location.pathname) {
-            return <Redirect to={value} />   
+            return <Redirect to={value} />
         }
     }
-
 
     render() {
         const { classes } = this.props;
         const { value } = this.state;
-        return(
+        return (
             <BottomNavigation value={value} onChange={this.handleChange} className={classes.root} showLabels>
                 {this.renderRedirect(value)}
                 <BottomNavigationAction className={classes.choice} label="map" value="/" icon={<FontAwesomeIcon icon={['fas', 'map-marked-alt']} />} />
@@ -56,7 +55,7 @@ class Footer extends Component {
                 <BottomNavigationAction className={classes.choice} label="notice" value="/notice" icon={<FontAwesomeIcon icon={['fas', 'bell']} />} />
             </BottomNavigation>
         )
-    }    
+    }
 }
 
 Footer.propTypes = {

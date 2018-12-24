@@ -84,6 +84,11 @@ const NotFound = Loadable({
     loading: LoadingComponant
 })
 
+const EditDiary = Loadable({
+    loader: () => import('./components/diary/edit'),
+    loading: LoadingComponant
+})
+
 const Routes = props => {
     return (
         <App>
@@ -95,6 +100,7 @@ const Routes = props => {
                     <Route exact path="/up" component={SignUp} />
                     <Route exact path="/upin" component={InUp} />
                     <Route exact path="/diary" component={Diary} />
+                    <Route exact path="/diary/edit" component={EditDiary} />
                     <Route exact path="/feed" component={Feed} />
                     <Route exact path="/bookmark" component={Book} />
                     <Route exact path="/notice" component={Notice} />

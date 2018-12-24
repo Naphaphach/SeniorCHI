@@ -12,8 +12,6 @@ export const register = (U) => {
                 displayName: U.Name,
             })
             resp.user.sendEmailVerification().then(function () {
-                console.log(U);
-
                 firestore.collection('user').doc(resp.user.uid).set({
                     displayName: U.Name,
                     BOD: U.BOD,
@@ -139,7 +137,6 @@ export const updateProImg = () => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore()
         const state = getState()
-        console.log(state);
         if (state.img.imgPro) {
             firestore.collection('user').doc(state.firebase.auth.uid).update({
                 Photo: state.img.imgPro

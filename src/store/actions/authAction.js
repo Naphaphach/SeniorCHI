@@ -8,21 +8,23 @@ export const register = (U) => {
             U.Email,
             U.Password,
         ).then((resp) => {
-            resp.user.updateProfile({
+            return firestore.collection('user').doc(resp.user.uid).set({
                 displayName: U.Name,
+                BOD: U.BOD,
+                Photo: state.img.imgPro,
+                token: 0,
+                created: Date()
             })
-            resp.user.sendEmailVerification().then(function () {
-                firestore.collection('user').doc(resp.user.uid).set({
-                    displayName: U.Name,
-                    BOD: U.BOD,
-                    Photo: state.img.imgPro,
-                    token: 0,
-                    created: Date()
-                })
-            }).catch(function (err) {
-                dispatch({ type: 'VERIFY_ERROR', err })
-            });
         }).then(() => {
+            var user = firebase.auth().currentUser;
+            if (!user.emailVerified) {
+                user.sendEmailVerification().then(function () {
+                    // Email sent.
+                }).catch(function (err) {
+                    // An error happened.
+                    dispatch({ type: 'VERIFY_ERROR', err })
+                });
+            }
             dispatch({ type: 'SIGNIN_SUCCESS' })
         }).catch(err => {
             dispatch({ type: 'SIGNIN_ERROR', err })

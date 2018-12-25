@@ -2,14 +2,22 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Home from '../../layouts/Home'
 import Unregist from '../../components/main/unregist'
-import { Paper, Grid } from '@material-ui/core/'
 import { withStyles } from '@material-ui/core/styles';
 import { isMobile } from "react-device-detect";
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
+import PropTypes from 'prop-types';
+import EditForm from "./form";
 
 const styles = theme => ({
+    colorSwitchBase: {
+        '&$colorChecked': {
+            color: '#FF9933',
+            '& + $colorBar': {
+                backgroundColor: '#FF9933',
+            },
+        },
+    },
+    colorBar: {},
+    colorChecked: {},
     root: {
         flexGrow: 1,
         marginLeft: '64px',
@@ -29,6 +37,19 @@ const styles = theme => ({
 });
 
 class Edit extends Component {
+    state = {
+        public: false,
+        text: 'private'
+    };
+
+    handleChange = name => event => {
+        this.setState({ [name]: event.target.checked });
+        if (event.target.checked) {
+            this.setState({ text: 'public' })
+        } else {
+            this.setState({ text: 'private' })
+        }
+    };
     render() {
         const { classes } = this.props
         return (
@@ -36,28 +57,21 @@ class Edit extends Component {
                 {this.props.auth.uid ?
                     isMobile ?
                         <div className={classes.rootmod}>
-                            <Grid container spacing={0}>
-                                <Grid item xs={12}>
-                                    <Paper className={classes.paper}>
-                                        1
-                                    </Paper>
-                                </Grid>
-                            </Grid>
+                            <EditForm/>
                         </div> :
                         <div className={classes.root}>
-                            <Grid container spacing={0}>
-                                <Grid item xs={12}>
-                                    <Paper className={classes.paper}>
-                                        1
-                                    </Paper>
-                                </Grid>
-                            </Grid>
+                            <EditForm/>
                         </div>
                     : <Unregist name='Diary' />}
             </Home>
         )
     }
 }
+
+Edit.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
 
 const mapStateToProps = (state) => {
     return {

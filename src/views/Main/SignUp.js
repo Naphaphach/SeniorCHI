@@ -84,10 +84,6 @@ class SignUp extends Component {
     }
   }
 
-  componentWillMount() {
-    this.setState({ Img64: this.props.img })
-  }
-
   handleClick(e) {
     e.preventDefault();
     if (this.state.Password === this.state.RePassword && this.state.Name !== '' && this.state.Email !== '') {
@@ -186,7 +182,7 @@ SignUp.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    err: state.auth.errsignup,
+    err: state.auth.errsignin,
     auth: state.firebase.auth,
     img: state.img.imgPro,
   }

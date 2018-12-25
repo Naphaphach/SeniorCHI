@@ -1,5 +1,4 @@
 const initState = {
-    errsignup: null,
     errsignin: null,
     errverify: null,
     errprofile: null,
@@ -12,9 +11,6 @@ const authReducer = (state, action) => {
     switch (action.type) {
         case 'SIGNIN_SUCCESS':
             state = { ...state, errsignup: null, errsignin: null, errprofile: null, erremail: null, }
-            break;
-        case 'SIGNUP_ERROR':
-            state = { ...state, errsignup: action.err.message }
             break;
         case 'SIGNIN_ERROR':
             state = { ...state, errsignin: action.err.message }

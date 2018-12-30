@@ -95,11 +95,14 @@ class EditForm extends Component {
         this.state = {
             public: false,
             text: 'private',
-            state: '',
             labelWidth: 0,
             imgfile: [],
             files: [],
-            hide: true
+            hide: true,
+            title: '',
+            state: '',
+            note: '',
+            tag: [],
         };
         this.handleButtonPress = this.handleButtonPress.bind(this)
         this.handleButtonRelease = this.handleButtonRelease.bind(this)
@@ -115,8 +118,31 @@ class EditForm extends Component {
     };
 
     handleChangeField = name => event => {
-        this.setState({ [name]: event.target.value });
+        if (name === 'tag') {
+            this.arr_diff(this.state.tag, event.target.value.split(/[ #]+/))
+            this.setState({ tag: event.target.value.split(/[ #]+/) });
+        } else {
+            this.setState({ [name]: event.target.value });
+        }
     };
+
+    arr_diff = (A, B) => {
+        const a = [], diff = [];
+        for (var i = 0; i < A.length; i++) {
+            a[A[i]] = true;
+        }
+        for (i = 0; i < B.length; i++) {
+            if (a[B[i]]) {
+                delete a[B[i]];
+            } else {
+                a[B[i]] = true;
+            }
+        }
+        for (var k in a) {
+            diff.push(k);
+        }
+        console.log(diff[diff.length-1]);
+    }
 
     handleButtonPress() {
         this.buttonPressTimer = setTimeout(() => this.setState({ hide: false }), 1500)
@@ -137,11 +163,6 @@ class EditForm extends Component {
                 files: [...prevState.files, img]
             }))
         )
-    }
-
-    componentDidUpdate(){
-        console.log(this.state);
-        
     }
 
     imageClick = (im) => {
@@ -183,16 +204,17 @@ class EditForm extends Component {
                                                 onTouchEnd={this.handleButtonRelease}
                                                 onMouseDown={this.handleButtonPress}
                                                 onMouseUp={this.handleButtonRelease} />
-                                            {!this.state.hide ? <GridListTileBar
-                                                titlePosition="top"
-                                                actionIcon={
-                                                    <IconButton className={classes.icon} onClick={() => this.imageClick(im)}>
-                                                        <DeleteOutlineIcon />
-                                                    </IconButton>
-                                                }
-                                                actionPosition="left"
-                                                className={classes.titleBar}
-                                            /> : null}
+                                            {!this.state.hide ?
+                                                <GridListTileBar
+                                                    titlePosition="top"
+                                                    actionIcon={
+                                                        <IconButton className={classes.icon} onClick={() => this.imageClick(im)}>
+                                                            <DeleteOutlineIcon />
+                                                        </IconButton>
+                                                    }
+                                                    actionPosition="left"
+                                                    className={classes.titleBar}
+                                                /> : null}
                                         </GridListTile>
                                     ))}
                                 </GridList>
@@ -219,6 +241,8 @@ class EditForm extends Component {
                                         notchedOutline: classes.notchedOutline,
                                     },
                                 }}
+                                required={this.state.public}
+                                onChange={this.handleChangeField('title')}
                             />
                             <TextField
                                 id="outlined-select-currency"
@@ -246,6 +270,7 @@ class EditForm extends Component {
                                 className={classes.textField}
                                 value={this.state.state}
                                 onChange={this.handleChangeField('state')}
+                                required={this.state.public}
                                 margin="normal"
                                 variant="outlined"
                             >
@@ -278,6 +303,8 @@ class EditForm extends Component {
                                         notchedOutline: classes.notchedOutline,
                                     },
                                 }}
+                                onChange={this.handleChangeField('note')}
+                                required={this.state.public}
                                 multiline
                             />
                             <TextField
@@ -285,7 +312,7 @@ class EditForm extends Component {
                                 label="tag"
                                 rows="4"
                                 style={{ margin: 8 }}
-                                placeholder="eg local india food, india market"
+                                placeholder="eg #LocalIndiaFood #indiamarket #india #Market"
                                 fullWidth
                                 margin="normal"
                                 variant="outlined"
@@ -303,11 +330,13 @@ class EditForm extends Component {
                                         notchedOutline: classes.notchedOutline,
                                     },
                                 }}
+                                onChange={this.handleChangeField('tag')}
+                                required={this.state.public}
                                 multiline
                             />
                             <Col xs='7'></Col>
                             <Col xs='5'>
-                                <input accept="image/*" className={classes.input} onChange={this.handleChangeImg.bind(this)} id="icon-button-file" type="file" multiple />
+                                <input accept="image/*" required={this.state.public} className={classes.input} onChange={this.handleChangeImg.bind(this)} id="icon-button-file" type="file" multiple />
                                 <label htmlFor="icon-button-file">
                                     <IconButton className={classes.button} component="span">
                                         <PhotoCamera />

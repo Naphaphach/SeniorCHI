@@ -8,6 +8,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import { state } from '../../models/state.json'
 import { Col } from 'reactstrap'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import { save } from '../../store/actions/diaryAction'
 
 const styles = theme => ({
     colorSwitchBase: {
@@ -342,7 +343,7 @@ class EditForm extends Component {
                                         <PhotoCamera />
                                     </IconButton>
                                 </label>
-                                <Button variant="contained" size="small" className={classes.button}>
+                                <Button variant="contained" size="small" className={classes.button} onClick={() => this.props.save(this.state)}>
                                     <SaveIcon />
                                     Save
                                 </Button>
@@ -366,4 +367,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withStyles(styles)(connect(mapStateToProps)(EditForm))
+const mapDispatchToProps = (dispatch) => {
+    return {
+        save: page => dispatch(save(page))
+    }
+}
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(EditForm))

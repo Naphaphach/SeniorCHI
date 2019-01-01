@@ -142,7 +142,7 @@ class EditForm extends Component {
         for (var k in a) {
             diff.push(k);
         }
-        console.log(diff[diff.length-1]);
+        // console.log(diff[diff.length-1]);
     }
 
     handleButtonPress() {

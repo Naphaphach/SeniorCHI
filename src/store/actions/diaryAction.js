@@ -10,11 +10,17 @@ export const save = (D) => {
         }
         var photoURL = []
         if (D.files) {
-            D.files.map(file => {
+            D.files.map((file, i) => {
+                var metadata = {
+                    customMetadata: {
+                        orientation: D.metadata[i],
+                    }
+                };
+
                 var storageRef = firebase.storage().ref(user.uid + "/" + file.name);
 
                 //Upload file
-                var task = storageRef.put(file);
+                var task = storageRef.put(file, metadata);
 
                 //Update progress bar
                 return task.on('state_changed',
@@ -29,8 +35,8 @@ export const save = (D) => {
                             photoURL.push(url);
                             // Add a new document in collection "cities"
                             firestore.collection('user').doc(user.uid)
-                                .collection('diary').doc('wrote')
-                                .collection(D.state).doc(D.title).set({
+                                .collection('diary').doc(D.id).set({
+                                    title: D.title,
                                     public: D.public,
                                     state: D.state,
                                     note: D.note,
@@ -44,13 +50,13 @@ export const save = (D) => {
             })
         } else {
             firestore.collection('user').doc(user.uid)
-                .collection('diary').doc('wrote')
-                .collection(D.state).doc(D.title).set({
+                .collection('diary').doc(D.id).set({
+                    title: D.title,
                     public: D.public,
                     state: D.state,
                     note: D.note,
                     tag: D.tag,
-                    photo: [],
+                    photo: null,
                     date: Date()
                 })
         }

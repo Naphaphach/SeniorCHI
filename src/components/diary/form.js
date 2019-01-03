@@ -9,7 +9,7 @@ import { state } from '../../models/state.json'
 import { Col } from 'reactstrap'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { save } from '../../store/actions/diaryAction'
-
+import uuidv1 from 'uuid/v1'
 const styles = theme => ({
     colorSwitchBase: {
         '&$colorChecked': {
@@ -100,13 +100,60 @@ class EditForm extends Component {
             imgfile: [],
             files: [],
             hide: true,
+            id: '',
             title: '',
             state: '',
             note: '',
             tag: [],
+            metadata: []
         };
         this.handleButtonPress = this.handleButtonPress.bind(this)
         this.handleButtonRelease = this.handleButtonRelease.bind(this)
+    }
+
+    componentWillMount(){
+        this.setState({id:uuidv1()});
+        
+    }
+
+    getOrientation = (file, callback) => {
+        var reader = new FileReader();
+        reader.onload = (e) => {
+
+            var view = new DataView(e.target.result);
+            if (view.getUint16(0, false) !== 0xFFD8) {
+                return callback(-2);
+            }
+            var length = view.byteLength, offset = 2;
+            while (offset < length) {
+                if (view.getUint16(offset + 2, false) <= 8) return callback(-1);
+                var marker = view.getUint16(offset, false);
+                offset += 2;
+                if (marker === 0xFFE1) {
+                    if (view.getUint32(offset += 2, false) !== 0x45786966) {
+                        return callback(-1);
+                    }
+
+                    var little = view.getUint16(offset += 6, false) === 0x4949;
+                    offset += view.getUint32(offset + 4, little);
+                    var tags = view.getUint16(offset, little);
+                    offset += 2;
+                    for (var i = 0; i < tags; i++) {
+                        if (view.getUint16(offset + (i * 12), little) === 0x0112) {
+                            return callback(view.getUint16(offset + (i * 12) + 8, little));
+                        }
+                    }
+                }
+                else if ((marker & 0xFF00) !== 0xFF00) {
+                    break;
+                }
+                else {
+                    offset += view.getUint16(offset, false);
+                }
+            }
+            return callback(-1);
+        };
+        reader.readAsArrayBuffer(file);
     }
 
     handleChange = name => event => {
@@ -158,12 +205,15 @@ class EditForm extends Component {
     //display multi
     handleChangeImg(event) {
         const files = Array.from(event.target.files);
-        files.map(img =>
-            this.setState(prevState => ({
-                imgfile: [...prevState.imgfile, URL.createObjectURL(img)],
-                files: [...prevState.files, img]
-            }))
-        )
+        this.getOrientation(files[0], (orientation) => {
+            files.map(img =>
+                this.setState(prevState => ({
+                    imgfile: [...prevState.imgfile, URL.createObjectURL(img)],
+                    files: [...prevState.files, img],
+                    metadata: [...prevState.metadata, orientation],
+                }))
+            )
+        });
     }
 
     imageClick = (im) => {
@@ -220,6 +270,7 @@ class EditForm extends Component {
                                     ))}
                                 </GridList>
                             </div>
+                            <p>{this.state.files[0] ? this.state.files[0].toString : null}</p>
                             <TextField
                                 id="outlined-full-width"
                                 label="title"

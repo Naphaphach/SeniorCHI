@@ -1,13 +1,28 @@
-[debug] [2019-01-03T13:49:43.200Z] ----------------------------------------------------------------------
-[debug] [2019-01-03T13:49:43.203Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\methus\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
-[debug] [2019-01-03T13:49:43.204Z] CLI Version:   6.2.2
-[debug] [2019-01-03T13:49:43.204Z] Platform:      win32
-[debug] [2019-01-03T13:49:43.204Z] Node Version:  v11.6.0
-[debug] [2019-01-03T13:49:43.205Z] Time:          Thu Jan 03 2019 20:49:43 GMT+0700 (Indochina Time)
-[debug] [2019-01-03T13:49:43.205Z] ----------------------------------------------------------------------
+[debug] [2019-01-06T12:50:24.517Z] ----------------------------------------------------------------------
+[debug] [2019-01-06T12:50:24.521Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Naphapat\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js functions:shell
+[debug] [2019-01-06T12:50:24.521Z] CLI Version:   6.2.2
+[debug] [2019-01-06T12:50:24.521Z] Platform:      win32
+[debug] [2019-01-06T12:50:24.521Z] Node Version:  v10.14.1
+[debug] [2019-01-06T12:50:24.522Z] Time:          Sun Jan 06 2019 19:50:24 GMT+0700 (GMT+07:00)
+[debug] [2019-01-06T12:50:24.522Z] ----------------------------------------------------------------------
 [debug] 
-[info] 
-[info] Visit this URL on any device to log in:
-[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=1006134625&redirect_uri=http%3A%2F%2Flocalhost%3A9005
-[info] 
-[info] Waiting for authentication...
+[debug] [2019-01-06T12:50:24.533Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-06T12:50:24.533Z] > authorizing via signed-in user
+[debug] [2019-01-06T12:50:24.533Z] [iam] checking project app-chi for permissions ["firebase.projects.get"]
+[debug] [2019-01-06T12:50:24.536Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/app-chi:testIamPermissions  
+
+[debug] [2019-01-06T12:50:25.883Z] <<< HTTP RESPONSE 200
+[info] i  functions: Preparing to emulate functions.
+[debug] [2019-01-06T12:50:26.814Z] Fetching environment
+[debug] [2019-01-06T12:50:26.816Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/app-chi  
+ 
+[debug] [2019-01-06T12:50:28.235Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-06T12:50:28.236Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/165755328510:getServerAppConfig  
+ 
+[debug] [2019-01-06T12:50:28.649Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-06T12:50:28.649Z] Starting @google-cloud/functions-emulator
+[debug] [2019-01-06T12:50:30.806Z] Parsing function triggers
+[debug] [2019-01-06T12:50:31.030Z] Deploying functions locally
+[info] +  functions: helloWorld
+[info] +  functions: Chi
+[info] +  functions: uploadedIMG

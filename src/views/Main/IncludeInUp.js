@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CssBaseline, Paper, Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Logo from '../../assets/logo.jpg';
+import Logo from '../../assets/logo.png';
 import Header from '../../components/main/header'
 import Co from '../../components/main/cooperate'
 import { Redirect, Link } from 'react-router-dom'

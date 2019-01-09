@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { Icon, Drawer, MenuItem, Menu, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, InputBase, Button } from '@material-ui/core';
 import { Menu as MenuIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Search as SearchIcon } from '@material-ui/icons';
-import logo from '../../assets/logo.jpg'
+import logo from '../../assets/logo.png'
 import { Link, Redirect } from 'react-router-dom'
 import { searchMap } from '../../store/actions/mapAction'
 import { connect } from 'react-redux'

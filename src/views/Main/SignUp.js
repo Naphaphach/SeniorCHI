@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, CssBaseline, FormControl, Input, InputLabel, Paper, Typography, TextField } from '@material-ui/core';
 import { CustomInput, FormGroup, Label } from 'reactstrap';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/logo.jpg';
 import Header from '../../components/main/header'
 import { Link } from 'react-router-dom'
 import Co from '../../components/main/cooperate'

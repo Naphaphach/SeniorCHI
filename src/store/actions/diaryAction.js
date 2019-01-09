@@ -2,9 +2,8 @@ export const save = (D) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firebase = getFirebase()
         const firestore = getFirestore()
-        const state = getState();
         const user = firebase.auth().currentUser;
-        console.log(D, state);
+
         while (D.tag.indexOf("") > -1) {
             D.tag.splice(D.tag.indexOf(""), 1);
         }
@@ -44,6 +43,13 @@ export const save = (D) => {
                                     photo: photoURL,
                                     date: Date()
                                 })
+                        });
+                        // Get metadata properties
+                        storageRef.getMetadata().then(function(metadata) {
+                        // Metadata now contains the metadata for 'images/forest.jpg'
+                            console.log(metadata);
+                        }).catch(function(error) {
+                        // Uh-oh, an error occurred!
                         });
                     }
                 );

@@ -10,7 +10,6 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { changeMenu } from "../../store/actions/mapAction";
-
 import Post from '../../components/diary/post'
 const styles = theme => ({
     root: {
@@ -20,11 +19,6 @@ const styles = theme => ({
     },
     rootmod: {
         flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing.unit * 2,
-        textAlign: 'center',
-        color: 'navy',
     },
     add: {
         fontSize: '2em'
@@ -71,7 +65,7 @@ class Diary extends Component {
                                             <DeleteIcon />
                                         </Fab>
                                         </Grid>
-                                <Post sz={12}/>
+                                <Post sz={12} like={false} book={false}/>
                             </Grid>
                         </div> :
                         <div className={classes.root}>
@@ -91,7 +85,7 @@ class Diary extends Component {
                                             <DeleteIcon />
                                         </Fab>
                                         </Grid>
-                                    <Post sz={4}/>
+                                    <Post sz={4} like={false} book={false}/>
                                 </Grid>
                         </div>
                     : <Unregist name='Diary' />}

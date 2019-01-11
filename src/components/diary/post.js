@@ -2,9 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { Paper, Grid } from '@material-ui/core/'
 import Location from '@material-ui/icons/LocationOn';
 import BookmarkIcon from '@material-ui/icons/BookmarkBorderOutlined';
+import BookedIcon from '@material-ui/icons/Bookmark';
 import DesIcon from '@material-ui/icons/Description';
 import LabelIcon from '@material-ui/icons/LabelImportant';
 import FavIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import LoveIcon from '@material-ui/icons/Favorite';
+import UserIcon from '@material-ui/icons/Person';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -16,7 +19,6 @@ const styles = theme => ({
     },
     paper: {
       marginTop: '5px',
-      
     },
     img: {
       width: 'auto',
@@ -31,21 +33,32 @@ const styles = theme => ({
 
 class Post extends Component {
     render() {
-        const { classes, sz} = this.props
+        const { classes, sz, like, book, love, booked} = this.props
         return(
         <Fragment className={classes.root}>
           <Grid item xs={sz}>
               <Paper className={classes.paper}>
                   <Typography variant="overline" > Title </Typography>
                   <img className={classes.img} alt="complex" src= {img} /> 
-                  <Typography align="right" color="secondary" >
-                  <ButtonBase > <FavIcon /> </ButtonBase>
-                  <ButtonBase > <BookmarkIcon color="disabled" /> </ButtonBase>
+                  <Grid xs={12} align="right">
+                  <Typography >
+                  {like ? 
+                    love ? 
+                      <ButtonBase > <FavIcon color="secondary" /> </ButtonBase>
+                      :<ButtonBase > <LoveIcon color="secondary" /> </ButtonBase> : null}
+                  {book ? 
+                    booked ? 
+                      <ButtonBase > <BookmarkIcon color="disabled" /> </ButtonBase> 
+                      : <ButtonBase > <BookedIcon color="disabled" /> </ButtonBase>
+                      : null}
                   </Typography>
+                  </Grid>
+                  <Grid xs={12} >
                   <Typography variant="caption" align="left">  <Location /> Manipur </Typography> 
                   <Typography variant="caption" align="left"> <DesIcon /> This is a paragraph of Goldentemple</Typography> 
                   <Typography variant="caption" align="left"> <LabelIcon /> #Agriclture #Agriclture </Typography>                
-                  <Typography variant="caption" align="right"> By MURILCA at 22.55 p.m. </Typography>
+                  <Typography variant="caption" align="left"> <UserIcon /> MURILCA at 22.55 p.m. </Typography>
+                  </Grid>
                   </Paper>
             </Grid>
         </Fragment>

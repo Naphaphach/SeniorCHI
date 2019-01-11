@@ -10,7 +10,12 @@ exports.Chi = functions.https.onRequest((request, response) => {
 exports.UpdateToken = functions.firestore.document('user/{userId}').onWrite((change, context) => {
     // Retrieve the current and previous value
     const data = change.after.data();
-    
+    const previousData = change.before.data();
+
+    // We'll only update if the name has changed.
+    // This is crucial to prevent infinite loops.
+    if (data.displayName === previousData.displayName && data.DOB === previousData.DOB && data.Photo === previousData.Photo && data.created === previousData.created) return null;
+      
     // Retrieve the current count of name changes
     let count = data.token;
     if (!count) {

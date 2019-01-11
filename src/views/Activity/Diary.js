@@ -91,7 +91,7 @@ class Diary extends Component {
                                             <DeleteIcon />
                                         </Fab>
                                         </Grid>
-                                <Post sz={4}/>
+                                    <Post sz={4}/>
                                 </Grid>
                         </div>
                     : <Unregist name='Diary' />}

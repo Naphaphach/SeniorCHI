@@ -8,7 +8,6 @@ import FavIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { isMobile } from "react-device-detect";
 import img from './test1.jpg';
 
 const styles = theme => ({
@@ -32,13 +31,10 @@ const styles = theme => ({
 
 class Post extends Component {
     render() {
-        const { classes} = this.props
+        const { classes, sz} = this.props
         return(
-          <Fragment className={classes.root}>
-          
-          {isMobile ?
-              <Grid container spacing={16} className={classes.main}>
-              <Grid item xs={12}>
+        <Fragment className={classes.root}>
+          <Grid item xs={sz}>
               <Paper className={classes.paper}>
                   <Typography variant="overline" > Title </Typography>
                   <img className={classes.img} alt="complex" src= {img} /> 
@@ -52,67 +48,6 @@ class Post extends Component {
                   <Typography variant="caption" align="right"> By MURILCA at 22.55 p.m. </Typography>
                   </Paper>
             </Grid>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                  <Typography variant="overline" > Title </Typography>
-                  <img className={classes.img} alt="complex" src= {img} /> 
-                  <Typography  align="right" color="secondary" >
-                  <ButtonBase > <FavIcon /> </ButtonBase>
-                  <ButtonBase > <BookmarkIcon color="disabled" /> </ButtonBase>
-                  </Typography>
-                  <Typography variant="caption" align="left">  <Location /> Manipur </Typography> 
-                  <Typography variant="caption" align="left"> <DesIcon /> This is a paragraph of Goldentemple</Typography> 
-                  <Typography variant="caption" align="left"> <LabelIcon /> #Agriclture #Agriclture </Typography>                
-                  <Typography variant="caption" align="right"> By MURILCA at 22.55 p.m. </Typography>
-                  </Paper>
-            </Grid>
-            </Grid>
-          : <Grid container spacing={16} className={classes.main}>
-          <Grid item xs={6}>
-              <Paper className={classes.paper}>
-                  <Typography variant="overline" > Title </Typography>
-                  <img className={classes.img} alt="complex" src= {img} /> 
-                  <Typography  align="right" color="secondary" >
-                  <ButtonBase > <FavIcon /> </ButtonBase>
-                  <ButtonBase > <BookmarkIcon color="disabled"/> </ButtonBase>
-                  </Typography>
-                  <Typography variant="caption" align="left">  <Location /> Manipur </Typography> 
-                  <Typography variant="caption" align="left"> <DesIcon /> This is a paragraph of Goldentemple</Typography> 
-                  <Typography variant="caption" align="left"> <LabelIcon /> #Agriclture #Agriclture </Typography>                
-                  <Typography variant="caption" align="right"> By MURILCA at 22.55 p.m. </Typography>
-                  </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>
-                  <Typography variant="overline" > Title </Typography>
-                  <img className={classes.img} alt="complex" src= {img} /> 
-                  <Typography  align="right" color="secondary">
-                  <ButtonBase > <FavIcon /> </ButtonBase>
-                  <ButtonBase > <BookmarkIcon color="disabled" /> </ButtonBase>
-                  </Typography>
-                  <Typography variant="caption" align="left">  <Location /> Manipur </Typography> 
-                  <Typography variant="caption" align="left"> <DesIcon /> This is a paragraph of Goldentemple</Typography> 
-                  <Typography variant="caption" align="left"> <LabelIcon /> #Agriclture #Agriclture </Typography>                
-                  <Typography variant="caption" align="right"> By MURILCA at 22.55 p.m. </Typography>
-                  </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>
-                  <Typography variant="overline" > Title </Typography>
-                  <img className={classes.img} alt="complex" src= {img} /> 
-                  <Typography  align="right" color="secondary" >
-                  <ButtonBase > <FavIcon /> </ButtonBase>
-                  <ButtonBase > <BookmarkIcon color="disabled" /> </ButtonBase>
-                  </Typography>
-                  <Typography variant="caption" align="left">  <Location /> Manipur </Typography> 
-                  <Typography variant="caption" align="left"> <DesIcon /> This is a paragraph of Goldentemple</Typography> 
-                  <Typography variant="caption" align="left"> <LabelIcon /> #Agriclture #Agriclture </Typography>                
-                  <Typography variant="caption" align="right"> By MURILCA at 22.55 p.m. </Typography>
-                  </Paper>
-            </Grid>
-        </Grid> 
-        }         
- 
         </Fragment>
         )
     }

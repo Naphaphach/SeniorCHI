@@ -2,23 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Home from '../../layouts/Home'
 import Unregist from '../../components/main/unregist'
-import { Paper, Grid } from '@material-ui/core/'
+import { Grid, Fab, Tooltip } from '@material-ui/core/'
 import { withStyles } from '@material-ui/core/styles';
 import { isMobile } from "react-device-detect";
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { changeMenu } from "../../store/actions/mapAction";
-import Post from '../../components/diary/post'
 
+import Post from '../../components/diary/post'
 const styles = theme => ({
     root: {
         flexGrow: 1,
         marginLeft: '64px',
-        alignItems: 'flex-start !important'
+        alignItems: 'flex-start !important',
     },
     rootmod: {
         flexGrow: 1,

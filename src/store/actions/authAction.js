@@ -10,9 +10,8 @@ export const register = (U) => {
         ).then((resp) => {
             return firestore.collection('user').doc(resp.user.uid).set({
                 displayName: U.Name,
-                BOD: U.BOD,
+                DOB: U.DOB,
                 Photo: state.img.imgPro,
-                token: 0,
                 created: Date()
             })
         }).then(() => {
@@ -44,7 +43,7 @@ export const signinwithfb = () => {
                 if (!u.exists) {
                     return firestore.collection('user').doc(user.uid).set({
                         displayName: user.displayName,
-                        BOD: null,
+                        DOB: null,
                         Photo: user.photoURL,
                         token: 0,
                         created: Date()
@@ -109,7 +108,7 @@ export const updateNameEmailDOB = (credentials) => {
             // Update successful.
             firestore.collection('user').doc(credentials.uid).update({
                 displayName: credentials.displayName,
-                BOD: credentials.BOD,
+                DOB: credentials.DOB,
             })
             dispatch({ type: 'UPDATE_EMAIL_SUCCESS' })
         }).catch(function (err) {

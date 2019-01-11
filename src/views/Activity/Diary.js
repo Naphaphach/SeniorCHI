@@ -11,6 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { changeMenu } from "../../store/actions/mapAction";
 import Post from '../../components/diary/post'
+
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -23,7 +24,8 @@ const styles = theme => ({
     add: {
         fontSize: '2em'
     },
-    main:{
+
+    main: {
         [theme.breakpoints.up('sm')]: {
             marginTop: '8.5%',
             marginBottom: '2.5%',
@@ -39,6 +41,7 @@ const styles = theme => ({
     extendedIcon: {
         marginRight: theme.spacing.unit,
     },
+
 });
 
 class Diary extends Component {
@@ -66,6 +69,7 @@ class Diary extends Component {
                                         </Fab>
                                         </Grid>
                                 <Post sz={12} like={false} book={false}/>
+
                             </Grid>
                         </div> :
                         <div className={classes.root}>

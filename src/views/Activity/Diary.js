@@ -35,9 +35,7 @@ const styles = theme => ({
             marginBottom: '20%',
         },
     },
-    fab: {
-        margin: theme.spacing.unit,
-    },
+    fab: {},
     extendedIcon: {
         marginRight: theme.spacing.unit,
     },
@@ -56,20 +54,19 @@ class Diary extends Component {
                             <Grid item xs={12} align='right'>
                                             <Link to='/diary/edit'>
                                                 <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
-                                                    <Fab color="primary" align="right" className={classes.fab}>
+                                                    <Fab size="small" color="primary" align="right" className={classes.fab}>
                                                         <AddIcon />
                                                     </Fab>
                                                 </Tooltip>
                                             </Link>
-                                        <Fab color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                        <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
                                             <EditIcon />
                                         </Fab>
-                                        <Fab color="extended" align="right" aria-label="Delete" className={classes.fab}>
+                                        <Fab size="small" color="extended" align="right" aria-label="Delete" className={classes.fab}>
                                             <DeleteIcon />
                                         </Fab>
                                         </Grid>
                                 <Post sz={12} like={false} book={false}/>
-
                             </Grid>
                         </div> :
                         <div className={classes.root}>
@@ -77,20 +74,20 @@ class Diary extends Component {
                                         <Grid item xs={12} align='right'>
                                             <Link to='/diary/edit'>
                                                 <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
-                                                    <Fab color="primary" align="right" className={classes.fab}>
+                                                    <Fab size="medium" color="primary" align="right" className={classes.fab}>
                                                         <AddIcon />
                                                     </Fab>
                                                 </Tooltip>
                                             </Link>
-                                        <Fab color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                        <Fab size="medium" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
                                             <EditIcon />
                                         </Fab>
-                                        <Fab color="extended" align="right" aria-label="Delete" className={classes.fab}>
+                                        <Fab size="medium" color="extended" align="right" aria-label="Delete" className={classes.fab}>
                                             <DeleteIcon />
                                         </Fab>
                                         </Grid>
                                     <Post sz={4} like={false} book={false}/>
-                                </Grid>
+                            </Grid>
                         </div>
                     : <Unregist name='Diary' />}
             </Home>

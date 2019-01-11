@@ -5,8 +5,10 @@
   },
   "functions": {
     "predeploy": [
-      // "npm --prefix functions run lint"
-      "npm --prefix \"$RESOURCE_DIR\" run lint"
+      // for deploying in window
+      "npm --prefix functions run lint"
+      // for deploying in travis ci
+      // "npm --prefix \"$RESOURCE_DIR\" run lint"
     ],
     "source": "functions"
   },

@@ -65,7 +65,7 @@ class Profile extends Component {
         this.state = {
             newEmail: this.props.auth.email,
             uid: this.props.auth.uid,
-            BOD: this.props.profile.BOD,
+            DOB: this.props.profile.DOB,
             displayName: this.props.profile.displayName,
             visible: true,
             success: this.props.success,
@@ -144,12 +144,12 @@ class Profile extends Component {
                                             id="date"
                                             name="Birthday"
                                             type="date"
-                                            defaultValue={this.state.BOD}
+                                            defaultValue={this.state.DOB}
                                             className={classes.textField}
                                             InputLabelProps={{
                                                 shrink: true,
                                             }}
-                                            onChange={this.handleChange('BOD')}
+                                            onChange={this.handleChange('DOB')}
                                         />
                                     </div>
                                     <ErrMessage err={errprofile} />

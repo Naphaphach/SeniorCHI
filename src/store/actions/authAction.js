@@ -12,7 +12,8 @@ export const register = (U) => {
                 displayName: U.Name,
                 DOB: U.DOB,
                 Photo: state.img.imgPro,
-                created: Date()
+                created: Date(),
+                token: 0
             })
         }).then(() => {
             var user = firebase.auth().currentUser;
@@ -45,7 +46,8 @@ export const signinwithfb = () => {
                         displayName: user.displayName,
                         DOB: null,
                         Photo: user.photoURL,
-                        created: Date()
+                        created: Date(),
+                        token: 0
                     })
                 }
             })

@@ -17,13 +17,13 @@ exports.UpdateToken = functions.firestore.document('user/{userId}').onWrite((cha
     if (data.displayName === previousData.displayName && data.DOB === previousData.DOB && data.Photo === previousData.Photo && data.created === previousData.created) return null;
       
     // Retrieve the current count of name changes
-    let count = data.token;
-    if (!count) {
-      count = 0;
+    let token = data.token;
+    if (!token) {
+        token = 0;
     }
 
     // Then return a promise of a set operation to update the count
     return change.after.ref.set({
-        token: count + 1
+        token: token + 1
     }, {merge: true}); 
 })

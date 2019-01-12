@@ -30,8 +30,8 @@ const styles = theme => ({
       bootstrapRoot: {
         fontSize: 14,
         border: '1px solid',
-        backgroundColor: '#FFCC00',
-        borderColor: '#FFCC00',
+        backgroundColor: '#FFA07A',
+        borderColor: '#FFA07A',
         '&:hover': {
           backgroundColor: '#FF3333',
           borderColor: '#FF3333',

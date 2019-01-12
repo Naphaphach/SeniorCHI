@@ -47,7 +47,7 @@ class Result extends Component {
         return(
             <Fragment>
                 {search ? <div className={classes.state}>
-                    search: '{Query}' with {valueState[0] === '' ? 0 : valueState.length} Result <Button color='link' onClick={()=>{this.handleClick()}}><FontAwesomeIcon icon={['fas', 'arrow-right']} /><br/></Button>
+                    Search: '{Query}' with {valueState[0] === '' ? 0 : valueState.length} Result(s) <Button color='link' onClick={()=>{this.handleClick()}}><FontAwesomeIcon icon={['fas', 'arrow-right']} /><br/></Button>
                 </div> : null}
             </Fragment>
         )

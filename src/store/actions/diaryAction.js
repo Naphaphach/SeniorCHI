@@ -8,7 +8,7 @@ export const save = (D) => {
             D.tag.splice(D.tag.indexOf(""), 1);
         }
         var photoURL = []
-        if (D.files) {
+        if (D.files.length > 0) {
             D.files.map((file, i) => {
                 var metadata = {
                     customMetadata: {

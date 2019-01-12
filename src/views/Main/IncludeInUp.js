@@ -44,10 +44,19 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     width: '100%', // Fix IE 11 issue.
   },
-  in: {
-    marginTop: theme.spacing.unit * 5,
+  form1: {
+    marginTop: theme.spacing.unit * 3,
     width: '100%', // Fix IE 11 issue.
-    backgroundColor: 'DarkGray'
+    backgroundColor: '#FF0066',
+    borderColor: '#FF0066',
+    border: '1px solid'
+  },
+  in: {
+    marginTop: theme.spacing.unit * 3,
+    width: '100%', // Fix IE 11 issue.
+    backgroundColor: '#FF9933',
+    borderColor: '#FF9933',
+    border: '1px solid'
   }
 });
 
@@ -81,7 +90,7 @@ class InUp extends Component {
         <CssBaseline />
         <Paper className={classes.paper}>
           <img src={Logo} width="50%" alt="Logo" />
-          <Typography component="h1" variant="h5">
+          <Typography component="h3" variant="h5">
             Learn india culture with Chi 𝜒
           </Typography>
           <Container>
@@ -94,7 +103,7 @@ class InUp extends Component {
             <Row>
               <Col>
                 <Link to='/up'>
-                  <Button color="success" className={classes.form}>Sign up with email</Button>
+                  <Button color="primary" className={classes.form1}>Sign up with email</Button>
                 </Link>
               </Col>
             </Row>

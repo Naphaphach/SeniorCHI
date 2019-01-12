@@ -17,10 +17,10 @@ const styles = theme => ({
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
     [theme.breakpoints.up('sm')]: {
-      marginTop: '12%',
+      marginTop: '8%',
     },
     [theme.breakpoints.down('sm')]: {
-      marginTop: '20%',
+      marginTop: '15%',
     },
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
@@ -29,8 +29,8 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
-    color: 'rgb(14,4,123)',
-    marginBottom: '9%',
+    color: 'rgb(255,153,51)',
+    marginBottom: '5%',
   },
   paper: {
     marginTop: theme.spacing.unit,
@@ -38,6 +38,7 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -50,6 +51,23 @@ const styles = theme => ({
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
+  cssLabel: {
+    '&$cssFocused': {
+      color: '#FF9933',
+    },
+  },
+  cssFocused: {},
+  cssUnderline: {
+    '&:after': {
+      borderBottomColor: '#FF9933',
+    },
+  },
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: '#FF9933',
+    },
+  },
+  notchedOutline: {},
 });
 
 class SignUp extends Component {
@@ -112,29 +130,66 @@ class SignUp extends Component {
         <CssBaseline />
         <Paper className={classes.paper}>
           <img src={Logo} width="20%" alt="Logo" />
-          <Typography component="h1" variant="h5">
+          <Typography component="h6" variant="h6">
             Register
         </Typography>
           <form className={classes.form} method="post" onSubmit={(event) => this.handleClick(event)}>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="name">Display name</InputLabel>
-              <Input id="name" name="name" autoFocus onChange={this.handleChange('Name')} />
+              <InputLabel htmlFor="name" classes={{
+              root: classes.cssLabel,
+              focused: classes.cssFocused,
+              }}
+            >
+            Display name
+            </InputLabel>
+            <Input id="name" name="name" classes={{
+            underline: classes.cssUnderline,
+            }} 
+            autoFocus onChange={this.handleChange('Name')} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoFocus onChange={this.handleChange('Email')} />
+              <InputLabel htmlFor="email"
+              classes={{
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+                }}
+              >
+              Email Address</InputLabel>
+              <Input id="email" name="email" classes={{
+            underline: classes.cssUnderline,
+            }} 
+            autoFocus onChange={this.handleChange('Email')} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input name="password" type="password" id="password" onChange={this.handleChange('Password')} />
+              <InputLabel htmlFor="password" 
+              classes={{
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+                }}
+              >
+              Password</InputLabel>
+              <Input name="password" classes={{
+            underline: classes.cssUnderline,
+            }} 
+               type="password" id="password" onChange={this.handleChange('Password')} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="repassword">Re-Password</InputLabel>
-              <Input name="repassword" type="password" id="repassword" onChange={this.handleChange('RePassword')} />
+              <InputLabel htmlFor="repassword"
+              classes={{
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+                }}
+              >
+              Re-Password</InputLabel>
+              <Input name="repassword" classes={{
+            underline: classes.cssUnderline,
+            }} 
+              type="password" id="repassword" onChange={this.handleChange('RePassword')} />
             </FormControl>
             {this.state.Password !== this.state.RePassword && this.state.RePassword.length > 0 ? <ErrMessage err='Password does not match with RePassword' /> : null}
-            <div style={{ marginTop: 10 }}>
-              <b style={{ fontSize: 15, float: 'left' }}>Birthday: </b>
+            <div style={{ marginTop: 20, marginBottom: 15  }} >
+              <b style={{ fontSize: 15, float: 'left' }}
+              >Birthday: </b>
               <TextField
                 id="date"
                 name="Birthday"
@@ -148,7 +203,7 @@ class SignUp extends Component {
               />
             </div>
             <FormGroup>
-              <Label for="exampleCustomFileBrowser" style={{ fontSize: 15, float: 'left' }}><b>profile image:</b></Label>
+              <Label for="exampleCustomFileBrowser" style={{ fontSize: 15, float: 'left' }}><b>Profile image:</b></Label>
               <CustomInput style={{ fontSize: 1 }} type="file" id="exampleCustomFileBrowser" accept="image/*" name="customFile" onChange={(event) => this.handleChangePhoto(event)} label={this.state.filename} />
             </FormGroup>
             <Avatar ph={this.state.Photo} />
@@ -165,8 +220,9 @@ class SignUp extends Component {
             <ErrMessage err={err} />
             <br />
             <ErrMessage err={this.state.err} />
-            <br />
             <Link to="/upin" style={{ fontSize: 13 }}> Back</Link> <Link to="/" style={{ fontSize: 13 }}> Cancel</Link>
+            <br />
+            
           </form>
           <p style={{ color: 'black', fontSize: 12 }}>CHI &#174; 2018</p>
           <Co />

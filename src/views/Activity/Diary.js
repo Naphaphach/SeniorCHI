@@ -2,32 +2,44 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Home from '../../layouts/Home'
 import Unregist from '../../components/main/unregist'
-import { Paper, Grid } from '@material-ui/core/'
+import { Grid, Fab, Tooltip } from '@material-ui/core/'
 import { withStyles } from '@material-ui/core/styles';
 import { isMobile } from "react-device-detect";
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from "react-router-dom";
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { changeMenu } from "../../store/actions/mapAction";
+import Post from '../../components/diary/post'
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
         marginLeft: '64px',
-        alignItems: 'flex-start !important'
+        alignItems: 'flex-start !important',
     },
     rootmod: {
         flexGrow: 1,
     },
-    paper: {
-        padding: theme.spacing.unit * 2,
-        textAlign: 'center',
-        color: 'navy',
-    },
     add: {
         fontSize: '2em'
-    }
+    },
+
+    main: {
+        [theme.breakpoints.up('sm')]: {
+            marginTop: '8.5%',
+            marginBottom: '2.5%',
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginTop: '20%',
+            marginBottom: '20%',
+        },
+    },
+    fab: {},
+    extendedIcon: {
+        marginRight: theme.spacing.unit,
+    },
+
 });
 
 class Diary extends Component {
@@ -38,39 +50,43 @@ class Diary extends Component {
                 {this.props.auth.uid ?
                     isMobile ?
                         <div className={classes.rootmod}>
-                            <Grid container spacing={16}>
-                                <Grid item xs={6}>
-                                    <Paper className={classes.paper}>
-                                        <Link to='/diary/edit'>
-                                            <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
-                                                <Fab color="primary" className={classes.fab}>
-                                                    <AddIcon />
-                                                </Fab>
-                                            </Tooltip>
-                                        </Link>
-                                    </Paper>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Paper className={classes.paper}>xs=6</Paper>
-                                </Grid>
+                            <Grid container spacing={16} className={classes.main}>
+                            <Grid item xs={12} align='right'>
+                                            <Link to='/diary/edit'>
+                                                <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
+                                                    <Fab size="small" color="primary" align="right" className={classes.fab}>
+                                                        <AddIcon />
+                                                    </Fab>
+                                                </Tooltip>
+                                            </Link>
+                                        <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                            <EditIcon />
+                                        </Fab>
+                                        <Fab size="small" color="extended" align="right" aria-label="Delete" className={classes.fab}>
+                                            <DeleteIcon />
+                                        </Fab>
+                                        </Grid>
+                                <Post sz={12} like={false} book={false}/>
                             </Grid>
                         </div> :
                         <div className={classes.root}>
-                            <Grid container spacing={24}>
-                                <Grid item xs={4}>
-                                    <Paper className={classes.paper}>
-                                        <Link to='/diary/edit'>
-                                            <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
-                                                <Fab color="primary" className={classes.fab}>
-                                                    <AddIcon />
-                                                </Fab>
-                                            </Tooltip>
-                                        </Link>
-                                    </Paper>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <Paper className={classes.paper}>xs=4</Paper>
-                                </Grid>
+                            <Grid container spacing={24} className={classes.main}>
+                                        <Grid item xs={12} align='right'>
+                                            <Link to='/diary/edit'>
+                                                <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
+                                                    <Fab size="medium" color="primary" align="right" className={classes.fab}>
+                                                        <AddIcon />
+                                                    </Fab>
+                                                </Tooltip>
+                                            </Link>
+                                        <Fab size="medium" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                            <EditIcon />
+                                        </Fab>
+                                        <Fab size="medium" color="extended" align="right" aria-label="Delete" className={classes.fab}>
+                                            <DeleteIcon />
+                                        </Fab>
+                                        </Grid>
+                                    <Post sz={4} like={false} book={false}/>
                             </Grid>
                         </div>
                     : <Unregist name='Diary' />}

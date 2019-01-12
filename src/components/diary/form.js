@@ -10,6 +10,8 @@ import { Col } from 'reactstrap'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { save } from '../../store/actions/diaryAction'
 import uuidv1 from 'uuid/v1'
+import Typography from '@material-ui/core/Typography';
+
 const styles = theme => ({
     colorSwitchBase: {
         '&$colorChecked': {
@@ -22,7 +24,7 @@ const styles = theme => ({
     colorBar: {},
     colorChecked: {},
     root: {
-        width: '100%'
+        flexGrow: 1,
     },
     paper: {
         [theme.breakpoints.up('sm')]: {
@@ -95,7 +97,7 @@ class EditForm extends Component {
         super(props)
         this.state = {
             public: false,
-            text: 'private',
+            text: 'Private',
             labelWidth: 0,
             imgfile: [],
             files: [],
@@ -159,9 +161,9 @@ class EditForm extends Component {
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
         if (event.target.checked) {
-            this.setState({ text: 'public' })
+            this.setState({ text: 'Public' })
         } else {
-            this.setState({ text: 'private' })
+            this.setState({ text: 'Private' })
         }
     };
 
@@ -230,8 +232,10 @@ class EditForm extends Component {
             <Grid container spacing={0}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <FormGroup row>
+                    <Typography variant="subtitle1" align="center"> Add New Diary </Typography> 
+                        <FormGroup row align>
                             <FormControlLabel
+                                style={{ margin: 2 }}
                                 control={
                                     <Switch
                                         checked={this.state.public}
@@ -271,11 +275,17 @@ class EditForm extends Component {
                                 </GridList>
                             </div>
                             <p>{this.state.files[0] ? this.state.files[0].toString : null}</p>
+                            <input accept="image/*" required={this.state.public} className={classes.input} onChange={this.handleChangeImg.bind(this)} id="icon-button-file" type="file" multiple />
+                                <label htmlFor="icon-button-file">
+                                    <IconButton className={classes.button} component="span">
+                                        <PhotoCamera />
+                                    </IconButton>
+                            </label>
                             <TextField
                                 id="outlined-full-width"
-                                label="title"
+                                label="Title"
                                 style={{ margin: 8 }}
-                                placeholder="title"
+                                placeholder="Title"
                                 fullWidth
                                 margin="normal"
                                 variant="outlined"
@@ -300,6 +310,7 @@ class EditForm extends Component {
                                 id="outlined-select-currency"
                                 select
                                 label="State"
+                                fullWidth
                                 style={{ margin: 8 }}
                                 SelectProps={{
                                     MenuProps: {
@@ -334,7 +345,7 @@ class EditForm extends Component {
                             </TextField>
                             <TextField
                                 id="outlined-full-width"
-                                label="note"
+                                label="Note"
                                 rows="4"
                                 style={{ margin: 8 }}
                                 placeholder="take a note..."
@@ -361,10 +372,10 @@ class EditForm extends Component {
                             />
                             <TextField
                                 id="outlined-full-width"
-                                label="tag"
+                                label="Tag"
                                 rows="4"
                                 style={{ margin: 8 }}
-                                placeholder="eg #LocalIndiaFood #indiamarket #india #Market"
+                                placeholder="e.g. #LocalIndiaFood #indiamarket #india #Market"
                                 fullWidth
                                 margin="normal"
                                 variant="outlined"
@@ -387,14 +398,8 @@ class EditForm extends Component {
                                 multiline
                             />
                             <Col xs='7'></Col>
-                            <Col xs='5'>
-                                <input accept="image/*" required={this.state.public} className={classes.input} onChange={this.handleChangeImg.bind(this)} id="icon-button-file" type="file" multiple />
-                                <label htmlFor="icon-button-file">
-                                    <IconButton className={classes.button} component="span">
-                                        <PhotoCamera />
-                                    </IconButton>
-                                </label>
-                                <Button variant="contained" size="small" className={classes.button} onClick={() => this.props.save(this.state)}>
+                            <Col xs='5' align="right">
+                                <Button size="small" className={classes.button} onClick={() => this.props.save(this.state)}>
                                     <SaveIcon />
                                     Save
                                 </Button>

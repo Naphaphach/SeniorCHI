@@ -45,7 +45,6 @@ export const signinwithfb = () => {
                         displayName: user.displayName,
                         DOB: null,
                         Photo: user.photoURL,
-                        token: 0,
                         created: Date()
                     })
                 }

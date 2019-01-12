@@ -60,7 +60,7 @@ class SignUp extends Component {
       Email: '',
       Password: '',
       RePassword: '',
-      BOD: '1997-01-01',
+      DOB: '1997-01-01',
       Photo: null,
       filename: '',
       err: null,
@@ -144,7 +144,7 @@ class SignUp extends Component {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={this.handleChange('BOD')}
+                onChange={this.handleChange('DOB')}
               />
             </div>
             <FormGroup>

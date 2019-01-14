@@ -13,4 +13,7 @@ const diaryModule = require('./accounts/diaryActivity')
 exports.UpdateTokenDiaryActivity = functions.firestore.document('user/{userID}/diary/{diaryID}').onWrite(diaryModule.handler)
 
 const notificationTokenModule = require('./accounts/notificationTokenActivity')
+
+exports.notifyToken = functions.firestore.document('user/{userID}').onWrite()
+
 const imageDiaryModule = require('./diary/imageUpload')

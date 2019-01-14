@@ -15,7 +15,7 @@ exports.handler = (change, context) => {
 
     // Then return a promise of a set operation to update the count
     return notiRef.set({
-        content: `you gor + ${previousData.token - data.token}`,
+        content: `you gor + ${data.token - previousData.token}`,
         readed: false,
         linked: '/profile',
         date: Date()

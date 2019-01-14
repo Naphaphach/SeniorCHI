@@ -4,14 +4,19 @@ admin.initializeApp(functions.config().firebase);
 
 exports.handler = (change, context) => {
     // console.log('userid: ', context.params.userID, ' diaryid: ', context.params.diaryID);
-    const token = admin.firestore().collection('user').doc(context.params.userID).get().then(doc => {
+    const userID = context.params.userID;
+    const userRef = admin.firestore().collection('user').doc(userID);
+    
+    const token = userRef.get().then(doc => {
         if (doc.exists) {
-            return doc.data().token + 10
+            return userRef.set({
+                token: doc.data().token + 10
+            }, {merge: true})
         } else {
-            return 0
-        } 
+            return userRef.set({
+                token: 10
+            }, {merge: true})
+        }
     })
-    return admin.firestore().collection('user').doc(context.params.userID).update({
-        token: doc.data().token
-    })
+    return token
 }

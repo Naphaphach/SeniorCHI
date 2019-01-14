@@ -35,7 +35,9 @@ const styles = theme => ({
             marginBottom: '20%',
         },
     },
-    fab: {},
+    fab: {
+        marginRight: theme.spacing.unit,
+    },
     extendedIcon: {
         marginRight: theme.spacing.unit,
     },

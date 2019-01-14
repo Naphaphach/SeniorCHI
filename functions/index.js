@@ -10,4 +10,7 @@ const profileModule = require('./accounts/profileActivity')
 exports.UpdateToken = functions.firestore.document('user/{userID}').onUpdate(profileModule.handler)
 
 const diaryModule = require('./accounts/diaryActivity')
-exports.CreateNotification = functions.firestore.document('user/{userID}/diary/{diaryID}').onWrite(diaryModule.handler)
+exports.UpdateTokenDiaryActivity = functions.firestore.document('user/{userID}/diary/{diaryID}').onWrite(diaryModule.handler)
+
+const notificationTokenModule = require('./accounts/notificationTokenActivity')
+const imageDiaryModule = require('./diary/imageUpload')

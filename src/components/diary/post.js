@@ -11,7 +11,7 @@ import UserIcon from '@material-ui/icons/Person';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import img from './test1.jpg';
+import img from '../../assets/test1.jpg';
 
 const styles = theme => ({
     root: {

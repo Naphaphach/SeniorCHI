@@ -25,7 +25,7 @@ const styles = theme => ({
             marginBottom: '20%',
             textAlign: 'center',
         },
-        color: 'rgb(14,4,123)',
+        color: 'rgb(255,153,51)',
         padding: '1%',
     },
     profileimg: {
@@ -49,7 +49,7 @@ const styles = theme => ({
     },
     coin: {
         color: 'gold',
-        fontSize: '1.75em',
+        fontSize: '1.5em',
         margin: '0 5%'
     },
     Alert: {

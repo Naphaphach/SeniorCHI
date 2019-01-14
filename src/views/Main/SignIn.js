@@ -24,11 +24,11 @@ const styles = theme => ({
       marginRight: 'auto',
     },
     [theme.breakpoints.up('sm')]: {
-      marginTop: '12%',
+      marginTop: '8%',
       marginBottom: '9%',
     },
     [theme.breakpoints.down('sm')]: {
-      marginTop: '20%',
+      marginTop: '15%',
       marginBottom: '9%',
     },
   },
@@ -51,6 +51,23 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 2,
   },
+  cssLabel: {
+    '&$cssFocused': {
+      color: '#FF9933',
+    },
+  },
+  cssFocused: {},
+  cssUnderline: {
+    '&:after': {
+      borderBottomColor: '#FF9933',
+    },
+  },
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: '#FF9933',
+    },
+  },
+  notchedOutline: {},
 });
 
 class SignIn extends Component {
@@ -93,19 +110,32 @@ class SignIn extends Component {
         <CssBaseline />
         <Paper className={classes.paper}>
           <img src={Logo} width="20%" alt="Logo" />
-          <Typography component="h1" variant="h5">
+          <Typography component="h6" variant="h6">
             Sign in
           </Typography>
           <form className={classes.form} method="post" onSubmit={(event) => this.handleClick(event)}>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange('Email')} />
+              <InputLabel htmlFor="email" classes={{
+              root: classes.cssLabel,
+              focused: classes.cssFocused,
+              }}
+              >Email Address</InputLabel>
+              <Input id="email" name="email" classes={{
+            underline: classes.cssUnderline,
+            }} 
+            autoComplete="email" autoFocus onChange={this.handleChange('Email')} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange('Password')} />
+              <InputLabel htmlFor="password" classes={{
+              root: classes.cssLabel,
+              focused: classes.cssFocused,
+              }}
+              >Password</InputLabel>
+              <Input name="password" classes={{
+            underline: classes.cssUnderline,
+            }} 
+            type="password" id="password" autoComplete="current-password" onChange={this.handleChange('Password')} />
             </FormControl>
-            <Link to="/up" style={{ fontSize: 13 }}>Do you have an account?</Link>
             <br />
             <ErrMessage err={err} />
             <Button
@@ -119,7 +149,8 @@ class SignIn extends Component {
             </Button>
             <br />
           </form>
-          <br />
+          <Link to="/up" style={{ fontSize: 15 }}>Do you have an account?</Link>
+          <br />          
           <Link to="/upin" style={{ fontSize: 13 }}> Cancel</Link>
           <p style={{ color: 'black', fontSize: 12 }}>CHI &#174; 2018</p>
           <Co />

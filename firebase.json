@@ -4,12 +4,10 @@
     "indexes": "firestore.indexes.json"
   },
   "functions": {
-    "predeploy": [
-      // for deploying in window
-      "npm --prefix functions run lint"
-      // for deploying in travis ci
-      // "npm --prefix \"$RESOURCE_DIR\" run lint"
-    ],
+    // "predeploy": [
+    //   // "npm --prefix \"$RESOURCE_DIR\" run lint"
+    //   "npm --prefix functions run lint"
+    // ],
     "source": "functions"
   },
   "hosting": {

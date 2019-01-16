@@ -18,3 +18,4 @@ const notificationTokenModule = require('./accounts/notificationTokenActivity')
 exports.notifyToken = functions.firestore.document('user/{userID}').onWrite(notificationTokenModule.handler)
 
 const imageDiaryModule = require('./diary/imageUpload')
+exports.rotateUsingExif = functions.storage.object().onFinalize(imageDiaryModule.handler)

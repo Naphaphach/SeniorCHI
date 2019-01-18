@@ -1,5 +1,5 @@
 const mkdirp = require('mkdirp-promise')
-const gcs = require('@google-cloud/storage')()
+const { Storage } = require('@google-cloud/storage');
 const spawn = require('child-process-promise').spawn
 const path = require('path')
 const os = require('os')
@@ -12,7 +12,9 @@ exports.handler = (object) => {
 
     const tempLocalFile = path.join(os.tmpdir(), filePath)
     const tempLocalDir = path.dirname(tempLocalFile)
-    const bucket = gcs.bucket(bucketName)
+
+    const storage = new Storage();
+    const bucket = storage.bucket(bucketName)
 
     if (!object.contentType.startsWith('image/')) {
         console.log('This is not an image.')

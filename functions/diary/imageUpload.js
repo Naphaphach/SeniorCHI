@@ -1,5 +1,5 @@
 const mkdirp = require('mkdirp-promise')
-const gcs = require('@google-cloud/storage')
+const gcs = require('@google-cloud/storage')()
 const spawn = require('child-process-promise').spawn
 const path = require('path')
 const os = require('os')

@@ -98,7 +98,7 @@ class Post extends Component {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"This content is not appropriate."}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">{"This content is inappropriate or incorrect."}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
               Do you want to report it?

@@ -42,6 +42,7 @@ const styles = theme => ({
 });
 
 class Feed extends Component {
+    
     render() {
         const { classes } = this.props
         return (

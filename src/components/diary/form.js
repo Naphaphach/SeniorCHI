@@ -11,7 +11,7 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { save } from '../../store/actions/diaryAction'
 import uuidv1 from 'uuid/v1'
 import Typography from '@material-ui/core/Typography';
-
+import ErrMessage from '../main/errMessage'
 const styles = theme => ({
     colorSwitchBase: {
         '&$colorChecked': {
@@ -107,55 +107,13 @@ class EditForm extends Component {
             state: '',
             note: '',
             tag: [],
-            metadata: []
         };
         this.handleButtonPress = this.handleButtonPress.bind(this)
         this.handleButtonRelease = this.handleButtonRelease.bind(this)
     }
 
-    componentWillMount(){
-        this.setState({id:uuidv1()});
-        
-    }
-
-    getOrientation = (file, callback) => {
-        var reader = new FileReader();
-        reader.onload = (e) => {
-
-            var view = new DataView(e.target.result);
-            if (view.getUint16(0, false) !== 0xFFD8) {
-                return callback(-2);
-            }
-            var length = view.byteLength, offset = 2;
-            while (offset < length) {
-                if (view.getUint16(offset + 2, false) <= 8) return callback(-1);
-                var marker = view.getUint16(offset, false);
-                offset += 2;
-                if (marker === 0xFFE1) {
-                    if (view.getUint32(offset += 2, false) !== 0x45786966) {
-                        return callback(-1);
-                    }
-
-                    var little = view.getUint16(offset += 6, false) === 0x4949;
-                    offset += view.getUint32(offset + 4, little);
-                    var tags = view.getUint16(offset, little);
-                    offset += 2;
-                    for (var i = 0; i < tags; i++) {
-                        if (view.getUint16(offset + (i * 12), little) === 0x0112) {
-                            return callback(view.getUint16(offset + (i * 12) + 8, little));
-                        }
-                    }
-                }
-                else if ((marker & 0xFF00) !== 0xFF00) {
-                    break;
-                }
-                else {
-                    offset += view.getUint16(offset, false);
-                }
-            }
-            return callback(-1);
-        };
-        reader.readAsArrayBuffer(file);
+    componentWillMount() {
+        this.setState({ id: uuidv1() });
     }
 
     handleChange = name => event => {
@@ -207,15 +165,12 @@ class EditForm extends Component {
     //display multi
     handleChangeImg(event) {
         const files = Array.from(event.target.files);
-        this.getOrientation(files[0], (orientation) => {
-            files.map(img =>
-                this.setState(prevState => ({
-                    imgfile: [...prevState.imgfile, URL.createObjectURL(img)],
-                    files: [...prevState.files, img],
-                    metadata: [...prevState.metadata, orientation],
-                }))
-            )
-        });
+        files.map(img =>
+            this.setState(prevState => ({
+                imgfile: [...prevState.imgfile, URL.createObjectURL(img)],
+                files: [...prevState.files, img],
+            }))
+        )
     }
 
     imageClick = (im) => {
@@ -227,12 +182,12 @@ class EditForm extends Component {
     }
 
     render() {
-        const { classes } = this.props
+        const { classes, err, success } = this.props
         return (
             <Grid container spacing={0}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                    <Typography variant="subtitle1" align="center"> Add New Diary </Typography> 
+                        <Typography variant="subtitle1" align="center"> Add New Diary </Typography>
                         <FormGroup row align>
                             <FormControlLabel
                                 style={{ margin: 2 }}
@@ -276,10 +231,10 @@ class EditForm extends Component {
                             </div>
                             <p>{this.state.files[0] ? this.state.files[0].toString : null}</p>
                             <input accept="image/*" required={this.state.public} className={classes.input} onChange={this.handleChangeImg.bind(this)} id="icon-button-file" type="file" multiple />
-                                <label htmlFor="icon-button-file">
-                                    <IconButton className={classes.button} component="span">
-                                        <PhotoCamera />
-                                    </IconButton>
+                            <label htmlFor="icon-button-file">
+                                <IconButton className={classes.button} component="span">
+                                    <PhotoCamera />
+                                </IconButton>
                             </label>
                             <TextField
                                 id="outlined-full-width"
@@ -397,6 +352,10 @@ class EditForm extends Component {
                                 required={this.state.public}
                                 multiline
                             />
+                            <Col xs='12'>
+                                <ErrMessage err={err} />
+                                <ErrMessage suc={success} />
+                            </Col>
                             <Col xs='7'></Col>
                             <Col xs='5' align="right">
                                 <Button size="small" className={classes.button} onClick={() => this.props.save(this.state)}>
@@ -420,12 +379,14 @@ EditForm.propTypes = {
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
+        err: state.diary.err,
+        success: state.diary.success
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        save: page => dispatch(save(page))
+        save: page => dispatch(save(page)),
     }
 }
 

@@ -7,7 +7,7 @@ import Header from '../../components/main/header'
 import Co from '../../components/main/cooperate'
 import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { signin } from '../../store/actions/authAction'
+import { signin, initial } from '../../store/actions/authAction'
 import ErrMessage from '../../components/main/errMessage';
 
 const styles = theme => ({
@@ -116,25 +116,25 @@ class SignIn extends Component {
           <form className={classes.form} method="post" onSubmit={(event) => this.handleClick(event)}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email" classes={{
-              root: classes.cssLabel,
-              focused: classes.cssFocused,
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
               }}
               >Email Address</InputLabel>
               <Input id="email" name="email" classes={{
-            underline: classes.cssUnderline,
-            }} 
-            autoComplete="email" autoFocus onChange={this.handleChange('Email')} />
+                underline: classes.cssUnderline,
+              }}
+                autoComplete="email" autoFocus onChange={this.handleChange('Email')} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password" classes={{
-              root: classes.cssLabel,
-              focused: classes.cssFocused,
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
               }}
               >Password</InputLabel>
               <Input name="password" classes={{
-            underline: classes.cssUnderline,
-            }} 
-            type="password" id="password" autoComplete="current-password" onChange={this.handleChange('Password')} />
+                underline: classes.cssUnderline,
+              }}
+                type="password" id="password" autoComplete="current-password" onChange={this.handleChange('Password')} />
             </FormControl>
             <br />
             <ErrMessage err={err} />
@@ -150,7 +150,7 @@ class SignIn extends Component {
             <br />
           </form>
           <Link to="/up" style={{ fontSize: 15 }}>Do you have an account?</Link>
-          <br />          
+          <br />
           <Link to="/upin" style={{ fontSize: 13 }}> Cancel</Link>
           <p style={{ color: 'black', fontSize: 12 }}>CHI &#174; 2018</p>
           <Co />
@@ -173,7 +173,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signin: user => dispatch(signin(user))
+    signin: user => dispatch(signin(user)),
+    initial: () => dispatch(initial())
   }
 }
 

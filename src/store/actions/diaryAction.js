@@ -1,3 +1,9 @@
+export const initial = () => {
+    return (dispatch) => {
+        dispatch({ type: 'INITIAL' })
+    }
+}
+
 export const save = (D) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firebase = getFirebase()
@@ -10,16 +16,11 @@ export const save = (D) => {
         var photoURL = []
         if (D.files.length > 0) {
             D.files.map((file, i) => {
-                var metadata = {
-                    customMetadata: {
-                        orientation: D.metadata[i],
-                    }
-                };
 
                 var storageRef = firebase.storage().ref(user.uid + "/" + file.name);
 
                 //Upload file
-                var task = storageRef.put(file, metadata);
+                var task = storageRef.put(file);
 
                 //Update progress bar
                 return task.on('state_changed',
@@ -27,7 +28,7 @@ export const save = (D) => {
 
                     },
                     function error(err) {
-                        console.log(err);
+                        dispatch({ type: 'POSTING_ERROR', err })
                     },
                     function complete() {
                         storageRef.getDownloadURL().then(function (url) {
@@ -42,15 +43,9 @@ export const save = (D) => {
                                     tag: D.tag,
                                     photo: photoURL,
                                     date: Date()
-                                })
-                        });
-                        // Get metadata properties
-                        storageRef.getMetadata().then(function(metadata) {
-                        // Metadata now contains the metadata for 'images/forest.jpg'
-                            console.log(metadata);
-                        }).catch(function(error) {
-                        // Uh-oh, an error occurred!
-                        });
+                                }).catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
+                        }).then(() => dispatch({ type: 'POSTING_SUCCESS' }))
+                        .catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
                     }
                 );
             })
@@ -64,7 +59,8 @@ export const save = (D) => {
                     tag: D.tag,
                     photo: null,
                     date: Date()
-                })
+                }).then(() => dispatch({ type: 'POSTING_SUCCESS' }))
+                .catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
         }
     }
 }

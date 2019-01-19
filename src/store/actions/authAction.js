@@ -1,3 +1,9 @@
+export const initial = () => {
+    return (dispatch) => {
+        dispatch({ type: 'INITIAL' })
+    }
+}
+
 export const register = (U) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firebase = getFirebase()

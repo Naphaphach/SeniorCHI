@@ -18,11 +18,11 @@ const styles = {
 
 class errMessage extends Component {
     render() {
-        const { classes, err, cor } = this.props
+        const { classes, err, suc } = this.props
         return (
             <Fragment>
+                {suc ? <p className={classes.suc}> {suc} </p> :null}
                 {err ? <p className={classes.err}> {err} </p> : null}
-                {cor ? <p className={classes.suc}> success and you need to login agian </p> : null}
             </Fragment>
         )
     }

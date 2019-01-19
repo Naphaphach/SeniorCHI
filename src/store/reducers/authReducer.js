@@ -3,7 +3,7 @@ const initState = {
     errverify: null,
     errprofile: null,
     erremail: null,
-    success: false,
+    success: null,
     errproimg: null
 }
 
@@ -25,10 +25,10 @@ const authReducer = (state, action) => {
             state = { ...state, erremail: action.err.message }
             break;
         case 'UPDATE_EMAIL_SUCCESS':
-            state = { ...state, erremail: null, success: true }
+            state = { ...state, erremail: null, success: 'the action is full, then you have to re-login to update you profile' }
             break;
         case 'UPDATE_PHOTO_SUCCESS':
-            state = { ...state, errproimg: null, success: true }
+            state = { ...state, errproimg: null, success: 'the action is full, then you have to re-login to update you profile' }
             break;
         case 'UPDATE_PHOTO_ERROR':
             state = { ...state, errproimg: action.err.message }

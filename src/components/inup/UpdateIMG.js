@@ -139,7 +139,7 @@ class UpdateIMG extends Component {
                                                 <CustomInput type="file" id="exampleCustomFileBrowser" accept="image/*" name="customFile" onChange={(event) => this.handleChangePhoto(event)} label={filename} />
                                             </FormGroup>
                                             <ErrMessage err={errproimg} />
-                                            <ErrMessage cor={success} />
+                                            <ErrMessage suc={success} />
                                             <Button
                                                 type="submit"
                                                 fullWidth

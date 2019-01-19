@@ -8,7 +8,7 @@ import Header from '../../components/main/header'
 import { Link } from 'react-router-dom'
 import Co from '../../components/main/cooperate'
 import { connect } from 'react-redux'
-import { register } from '../../store/actions/authAction'
+import { register, initial } from '../../store/actions/authAction'
 import { Redirect } from 'react-router-dom'
 import ErrMessage from '../../components/main/errMessage';
 import Avatar from '../../components/inup/avatar'
@@ -38,7 +38,7 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
-    
+
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -136,58 +136,58 @@ class SignUp extends Component {
           <form className={classes.form} method="post" onSubmit={(event) => this.handleClick(event)}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="name" classes={{
-              root: classes.cssLabel,
-              focused: classes.cssFocused,
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
               }}
-            >
-            Display name
+              >
+                Display name
             </InputLabel>
-            <Input id="name" name="name" classes={{
-            underline: classes.cssUnderline,
-            }} 
-            autoFocus onChange={this.handleChange('Name')} />
+              <Input id="name" name="name" classes={{
+                underline: classes.cssUnderline,
+              }}
+                autoFocus onChange={this.handleChange('Name')} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email"
-              classes={{
-                root: classes.cssLabel,
-                focused: classes.cssFocused,
+                classes={{
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
                 }}
               >
-              Email Address</InputLabel>
+                Email Address</InputLabel>
               <Input id="email" name="email" classes={{
-            underline: classes.cssUnderline,
-            }} 
-            autoFocus onChange={this.handleChange('Email')} />
+                underline: classes.cssUnderline,
+              }}
+                autoFocus onChange={this.handleChange('Email')} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password" 
-              classes={{
-                root: classes.cssLabel,
-                focused: classes.cssFocused,
+              <InputLabel htmlFor="password"
+                classes={{
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
                 }}
               >
-              Password</InputLabel>
+                Password</InputLabel>
               <Input name="password" classes={{
-            underline: classes.cssUnderline,
-            }} 
-               type="password" id="password" onChange={this.handleChange('Password')} />
+                underline: classes.cssUnderline,
+              }}
+                type="password" id="password" onChange={this.handleChange('Password')} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="repassword"
-              classes={{
-                root: classes.cssLabel,
-                focused: classes.cssFocused,
+                classes={{
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
                 }}
               >
-              Re-Password</InputLabel>
+                Re-Password</InputLabel>
               <Input name="repassword" classes={{
-            underline: classes.cssUnderline,
-            }} 
-              type="password" id="repassword" onChange={this.handleChange('RePassword')} />
+                underline: classes.cssUnderline,
+              }}
+                type="password" id="repassword" onChange={this.handleChange('RePassword')} />
             </FormControl>
             {this.state.Password !== this.state.RePassword && this.state.RePassword.length > 0 ? <ErrMessage err='Password does not match with RePassword' /> : null}
-            <div style={{ marginTop: 20, marginBottom: 15  }} >
+            <div style={{ marginTop: 20, marginBottom: 15 }} >
               <b style={{ fontSize: 15, float: 'left' }}
               >Birthday: </b>
               <TextField
@@ -222,7 +222,7 @@ class SignUp extends Component {
             <ErrMessage err={this.state.err} />
             <Link to="/upin" style={{ fontSize: 13 }}> Back</Link> <Link to="/" style={{ fontSize: 13 }}> Cancel</Link>
             <br />
-            
+
           </form>
           <p style={{ color: 'black', fontSize: 12 }}>CHI &#174; 2018</p>
           <Co />
@@ -246,7 +246,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    register: valueState => dispatch(register(valueState))
+    register: valueState => dispatch(register(valueState)),
+    initial: () => dispatch(initial())
   }
 }
 

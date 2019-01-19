@@ -68,7 +68,7 @@ class Diary extends Component {
                                             <DeleteIcon />
                                         </Fab>
                                         </Grid>
-                                <Post sz={12} like={false} book={false}/>
+                                <Post sz={12} like={false} book={false} report={false}/>
                             </Grid>
                         </div> :
                         <div className={classes.root}>
@@ -76,19 +76,19 @@ class Diary extends Component {
                                         <Grid item xs={12} align='right'>
                                             <Link to='/diary/edit'>
                                                 <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
-                                                    <Fab size="medium" color="primary" align="right" className={classes.fab}>
+                                                    <Fab size="big" color="primary" align="right" className={classes.fab}>
                                                         <AddIcon />
                                                     </Fab>
                                                 </Tooltip>
                                             </Link>
-                                        <Fab size="medium" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                        <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
                                             <EditIcon />
                                         </Fab>
-                                        <Fab size="medium" color="extended" align="right" aria-label="Delete" className={classes.fab}>
+                                        <Fab size="big" color="extended" align="right" aria-label="Delete" className={classes.fab}>
                                             <DeleteIcon />
                                         </Fab>
                                         </Grid>
-                                    <Post sz={4} like={false} book={false}/>
+                                    <Post sz={4} like={false} book={false} report={false}/>
                             </Grid>
                         </div>
                     : <Unregist name='Diary' />}

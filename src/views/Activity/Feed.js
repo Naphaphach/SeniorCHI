@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import Home from '../../layouts/Home'
 import { connect } from 'react-redux'
 import Unregist from '../../components/main/unregist'
-import { Grid } from '@material-ui/core/'
+import { Grid, Fab } from '@material-ui/core/'
 import { isMobile } from "react-device-detect";
 import { withStyles } from '@material-ui/core/styles';
+import PersonIcon from '@material-ui/icons/Person';
+import LocIcon from '@material-ui/icons/LocationOn';
+import EventIcon from '@material-ui/icons/Event';
+import ArtIcon from '@material-ui/icons/ArtTrack';
+
+
 import Post from '../../components/diary/post'
-import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     root: {
@@ -27,36 +32,13 @@ const styles = theme => ({
             marginBottom: '20%',
         },
     },
-      bootstrapRoot: {
-        fontSize: 14,
-        border: '1px solid',
-        backgroundColor: '#FFA07A',
-        borderColor: '#FFA07A',
-        '&:hover': {
-          backgroundColor: '#FF3333',
-          borderColor: '#FF3333',
-        },
-      },
-      bootstrapRoot1: {
-        fontSize: 14,
-        border: '1px solid',
-        backgroundColor: '#FF9933',
-        borderColor: '#FF9933',
-        '&:hover': {
-          backgroundColor: '#FF3333',
-          borderColor: '#FF3333',
-        },
-      },
-      bootstrapRoot2: {
-        fontSize: 14,
-        border: '1px solid',
-        backgroundColor: '#FF6633',
-        borderColor: '#FF6633',
-        '&:hover': {
-          backgroundColor: '#FF3333',
-          borderColor: '#FF3333',
-        },
-      },
+    fab: {
+        marginRight: theme.spacing.unit,
+    },
+    fab1: {
+        marginRight: '50px',
+    },
+
 });
 
 class Feed extends Component {
@@ -68,56 +50,50 @@ class Feed extends Component {
                     isMobile ?
                     <div className={classes.rootmod}>
                             <Grid container spacing={16} className={classes.main}>
-                            <Grid item xs={12} align="center">
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className={classes.bootstrapRoot}
-                            >
-                            Location Base
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className={classes.bootstrapRoot1}
-                            >
-                            Theme Base
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className={classes.bootstrapRoot2}
-                            >
-                            Time Base
-                            </Button>
+                            <Grid item xs={12} align='center'>
+                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                <PersonIcon />
+                            </Fab>
+                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                <LocIcon />
+                            </Fab>
+                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                <ArtIcon />
+                            </Fab>
+                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                <EventIcon />
+                            </Fab>
+                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                <PersonIcon />
+                            </Fab>
+                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                <PersonIcon />
+                            </Fab>
                             </Grid>
                                 <Post sz={12} like={true} book={true}/>
                             </Grid>
                         </div> :
                         <div className={classes.root}>
                             <Grid container spacing={24} className={classes.main}>
-                            <Grid item xs={12} align='right'>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className={(classes.margin,classes.bootstrapRoot)}
-                            >
-                            Location Base
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className={(classes.margin,classes.bootstrapRoot1)}
-                            >
-                            Theme Base
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className={(classes.margin,classes.bootstrapRoot2)}
-                            >
-                            Time Base
-                            </Button>
+                            <Grid item xs={12} align='center'>
+                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
+                                <PersonIcon />
+                            </Fab>
+                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
+                                <LocIcon />
+                            </Fab>
+                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
+                                <ArtIcon />
+                            </Fab>
+                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
+                                <EventIcon />
+                            </Fab>
+                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
+                                <PersonIcon />
+                            </Fab>
+                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
+                                <PersonIcon />
+                            </Fab>
                             </Grid>
                                 <Post sz={4} like={true} book={true}/>
                             </Grid>

@@ -32,7 +32,7 @@ exports.handler = (object) => {
     }).then(() => {
         console.log('The file has been downloaded to', tempLocalFile)
         // Convert the image using ImageMagick.
-        return spawn('convert', [tempLocalFile, '-resize', '500x500', tempLocalFile]);
+        return spawn('convert', [tempLocalFile, '-resize', '256x256', tempLocalFile]);
     }).then(() => {
         console.log('rotated image created at', tempLocalFile)
         metadata.autoResize = true

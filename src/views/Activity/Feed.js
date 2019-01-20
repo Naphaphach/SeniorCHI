@@ -5,12 +5,12 @@ import Unregist from '../../components/main/unregist'
 import { Grid, Fab } from '@material-ui/core/'
 import { isMobile } from "react-device-detect";
 import { withStyles } from '@material-ui/core/styles';
-import PersonIcon from '@material-ui/icons/Person';
-import LocIcon from '@material-ui/icons/LocationOn';
+import PersonIcon from '@material-ui/icons/Portrait';
+import LocIcon from '@material-ui/icons/WhereToVote';
 import EventIcon from '@material-ui/icons/Event';
-import ArtIcon from '@material-ui/icons/ArtTrack';
-
-
+import ArtIcon from '@material-ui/icons/Collections';
+import ConsumeIcon from '@material-ui/icons/LocalDining';
+import Tooltip from '@material-ui/core/Tooltip';
 import Post from '../../components/diary/post'
 
 const styles = theme => ({
@@ -33,12 +33,14 @@ const styles = theme => ({
         },
     },
     fab: {
-        marginRight: theme.spacing.unit,
+        margin: theme.spacing.unit * 2,
+        backgroundColor: '#FF9933',
+        borderColor: '#FF9933',
+        '&:hover': {
+            backgroundColor: '#FF6633',
+            borderColor: '#FF6633',
+        },
     },
-    fab1: {
-        marginRight: '50px',
-    },
-
 });
 
 class Feed extends Component {
@@ -52,24 +54,24 @@ class Feed extends Component {
                     <div className={classes.rootmod}>
                             <Grid container spacing={16} className={classes.main}>
                             <Grid item xs={12} align='center'>
-                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
-                                <PersonIcon />
-                            </Fab>
-                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
-                                <LocIcon />
-                            </Fab>
-                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
-                                <ArtIcon />
-                            </Fab>
-                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
-                                <EventIcon />
-                            </Fab>
-                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
-                                <PersonIcon />
-                            </Fab>
-                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
-                                <PersonIcon />
-                            </Fab>
+                            <Tooltip title="Person" aria-label="Person">
+                                <Fab color="secondary" size="small" className={classes.fab}> <PersonIcon /> </Fab>
+                            </Tooltip>
+                            <Tooltip title="Location" aria-label="Location">
+                                <Fab color="secondary" size="small" className={classes.fab}> <LocIcon /> </Fab>
+                            </Tooltip>
+                            <Tooltip title="Event" aria-label="Event">
+                                <Fab color="secondary" size="small" className={classes.fab}> <EventIcon /> </Fab>
+                            </Tooltip>
+                            <Tooltip title="Art" aria-label="Art">
+                                <Fab color="secondary" size="small" className={classes.fab}> <ArtIcon /> </Fab>
+                            </Tooltip>
+                            <Tooltip title="Consume_Good" aria-label="Consume_Good">
+                                <Fab color="secondary" size="small" className={classes.fab}> <ConsumeIcon /> </Fab>
+                            </Tooltip>
+                            <Tooltip title="Organization" aria-label="Add">
+                                <Fab color="secondary" size="small" className={classes.fab}> <PersonIcon /> </Fab>
+                            </Tooltip>
                             </Grid>
                                 <Post sz={12} like={true} book={true}/>
                             </Grid>
@@ -77,24 +79,24 @@ class Feed extends Component {
                         <div className={classes.root}>
                             <Grid container spacing={24} className={classes.main}>
                             <Grid item xs={12} align='center'>
-                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
-                                <PersonIcon />
-                            </Fab>
-                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
-                                <LocIcon />
-                            </Fab>
-                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
-                                <ArtIcon />
-                            </Fab>
-                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
-                                <EventIcon />
-                            </Fab>
-                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
-                                <PersonIcon />
-                            </Fab>
-                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab1}>
-                                <PersonIcon />
-                            </Fab>
+                            <Tooltip title="Person" aria-label="Person">
+                                <Fab color="secondary" size="big" className={classes.fab}> <PersonIcon /> </Fab>
+                            </Tooltip>
+                            <Tooltip title="Location" aria-label="Location">
+                                <Fab color="secondary" size="big" className={classes.fab}> <LocIcon /> </Fab>
+                            </Tooltip>
+                            <Tooltip title="Event" aria-label="Event">
+                                <Fab color="secondary" size="big" className={classes.fab}> <EventIcon /> </Fab>
+                            </Tooltip>
+                            <Tooltip title="Art" aria-label="Art">
+                                <Fab color="secondary" size="big" className={classes.fab}> <ArtIcon /> </Fab>
+                            </Tooltip>
+                            <Tooltip title="Consume_Good" aria-label="Consume_Good">
+                                <Fab color="secondary" size="big" className={classes.fab}> <ConsumeIcon /> </Fab>
+                            </Tooltip>
+                            <Tooltip title="Add" aria-label="Add">
+                                <Fab color="secondary" size="big" className={classes.fab}> <PersonIcon /> </Fab>
+                            </Tooltip>
                             </Grid>
                                 <Post sz={4} like={true} book={true}/>
                             </Grid>

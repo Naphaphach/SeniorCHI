@@ -1,4 +1,4 @@
-// deploy: firebase deploy --only functions
+// deploy: firebase deploy --only functions 
 // local test: firebase functions:shell 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin')
@@ -22,3 +22,6 @@ exports.rotateUsingExif = functions.storage.object().onFinalize(imageDiaryRotate
 
 const imageDiaryResizeModule = require('./diary/imageResize')
 exports.resizeImage = functions.storage.object().onFinalize(imageDiaryResizeModule.handler)
+
+const imageDiaryWaterMarkModule = require('./diary/imageWaterMark')
+exports.waterMarkImage = functions.storage.object().onFinalize(imageDiaryWaterMarkModule.handler)

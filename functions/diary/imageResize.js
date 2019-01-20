@@ -21,7 +21,7 @@ exports.handler = (object) => {
         return null
     }
 
-    if (metadata.autoOrient) {
+    if (metadata.autoResize) {
         console.log('This is already rotated')
         return null
     }
@@ -32,10 +32,10 @@ exports.handler = (object) => {
     }).then(() => {
         console.log('The file has been downloaded to', tempLocalFile)
         // Convert the image using ImageMagick.
-        return spawn('convert', [tempLocalFile, '-auto-orient', tempLocalFile])
+        return spawn('convert', [tempLocalFile, '-resize', '500x500', tempLocalFile]);
     }).then(() => {
         console.log('rotated image created at', tempLocalFile)
-        metadata.autoOrient = true
+        metadata.autoResize = true
         return bucket.upload(tempLocalFile, {
             destination: filePath,
             metadata: { metadata: metadata }

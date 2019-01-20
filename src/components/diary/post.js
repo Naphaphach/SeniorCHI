@@ -128,12 +128,7 @@ class Post extends Component {
   }
     render() {
         const { activeIndex } = this.state;
-        const { classes, sz, like, book, love, booked} = this.props
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-       
+        const { classes, sz, like, book, love, booked} = this.props    
         const slides = items.map((item) => {
         return (
           <CarouselItem

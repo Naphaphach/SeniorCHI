@@ -129,7 +129,10 @@ class Post extends Component {
     render() {
         const { activeIndex } = this.state;
         const { classes, sz, like, book, love, booked} = this.props
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
        
         const slides = items.map((item) => {
         return (

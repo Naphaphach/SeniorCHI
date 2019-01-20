@@ -72,8 +72,8 @@ class Post extends Component {
   };
     render() {
         const { classes, sz, like, book, love, booked} = this.props
-        const { anchorEl } = this.state;
-        const open = Boolean(anchorEl);
+        // const { anchorEl } = this.state;
+        // const open = Boolean(anchorEl);
         return(
         <Fragment className={classes.root}>
           <Grid item xs={sz}>

@@ -18,8 +18,11 @@ exports.UpdateTokenDiaryActivity = functions.firestore.document('user/{userID}/d
 const notificationTokenModule = require('./accounts/notificationTokenActivity')
 exports.notifyToken = functions.firestore.document('user/{userID}').onWrite(notificationTokenModule.handler)
 
-const imageDiaryRotateModule = require('./diary/imageRotate')
-exports.rotateUsingExif = functions.storage.object().onFinalize(imageDiaryRotateModule.handler)
+const imageDiaryRotateNResizeModule = require('./diary/imageRotate')
+exports.rotateUsingExif = functions.storage.object().onFinalize(imageDiaryRotateNResizeModule.handler)
 
-const imageDiaryResizeModule = require('./diary/imageResize')
-exports.resizeImage = functions.storage.object().onFinalize(imageDiaryResizeModule.handler)
+// const imageDiaryResizeModule = require('./diary/imageResize')
+// exports.resizeImage = functions.storage.object().onFinalize(imageDiaryResizeModule.handler)
+
+const imageDiaryWaterMarkModule = require('./diary/imageAddWaterMark')
+exports.addWaterMarkImage = functions.storage.object().onFinalize(imageDiaryWaterMarkModule.handler)

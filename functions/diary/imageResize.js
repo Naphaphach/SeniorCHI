@@ -22,7 +22,7 @@ exports.handler = (object) => {
     }
 
     if (metadata.autoResize) {
-        console.log('This is already rotated')
+        console.log('This is already resized')
         return null
     }
 

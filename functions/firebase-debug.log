@@ -1,0 +1,230 @@
+[debug] [2019-01-21T14:28:39.187Z] ----------------------------------------------------------------------
+[debug] [2019-01-21T14:28:39.190Z] Command:       /usr/local/bin/node /Users/patorseing/.npm-packages/bin/firebase deploy --only functions
+[debug] [2019-01-21T14:28:39.190Z] CLI Version:   6.3.0
+[debug] [2019-01-21T14:28:39.190Z] Platform:      darwin
+[debug] [2019-01-21T14:28:39.190Z] Node Version:  v10.14.0
+[debug] [2019-01-21T14:28:39.191Z] Time:          Mon Jan 21 2019 21:28:39 GMT+0700 (Indochina Time)
+[debug] [2019-01-21T14:28:39.191Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-01-21T14:28:39.206Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-21T14:28:39.206Z] > authorizing via signed-in user
+[debug] [2019-01-21T14:28:39.206Z] [iam] checking project app-chi for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2019-01-21T14:28:39.208Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/app-chi:testIamPermissions  
+
+[debug] [2019-01-21T14:28:40.607Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'app-chi'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] ✔  functions: Finished running predeploy script.
+[debug] [2019-01-21T14:28:53.702Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^2.3.4",
+    "child-process-promise": "^2.2.1",
+    "firebase-admin": "^6.5.0",
+    "firebase-functions": "^2.1.0",
+    "fs": "0.0.1-security",
+    "gm": "^1.23.1",
+    "jimp": "^0.6.0",
+    "mkdirp-promise": "^5.0.1",
+    "os": "^0.1.1",
+    "path": "^0.12.7",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2019-01-21T14:28:53.704Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/app-chi?view=CONSUMER_VIEW  
+ 
+[debug] [2019-01-21T14:28:53.706Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/app-chi?view=CONSUMER_VIEW  
+ 
+[debug] [2019-01-21T14:28:55.758Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-21T14:28:55.790Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2019-01-21T14:28:55.791Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/app-chi  
+ 
+[debug] [2019-01-21T14:28:57.053Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-21T14:28:57.054Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/165755328510:getServerAppConfig  
+ 
+[debug] [2019-01-21T14:28:57.472Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2019-01-21T14:28:57.474Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/app-chi/configs  
+ 
+[debug] [2019-01-21T14:28:57.905Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (548.77 KB) for uploading
+[debug] [2019-01-21T14:29:00.966Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/app-chi/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2019-01-21T14:29:01.899Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-21T14:29:01.901Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-675fd776-f231-483a-8e35-f78c0041c26f/78226280-5150-4b84-a26c-512de8acae03.zip?GoogleAccessId=service-165755328510@gcf-admin-robot.iam.gserviceaccount.com&Expires=1548082744&Signature=IcQg5MrffoldFit%2BIcElXjGCWPuU1Fcj8zlmw0rDG5yIdl62l0daZg11tej5Or08KnusxlueEtxs6WlByF3hi2wlpXjqpBbxK7xOMfBqp0bdRzc5niKyb%2FsVWS5qO6IM0hcMB3Dm%2BKROrGESvPD9FFYhMsXCWFJqhMAs9hZEX%2BSYZWbeuS%2BSyV73r51Gfgz9eGf0PZ33Snb2MMFbmirv63UQiMhol0c7XznRQWxPolLO9S57KN6fYLTuVlq944mXXV8ZTewJOT%2FCPn1uuyL%2FGgjko8njiVvH%2FM8KhbqjeP8NDROfBXpTv47HOUwntCO6iGkgd95jy40eHFuKvOdDjA%3D%3D  
+
+[debug] [2019-01-21T14:29:32.516Z] <<< HTTP RESPONSE 503
+[debug] [2019-01-21T14:29:32.516Z] <<< HTTP RESPONSE BODY Service Unavailable
+[warn] ⚠  functions: Upload Error: HTTP Error: 503, Unknown Error
+[error] 
+[error] Error: HTTP Error: 503, Unknown Error
+[debug] [2019-01-21T14:29:32.662Z] Error Context: {
+  "body": {
+    "error": {
+      "message": "Unknown Error"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": "Service Unavailable",
+    "headers": {
+      "x-guploader-uploadid": "AEnB2Ur2bRIT0NLbCys5qFv1cT_WI4R4NeX65Du9X5vxiedz6SBeA38bfQluNI9ttvxQdwqwdFTWZhKo31dKsLzJsNuVgTfmuw",
+      "content-length": "19",
+      "date": "Mon, 21 Jan 2019 14:29:35 GMT",
+      "server": "UploadServer",
+      "content-type": "text/html; charset=UTF-8",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\""
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "storage.googleapis.com",
+        "port": 443,
+        "hostname": "storage.googleapis.com",
+        "hash": null,
+        "search": "?GoogleAccessId=service-165755328510@gcf-admin-robot.iam.gserviceaccount.com&Expires=1548082744&Signature=IcQg5MrffoldFit%2BIcElXjGCWPuU1Fcj8zlmw0rDG5yIdl62l0daZg11tej5Or08KnusxlueEtxs6WlByF3hi2wlpXjqpBbxK7xOMfBqp0bdRzc5niKyb%2FsVWS5qO6IM0hcMB3Dm%2BKROrGESvPD9FFYhMsXCWFJqhMAs9hZEX%2BSYZWbeuS%2BSyV73r51Gfgz9eGf0PZ33Snb2MMFbmirv63UQiMhol0c7XznRQWxPolLO9S57KN6fYLTuVlq944mXXV8ZTewJOT%2FCPn1uuyL%2FGgjko8njiVvH%2FM8KhbqjeP8NDROfBXpTv47HOUwntCO6iGkgd95jy40eHFuKvOdDjA%3D%3D",
+        "query": "GoogleAccessId=service-165755328510@gcf-admin-robot.iam.gserviceaccount.com&Expires=1548082744&Signature=IcQg5MrffoldFit%2BIcElXjGCWPuU1Fcj8zlmw0rDG5yIdl62l0daZg11tej5Or08KnusxlueEtxs6WlByF3hi2wlpXjqpBbxK7xOMfBqp0bdRzc5niKyb%2FsVWS5qO6IM0hcMB3Dm%2BKROrGESvPD9FFYhMsXCWFJqhMAs9hZEX%2BSYZWbeuS%2BSyV73r51Gfgz9eGf0PZ33Snb2MMFbmirv63UQiMhol0c7XznRQWxPolLO9S57KN6fYLTuVlq944mXXV8ZTewJOT%2FCPn1uuyL%2FGgjko8njiVvH%2FM8KhbqjeP8NDROfBXpTv47HOUwntCO6iGkgd95jy40eHFuKvOdDjA%3D%3D",
+        "pathname": "/gcf-upload-us-central1-675fd776-f231-483a-8e35-f78c0041c26f/78226280-5150-4b84-a26c-512de8acae03.zip",
+        "path": "/gcf-upload-us-central1-675fd776-f231-483a-8e35-f78c0041c26f/78226280-5150-4b84-a26c-512de8acae03.zip?GoogleAccessId=service-165755328510@gcf-admin-robot.iam.gserviceaccount.com&Expires=1548082744&Signature=IcQg5MrffoldFit%2BIcElXjGCWPuU1Fcj8zlmw0rDG5yIdl62l0daZg11tej5Or08KnusxlueEtxs6WlByF3hi2wlpXjqpBbxK7xOMfBqp0bdRzc5niKyb%2FsVWS5qO6IM0hcMB3Dm%2BKROrGESvPD9FFYhMsXCWFJqhMAs9hZEX%2BSYZWbeuS%2BSyV73r51Gfgz9eGf0PZ33Snb2MMFbmirv63UQiMhol0c7XznRQWxPolLO9S57KN6fYLTuVlq944mXXV8ZTewJOT%2FCPn1uuyL%2FGgjko8njiVvH%2FM8KhbqjeP8NDROfBXpTv47HOUwntCO6iGkgd95jy40eHFuKvOdDjA%3D%3D",
+        "href": "https://storage.googleapis.com/gcf-upload-us-central1-675fd776-f231-483a-8e35-f78c0041c26f/78226280-5150-4b84-a26c-512de8acae03.zip?GoogleAccessId=service-165755328510@gcf-admin-robot.iam.gserviceaccount.com&Expires=1548082744&Signature=IcQg5MrffoldFit%2BIcElXjGCWPuU1Fcj8zlmw0rDG5yIdl62l0daZg11tej5Or08KnusxlueEtxs6WlByF3hi2wlpXjqpBbxK7xOMfBqp0bdRzc5niKyb%2FsVWS5qO6IM0hcMB3Dm%2BKROrGESvPD9FFYhMsXCWFJqhMAs9hZEX%2BSYZWbeuS%2BSyV73r51Gfgz9eGf0PZ33Snb2MMFbmirv63UQiMhol0c7XznRQWxPolLO9S57KN6fYLTuVlq944mXXV8ZTewJOT%2FCPn1uuyL%2FGgjko8njiVvH%2FM8KhbqjeP8NDROfBXpTv47HOUwntCO6iGkgd95jy40eHFuKvOdDjA%3D%3D"
+      },
+      "method": "PUT"
+    }
+  }
+}
+[debug] [2019-01-21T14:29:46.054Z] ----------------------------------------------------------------------
+[debug] [2019-01-21T14:29:46.056Z] Command:       /usr/local/bin/node /Users/patorseing/.npm-packages/bin/firebase deploy --only functions
+[debug] [2019-01-21T14:29:46.056Z] CLI Version:   6.3.0
+[debug] [2019-01-21T14:29:46.056Z] Platform:      darwin
+[debug] [2019-01-21T14:29:46.057Z] Node Version:  v10.14.0
+[debug] [2019-01-21T14:29:46.057Z] Time:          Mon Jan 21 2019 21:29:46 GMT+0700 (Indochina Time)
+[debug] [2019-01-21T14:29:46.057Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-01-21T14:29:46.071Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-21T14:29:46.072Z] > authorizing via signed-in user
+[debug] [2019-01-21T14:29:46.072Z] [iam] checking project app-chi for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2019-01-21T14:29:46.074Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/app-chi:testIamPermissions  
+
+[debug] [2019-01-21T14:29:47.472Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'app-chi'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] ✔  functions: Finished running predeploy script.
+[debug] [2019-01-21T14:29:59.509Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^2.3.4",
+    "child-process-promise": "^2.2.1",
+    "firebase-admin": "^6.5.0",
+    "firebase-functions": "^2.1.0",
+    "fs": "0.0.1-security",
+    "gm": "^1.23.1",
+    "jimp": "^0.6.0",
+    "mkdirp-promise": "^5.0.1",
+    "os": "^0.1.1",
+    "path": "^0.12.7",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2019-01-21T14:29:59.510Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/app-chi?view=CONSUMER_VIEW  
+ 
+[debug] [2019-01-21T14:29:59.511Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/app-chi?view=CONSUMER_VIEW  
+ 
+[debug] [2019-01-21T14:30:01.636Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2019-01-21T14:30:01.685Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-21T14:30:01.686Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/app-chi  
+ 
+[debug] [2019-01-21T14:30:03.032Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-21T14:30:03.033Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/165755328510:getServerAppConfig  
+ 
+[debug] [2019-01-21T14:30:03.446Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2019-01-21T14:30:03.448Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/app-chi/configs  
+ 
+[debug] [2019-01-21T14:30:03.854Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (548.77 KB) for uploading
+[debug] [2019-01-21T14:30:06.647Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/app-chi/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2019-01-21T14:30:07.545Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-21T14:30:07.545Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-675fd776-f231-483a-8e35-f78c0041c26f/9ba75a58-310f-4c8b-af11-f58d870a9906.zip?GoogleAccessId=service-165755328510@gcf-admin-robot.iam.gserviceaccount.com&Expires=1548082809&Signature=diS5hH9drN%2B8DvWmEvmvtzVxDxTJd%2Bk8yVVzynre%2ByBegKxK9J3jQjjfAaJtTPmgIezq7kmdJFe4pT7f96Pa5BJLGIFPXroaZCtFdmcZR5%2B%2BvrGggA9BfE61NQnOimeZF2awAeNSi0EGPiNpoWNb3pROGES4DwDu0u2CDKV0Hl498NYROKYJJAJnGPjkKER7GJSpgl7m0r88LuqDkTmsFJSmdwg3Q6cBN4699bjDoIIh4J3I5lNAoQOOkuEHFRJbrrecTQ5QiRKZ4yiZmSbWIkiAopcg6RCt4VyylNRTyLpXzQhzQEQ9aNO0akAKlK8qr7spC0ALkndtYbnyQsHgvg%3D%3D  
+
+[debug] [2019-01-21T14:30:38.258Z] <<< HTTP RESPONSE 503
+[debug] [2019-01-21T14:30:38.258Z] <<< HTTP RESPONSE BODY Service Unavailable
+[warn] ⚠  functions: Upload Error: HTTP Error: 503, Unknown Error
+[error] 
+[error] Error: HTTP Error: 503, Unknown Error
+[debug] [2019-01-21T14:30:38.397Z] Error Context: {
+  "body": {
+    "error": {
+      "message": "Unknown Error"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": "Service Unavailable",
+    "headers": {
+      "x-guploader-uploadid": "AEnB2Uo485ZB6qv_ZivqE1Kvq4UYkXCnflxILbe8-N1khSg3y19Tb9sp1mcuMOESDcuK70sAucSoA5im2XfxmXwpEbr0mqHyQvnfLqu51nhtjqZO9GwvbD4",
+      "content-length": "19",
+      "date": "Mon, 21 Jan 2019 14:30:40 GMT",
+      "server": "UploadServer",
+      "content-type": "text/html; charset=UTF-8",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\""
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "storage.googleapis.com",
+        "port": 443,
+        "hostname": "storage.googleapis.com",
+        "hash": null,
+        "search": "?GoogleAccessId=service-165755328510@gcf-admin-robot.iam.gserviceaccount.com&Expires=1548082809&Signature=diS5hH9drN%2B8DvWmEvmvtzVxDxTJd%2Bk8yVVzynre%2ByBegKxK9J3jQjjfAaJtTPmgIezq7kmdJFe4pT7f96Pa5BJLGIFPXroaZCtFdmcZR5%2B%2BvrGggA9BfE61NQnOimeZF2awAeNSi0EGPiNpoWNb3pROGES4DwDu0u2CDKV0Hl498NYROKYJJAJnGPjkKER7GJSpgl7m0r88LuqDkTmsFJSmdwg3Q6cBN4699bjDoIIh4J3I5lNAoQOOkuEHFRJbrrecTQ5QiRKZ4yiZmSbWIkiAopcg6RCt4VyylNRTyLpXzQhzQEQ9aNO0akAKlK8qr7spC0ALkndtYbnyQsHgvg%3D%3D",
+        "query": "GoogleAccessId=service-165755328510@gcf-admin-robot.iam.gserviceaccount.com&Expires=1548082809&Signature=diS5hH9drN%2B8DvWmEvmvtzVxDxTJd%2Bk8yVVzynre%2ByBegKxK9J3jQjjfAaJtTPmgIezq7kmdJFe4pT7f96Pa5BJLGIFPXroaZCtFdmcZR5%2B%2BvrGggA9BfE61NQnOimeZF2awAeNSi0EGPiNpoWNb3pROGES4DwDu0u2CDKV0Hl498NYROKYJJAJnGPjkKER7GJSpgl7m0r88LuqDkTmsFJSmdwg3Q6cBN4699bjDoIIh4J3I5lNAoQOOkuEHFRJbrrecTQ5QiRKZ4yiZmSbWIkiAopcg6RCt4VyylNRTyLpXzQhzQEQ9aNO0akAKlK8qr7spC0ALkndtYbnyQsHgvg%3D%3D",
+        "pathname": "/gcf-upload-us-central1-675fd776-f231-483a-8e35-f78c0041c26f/9ba75a58-310f-4c8b-af11-f58d870a9906.zip",
+        "path": "/gcf-upload-us-central1-675fd776-f231-483a-8e35-f78c0041c26f/9ba75a58-310f-4c8b-af11-f58d870a9906.zip?GoogleAccessId=service-165755328510@gcf-admin-robot.iam.gserviceaccount.com&Expires=1548082809&Signature=diS5hH9drN%2B8DvWmEvmvtzVxDxTJd%2Bk8yVVzynre%2ByBegKxK9J3jQjjfAaJtTPmgIezq7kmdJFe4pT7f96Pa5BJLGIFPXroaZCtFdmcZR5%2B%2BvrGggA9BfE61NQnOimeZF2awAeNSi0EGPiNpoWNb3pROGES4DwDu0u2CDKV0Hl498NYROKYJJAJnGPjkKER7GJSpgl7m0r88LuqDkTmsFJSmdwg3Q6cBN4699bjDoIIh4J3I5lNAoQOOkuEHFRJbrrecTQ5QiRKZ4yiZmSbWIkiAopcg6RCt4VyylNRTyLpXzQhzQEQ9aNO0akAKlK8qr7spC0ALkndtYbnyQsHgvg%3D%3D",
+        "href": "https://storage.googleapis.com/gcf-upload-us-central1-675fd776-f231-483a-8e35-f78c0041c26f/9ba75a58-310f-4c8b-af11-f58d870a9906.zip?GoogleAccessId=service-165755328510@gcf-admin-robot.iam.gserviceaccount.com&Expires=1548082809&Signature=diS5hH9drN%2B8DvWmEvmvtzVxDxTJd%2Bk8yVVzynre%2ByBegKxK9J3jQjjfAaJtTPmgIezq7kmdJFe4pT7f96Pa5BJLGIFPXroaZCtFdmcZR5%2B%2BvrGggA9BfE61NQnOimeZF2awAeNSi0EGPiNpoWNb3pROGES4DwDu0u2CDKV0Hl498NYROKYJJAJnGPjkKER7GJSpgl7m0r88LuqDkTmsFJSmdwg3Q6cBN4699bjDoIIh4J3I5lNAoQOOkuEHFRJbrrecTQ5QiRKZ4yiZmSbWIkiAopcg6RCt4VyylNRTyLpXzQhzQEQ9aNO0akAKlK8qr7spC0ALkndtYbnyQsHgvg%3D%3D"
+      },
+      "method": "PUT"
+    }
+  }
+}

@@ -1,9 +1,5 @@
-const mkdirp = require('mkdirp-promise')
-const { Storage } = require('@google-cloud/storage');
-const spawn = require('child-process-promise').spawn
-const path = require('path')
-const os = require('os')
-const fs = require('fs')
+const vision =  require('@google-cloud/vision');
+const admin = require('firebase-admin');
 
 exports.handler = (object) => {
     const filePath = object.name
@@ -13,6 +9,7 @@ exports.handler = (object) => {
     const tempLocalFile = path.join(os.tmpdir(), filePath)
     const tempLocalDir = path.dirname(tempLocalFile)
 
+    const visionClient =  new vision.ImageAnnotatorClient();
     const storage = new Storage();
     const bucket = storage.bucket(bucketName)
 
@@ -30,21 +27,22 @@ exports.handler = (object) => {
         // Download file from bucket.
         return bucket.file(filePath).download({ destination: tempLocalFile })
     }).then(() => {
-        console.log('The file has been downloaded to', tempLocalFile)
-        // Convert the image using ImageMagick.
-        return spawn('convert', [tempLocalFile, '-auto-orient', tempLocalFile])
+        const docId = filePath.split('.jpg')[0];
+
+        const docRef = admin.firestore().collection('photos').doc(docId);
+
+        // Await the cloud vision response
+        const results = visionClient.labelDetection(imageUri);
+
+        // Map the data to desired format
+        const labels = results[0].labelAnnotations.map(obj => obj.description);
+        const hotdog = labels.includes('hot dog')
+
+
+        return docRef.set({ hotdog, labels })
     }).then(() => {
         console.log('rotated image created at', tempLocalFile)
         metadata.autoOrient = true
-        return bucket.upload(tempLocalFile, {
-            destination: filePath,
-            metadata: { metadata: metadata }
-        })
-    }).then(() => {
-        return spawn('convert', [tempLocalFile, '-resize', '256x256', tempLocalFile]);
-    }).then(() => {
-        console.log('rotated image created at', tempLocalFile)
-        metadata.autoResize = true
         return bucket.upload(tempLocalFile, {
             destination: filePath,
             metadata: { metadata: metadata }

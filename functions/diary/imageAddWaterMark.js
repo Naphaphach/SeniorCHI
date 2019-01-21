@@ -1,9 +1,10 @@
 const mkdirp = require('mkdirp-promise')
 const { Storage } = require('@google-cloud/storage');
-const spawn = require('child-process-promise').spawn
 const path = require('path')
 const os = require('os')
 const fs = require('fs')
+const gm = require('gm').subClass({ imageMagick: true });
+const spawn = require('child-process-promise').spawn
 
 exports.handler = (object) => {
     const filePath = object.name
@@ -21,8 +22,8 @@ exports.handler = (object) => {
         return null
     }
 
-    if (metadata.autoOrient) {
-        console.log('This is already rotated')
+    if (metadata.autoMarking) {
+        console.log('This is already autoMarking')
         return null
     }
 
@@ -31,20 +32,23 @@ exports.handler = (object) => {
         return bucket.file(filePath).download({ destination: tempLocalFile })
     }).then(() => {
         console.log('The file has been downloaded to', tempLocalFile)
-        // Convert the image using ImageMagick.
-        return spawn('convert', [tempLocalFile, '-auto-orient', tempLocalFile])
+        // Blur the image using ImageMagick.
+        
+        return new Promise((resolve, reject) => {
+            gm(tempLocalFile)
+                .drawRectangle(0, 200, 256, 256)
+                .write(tempLocalFile, (err, stdout) => {
+                    if (err) {
+                        console.error('Failed to box.', err);
+                        reject(err);
+                    } else {
+                        resolve(stdout);
+                    }
+                });
+        });
     }).then(() => {
         console.log('rotated image created at', tempLocalFile)
-        metadata.autoOrient = true
-        return bucket.upload(tempLocalFile, {
-            destination: filePath,
-            metadata: { metadata: metadata }
-        })
-    }).then(() => {
-        return spawn('convert', [tempLocalFile, '-resize', '256x256', tempLocalFile]);
-    }).then(() => {
-        console.log('rotated image created at', tempLocalFile)
-        metadata.autoResize = true
+        metadata.autoMarking = true
         return bucket.upload(tempLocalFile, {
             destination: filePath,
             metadata: { metadata: metadata }

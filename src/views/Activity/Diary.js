@@ -10,7 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { changeMenu } from "../../store/actions/mapAction";
-import Post from '../../components/diary/post'
+import PriPost from '../../components/diary/pripost'
 
 const styles = theme => ({
     root: {
@@ -36,7 +36,7 @@ const styles = theme => ({
         },
     },
     fab: {
-        marginRight: theme.spacing.unit,
+        margin: theme.spacing.unit * 2,
     },
     extendedIcon: {
         marginRight: theme.spacing.unit,
@@ -54,41 +54,49 @@ class Diary extends Component {
                         <div className={classes.rootmod}>
                             <Grid container spacing={16} className={classes.main}>
                             <Grid item xs={12} align='right'>
-                                            <Link to='/diary/edit'>
-                                                <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
-                                                    <Fab size="small" color="primary" align="right" className={classes.fab}>
-                                                        <AddIcon />
-                                                    </Fab>
-                                                </Tooltip>
-                                            </Link>
-                                        <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
-                                            <EditIcon />
-                                        </Fab>
-                                        <Fab size="small" color="extended" align="right" aria-label="Delete" className={classes.fab}>
-                                            <DeleteIcon />
-                                        </Fab>
+                                    <Link to='/diary/edit'>
+                                        <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
+                                            <Fab size="small" color="primary" align="right" className={classes.fab}>
+                                                <AddIcon />
+                                            </Fab>
+                                        </Tooltip>
+                                    </Link>
+                                        <Tooltip title="Edit" aria-label="Edit">
+                                            <Fab size="small" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                                <EditIcon />
+                                            </Fab>
+                                        </Tooltip>  
+                                        <Tooltip title="Delete" aria-label="Delete">
+                                            <Fab size="small" color="extended" align="right" aria-label="Delete" className={classes.fab}>
+                                                <DeleteIcon />
+                                            </Fab>
+                                        </Tooltip>
                                         </Grid>
-                                <Post sz={12} like={false} book={false} report={false}/>
+                                <PriPost sz={12}/>
                             </Grid>
                         </div> :
                         <div className={classes.root}>
                             <Grid container spacing={24} className={classes.main}>
                                         <Grid item xs={12} align='right'>
-                                            <Link to='/diary/edit'>
-                                                <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
-                                                    <Fab size="big" color="primary" align="right" className={classes.fab}>
-                                                        <AddIcon />
-                                                    </Fab>
-                                                </Tooltip>
-                                            </Link>
-                                        <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
-                                            <EditIcon />
-                                        </Fab>
-                                        <Fab size="big" color="extended" align="right" aria-label="Delete" className={classes.fab}>
-                                            <DeleteIcon />
-                                        </Fab>
+                                        <Link to='/diary/edit'>
+                                        <Tooltip title="Add" aria-label="Add" onClick={() => { this.props.changeMenu("/diary/edit"); }}>
+                                            <Fab size="big" color="primary" align="right" className={classes.fab}>
+                                                <AddIcon />
+                                            </Fab>
+                                        </Tooltip>
+                                        </Link>
+                                        <Tooltip title="Edit" aria-label="Edit">
+                                            <Fab size="big" color="secondary" align="right" aria-label="Edit" className={classes.fab}>
+                                                <EditIcon />
+                                            </Fab>
+                                        </Tooltip>  
+                                        <Tooltip title="Delete" aria-label="Delete">
+                                            <Fab size="big" color="extended" align="right" aria-label="Delete" className={classes.fab}>
+                                                <DeleteIcon />
+                                            </Fab>
+                                        </Tooltip>
                                         </Grid>
-                                    <Post sz={4} like={false} book={false} report={false}/>
+                                    <PriPost sz={4}/>
                             </Grid>
                         </div>
                     : <Unregist name='Diary' />}

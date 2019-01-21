@@ -11,7 +11,7 @@ import EventIcon from '@material-ui/icons/Event';
 import ArtIcon from '@material-ui/icons/Collections';
 import ConsumeIcon from '@material-ui/icons/LocalDining';
 import Tooltip from '@material-ui/core/Tooltip';
-import Post from '../../components/diary/post'
+import PubPost from '../../components/diary/pubpost'
 
 const styles = theme => ({
     root: {
@@ -73,7 +73,7 @@ class Feed extends Component {
                                 <Fab color="secondary" size="small" className={classes.fab}> <PersonIcon /> </Fab>
                             </Tooltip>
                             </Grid>
-                                <Post sz={12} like={true} book={true}/>
+                                <PubPost sz={12} like={true} book={true}/>
                             </Grid>
                         </div> :
                         <div className={classes.root}>
@@ -98,7 +98,7 @@ class Feed extends Component {
                                 <Fab color="secondary" size="big" className={classes.fab}> <PersonIcon /> </Fab>
                             </Tooltip>
                             </Grid>
-                                <Post sz={4} like={true} book={true}/>
+                                <PubPost sz={4} like={true} book={true}/>
                             </Grid>
                         </div>
                     : <Unregist name='Feed' />}

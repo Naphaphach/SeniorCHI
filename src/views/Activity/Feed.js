@@ -98,7 +98,7 @@ class Feed extends Component {
                                 <Fab color="secondary" size="big" className={classes.fab}> <PersonIcon /> </Fab>
                             </Tooltip>
                             </Grid>
-                                <PubPost sz={4} like={true} book={true}/>
+                                <PubPost sz={4} like={true} love={true} book={true} booked={true}/>
                             </Grid>
                         </div>
                     : <Unregist name='Feed' />}

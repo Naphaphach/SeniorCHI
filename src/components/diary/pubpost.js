@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core/'
 import Location from '@material-ui/icons/LocationOn';
 import BookmarkIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import BookedIcon from '@material-ui/icons/Bookmark';
-import FavIcon from '@material-ui/icons/Favorite';
+import FavIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import LoveIcon from '@material-ui/icons/Favorite';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';

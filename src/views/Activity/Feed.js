@@ -12,6 +12,7 @@ import ArtIcon from '@material-ui/icons/Collections';
 import ConsumeIcon from '@material-ui/icons/LocalDining';
 import Tooltip from '@material-ui/core/Tooltip';
 import PubPost from '../../components/diary/pubpost'
+import img from '../../assets/world_her.png';
 
 const styles = theme => ({
     root: {
@@ -41,6 +42,14 @@ const styles = theme => ({
             borderColor: '#FF6633',
         },
     },
+    img: {
+        width: 'auto',
+        height: 'auto',
+        margin: 'center',
+        display: 'block',
+        maxWidth: '50%',
+        maxHeight: '50%',
+      },
 });
 
 class Feed extends Component {
@@ -69,8 +78,10 @@ class Feed extends Component {
                             <Tooltip title="Consume_Good" aria-label="Consume_Good">
                                 <Fab color="secondary" size="small" className={classes.fab}> <ConsumeIcon /> </Fab>
                             </Tooltip>
-                            <Tooltip title="Organization" aria-label="Add">
-                                <Fab color="secondary" size="small" className={classes.fab}> <PersonIcon /> </Fab>
+                            <Tooltip title="World_Heritage" aria-label="World_Heritage">
+                                <Fab color="secondary" size="small" className={classes.fab}> 
+                                    <img className={classes.img} alt="complex" src= {img} /> 
+                                </Fab>
                             </Tooltip>
                             </Grid>
                                 <PubPost sz={12} like={true} book={true}/>
@@ -94,8 +105,10 @@ class Feed extends Component {
                             <Tooltip title="Consume_Good" aria-label="Consume_Good">
                                 <Fab color="secondary" size="big" className={classes.fab}> <ConsumeIcon /> </Fab>
                             </Tooltip>
-                            <Tooltip title="Add" aria-label="Add">
-                                <Fab color="secondary" size="big" className={classes.fab}> <PersonIcon /> </Fab>
+                            <Tooltip title="World_Heritage" aria-label="World_Heritage">
+                                <Fab color="secondary" size="big" className={classes.fab}> 
+                                    <img className={classes.img} alt="complex" src= {img} /> 
+                                </Fab>
                             </Tooltip>
                             </Grid>
                                 <PubPost sz={4} like={true} love={true} book={true} booked={true}/>

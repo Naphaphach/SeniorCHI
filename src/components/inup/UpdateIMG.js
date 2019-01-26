@@ -24,7 +24,7 @@ const styles = theme => ({
             marginTop: '20%',
             marginBottom: '20%',
         },
-        color: 'rgb(14,4,123)',
+        color: 'rgb(255,153,51)',
         padding: '1%',
     },
     input: {
@@ -32,16 +32,23 @@ const styles = theme => ({
     },
     profileimg: {
         margin: '1%',
-        width: '50% !important',
-        height: '50% !important'
+        width: '60%',
+        height: '60%'
     },
     submit: {
         marginTop: theme.spacing.unit,
-        width: '50%'
+        width: '50%',
+        backgroundColor: '#FF9933',
+        borderColor: '#FF9933',
+        '&:hover': {
+            backgroundColor: '#FF6633',
+            borderColor: '#FF6633',
+        },
     },
     form: {
         width: '100%',
-        margin: '2%'
+        margin: '2%',
+        fontSize: '14px'
     },
     row: {
         display: 'block'
@@ -119,9 +126,7 @@ class UpdateIMG extends Component {
                             <Row>
                                 <Col md='3' xs='12'>
                                     <Row>
-                                        <Col xs='1'><ButtomPW color="link" onClick={() => { this.setState({ menu: '/profile' }) }}><FontAwesomeIcon icon={['fas', 'chevron-left']} /></ButtomPW></Col>
-                                        <Col xs='11'>
-                                            <Label for="exampleCustomFileBrowser" style={{ fontSize: '1em', float: 'left' }}><b>profile image:</b></Label>
+                                        <Col xs='1'><ButtomPW color="secondary" onClick={() => { this.setState({ menu: '/profile' }) }}><FontAwesomeIcon icon={['fas', 'chevron-left']} /></ButtomPW>
                                         </Col>
                                     </Row>
                                 </Col>
@@ -135,6 +140,9 @@ class UpdateIMG extends Component {
                                     </Row>
                                     <Row>
                                         <form method="post" onSubmit={(event) => this.handleClick(event)} className={classes.form}>
+                                        <Col xs='5'>
+                                            <Label for="exampleCustomFileBrowser" style={{ fontSize: '16px', float: 'left' }}><b>Profile image</b></Label>
+                                        </Col>
                                             <FormGroup className={classes.input}>
                                                 <CustomInput type="file" id="exampleCustomFileBrowser" accept="image/*" name="customFile" onChange={(event) => this.handleChangePhoto(event)} label={filename} />
                                             </FormGroup>

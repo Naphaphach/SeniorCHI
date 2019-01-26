@@ -5,12 +5,11 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Container, Col, Row, Button as ButtomPW, Alert } from 'reactstrap'
 import Avatar from 'react-avatar'
 import { connect } from 'react-redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { updateNameEmailDOB, updatePWD, initial } from '../../store/actions/authAction'
 import ErrMessage from '../../components/main/errMessage';
 import { Redirect, Link } from 'react-router-dom'
 import { changeMenu } from "../../store/actions/mapAction";
-
+import img from '../../assets/peacock.png';
 const styles = theme => ({
     main: {
         width: '100%',
@@ -30,14 +29,18 @@ const styles = theme => ({
     },
     profileimg: {
         margin: '1%',
-        width: '90% !important',
-        height: '100% !important',
+        width: '70%',
+        height: 'auto',
     },
     img: {
         textAlign: 'center',
     },
     row: {
-        margin: '2.5% 0'
+        margin: '2.5% 0',
+    },
+    button: {
+        fontSize: '12px', 
+        marginRight: theme.spacing.unit,
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -47,17 +50,28 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
         marginBottom: theme.spacing.unit * 3,
     },
-    coin: {
-        color: 'gold',
-        fontSize: '1.5em',
-        margin: '0 5%'
+    image: {
+        width: '40px',
+        height: '40px',
+        margin: '0 5%',
     },
     Alert: {
         fontSize: '0.75em',
     },
     notise: {
         fontSize: '0.6em',
-    }
+    },
+    cssLabel: {
+        '&$cssFocused': {
+          color: '#FF9933',
+        },
+      },
+      cssFocused: {},
+      cssUnderline: {
+        '&:after': {
+          borderBottomColor: '#FF9933',
+        },
+      },
 })
 class Profile extends Component {
     constructor(props) {
@@ -115,11 +129,11 @@ class Profile extends Component {
                     <Paper className={classes.main}>
                         {!auth.emailVerified && this.state.newEmail ?
                             <Alert color="danger" className={classes.Alert} isOpen={this.state.visible} toggle={this.onDismiss} >
-                                your email is not verified <a href={'https://www.' + this.state.newEmail.split("@")[1]} target="_blank" rel="noopener noreferrer"><ButtomPW onClick={this.onDismiss}>open email</ButtomPW></a>
+                                Your email is not verified <a href={'https://www.' + this.state.newEmail.split("@")[1]} target="_blank" rel="noopener noreferrer"><ButtomPW onClick={this.onDismiss}>Go to email</ButtomPW></a>
                                 <br />
-                                <span className={classes.notise}>if this massege display, and it annoys you, you can close it.</span>
+                                <span className={classes.notise}>If this massege display, and it annoys you, you can close it.</span>
                                 <br />
-                                <span className={classes.notise}>if you've already verified your email, you should log in agian.</span>
+                                <span className={classes.notise}>If you've already verified your email, you should log in agian.</span>
                             </Alert> : null}
                         <Row className={classes.row}>
                             <Col xs="12" md="4" className={classes.img}>
@@ -127,19 +141,42 @@ class Profile extends Component {
                             </Col>
                             <Col xs="12" md="8">
                                 <Row className={classes.row}>
-                                    <FontAwesomeIcon icon={['fas', 'coins']} className={classes.coin} />{' '}{profile.token}{' token'}
+                                    <img className={classes.image} alt="complex" src= {img} /> {' '}{profile.token}{' token'}
+                                </Row>
+                                <Row>
+                                    <Col className={classes.row}>
+                                        <Link to='/profile/img'><ButtomPW onClick={() => this.props.changeMenu('/profile/img')} className={classes.button}>Edit profile image</ButtomPW></Link>
+                                    </Col>
+                                    {this.state.newEmail ?
+                                        <Col className={classes.row}>
+                                            <a href={'https://www.' + this.state.newEmail.split("@")[1]} target="_blank" rel="noopener noreferrer">
+                                                <ButtomPW onClick={() => this.props.updatePWD(this.state)} className={classes.button}>Change password</ButtomPW>
+                                            </a>
+                                        </Col> : null}
+                                    
                                 </Row>
                                 <form className={classes.form} method="post" onSubmit={(event) => this.handleClick(event)}>
                                     <FormControl margin="normal" required fullWidth>
-                                        <InputLabel htmlFor="name">Display name</InputLabel>
-                                        <Input id="name" name="name" value={this.state.displayName} onChange={this.handleChange('displayName')} />
+                                        <InputLabel htmlFor="name" classes={{
+                                        root: classes.cssLabel,
+                                        focused: classes.cssFocused,
+                                        }}>
+                                        Display name</InputLabel>
+                                        <Input id="name" name="name" value={this.state.displayName} classes={{
+                                        underline: classes.cssUnderline,
+                                        }} onChange={this.handleChange('displayName')} />
                                     </FormControl>
                                     <FormControl margin="normal" required fullWidth>
-                                        <InputLabel htmlFor="email">Email Address</InputLabel>
-                                        <Input id="email" name="email" value={this.state.newEmail} onChange={this.handleChange('newEmail')} />
+                                        <InputLabel htmlFor="email"classes={{
+                                        root: classes.cssLabel,
+                                        focused: classes.cssFocused,
+                                        }}>Email Address</InputLabel>
+                                        <Input id="email" name="email" value={this.state.newEmail} classes={{
+                                        underline: classes.cssUnderline,
+                                        }} onChange={this.handleChange('newEmail')} />
                                     </FormControl>
                                     <div style={{ marginTop: 10 }}>
-                                        <b style={{ fontSize: 15, float: 'left' }}>Birthday: </b>
+                                        <p style={{ fontSize: 14 }}>Birthday: </p>
                                         <TextField
                                             id="date"
                                             name="Birthday"
@@ -157,7 +194,6 @@ class Profile extends Component {
                                     <ErrMessage suc={this.state.success} path={'/profile'}/>
                                     <Button
                                         type="submit"
-                                        fullWidth
                                         variant="contained"
                                         color="primary"
                                         className={classes.submit}
@@ -165,17 +201,6 @@ class Profile extends Component {
                                         update
                                     </Button>
                                 </form>
-                                <Row>
-                                    {this.state.newEmail ?
-                                        <Col className={classes.row}>
-                                            <a href={'https://www.' + this.state.newEmail.split("@")[1]} target="_blank" rel="noopener noreferrer">
-                                                <ButtomPW onClick={() => this.props.updatePWD(this.state)}>update password</ButtomPW>
-                                            </a>
-                                        </Col> : null}
-                                    <Col className={classes.row}>
-                                        <Link to='/profile/img'><ButtomPW onClick={() => this.props.changeMenu('/profile/img')}>update profile image</ButtomPW></Link>
-                                    </Col>
-                                </Row>
                             </Col>
                         </Row>
                     </Paper>

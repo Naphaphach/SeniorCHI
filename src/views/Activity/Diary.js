@@ -11,6 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { changeMenu } from "../../store/actions/mapAction";
 import PriPost from '../../components/diary/pripost'
+import Calendar from 'react-calendar';
 
 const styles = theme => ({
     root: {
@@ -45,6 +46,12 @@ const styles = theme => ({
 });
 
 class Diary extends Component {
+    state = {
+        date: new Date(),
+      }
+     
+      onChange = date => this.setState({ date })
+     
     render() {
         const { classes } = this.props
         return (
@@ -71,6 +78,7 @@ class Diary extends Component {
                                                 <DeleteIcon />
                                             </Fab>
                                         </Tooltip>
+                                        
                                         </Grid>
                                 <PriPost sz={12}/>
                             </Grid>

@@ -9,20 +9,23 @@ exports.Chi = functions.https.onRequest((request, response) => {
     response.send("Hello from Chi!");
 });
 
-const profileModule = require('./accounts/profileActivity')
+const profileModule = require('./accountsPrize/profileActivity')
 exports.UpdateToken = functions.firestore.document('user/{userID}').onUpdate(profileModule.handler)
 
-const diaryModule = require('./accounts/diaryActivity')
+const diaryModule = require('./accountsPrize/diaryActivity')
 exports.UpdateTokenDiaryActivity = functions.firestore.document('user/{userID}/diary/{diaryID}').onWrite(diaryModule.handler)
 
-const notificationTokenModule = require('./accounts/notificationTokenActivity')
+const notificationTokenModule = require('./accountsPrize/notificationTokenActivity')
 exports.notifyToken = functions.firestore.document('user/{userID}').onWrite(notificationTokenModule.handler)
 
-const imageDiaryRotateNResizeModule = require('./diary/imageRotate')
-exports.rotateUsingExif = functions.storage.object().onFinalize(imageDiaryRotateNResizeModule.handler)
+const imageDiaryRotateNResizeModule = require('./imageDiary/imageFixBasicic')
+exports.rotateUsingExif = functions.storage.object().onArchive(imageDiaryRotateNResizeModule.handler)
 
-// const imageDiaryResizeModule = require('./diary/imageResize')
-// exports.resizeImage = functions.storage.object().onFinalize(imageDiaryResizeModule.handler)
-
-const imageDiaryWaterMarkModule = require('./diary/imageAddWaterMark')
+const imageDiaryWaterMarkModule = require('./imageDiary/imageAddWaterMark')
 exports.addWaterMarkImage = functions.storage.object().onFinalize(imageDiaryWaterMarkModule.handler)
+
+const callVisionModule = require('./imageDiary/analyzeImage')
+exports.callCloudVision = functions.storage.object().onFinalize(callVisionModule.handler)
+
+const callTranslateModule = require('./imageDiary/analyzeTheme')
+exports.callCloudNaturalLanguage = functions.storage.object().onFinalize(callTranslateModule.handler)

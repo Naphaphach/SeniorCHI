@@ -1,9 +1,15 @@
-const mkdirp = require('mkdirp-promise')
 const { Storage } = require('@google-cloud/storage');
-const spawn = require('child-process-promise').spawn
+const storage = new Storage();
+
 const path = require('path')
 const os = require('os')
+const mkdirp = require('mkdirp-promise')
 const fs = require('fs')
+
+// Imports the Google Cloud client library
+const language = require('@google-cloud/language');
+// Creates a client
+const client = new language.LanguageServiceClient();
 
 exports.handler = (object) => {
     const filePath = object.name
@@ -13,38 +19,30 @@ exports.handler = (object) => {
     const tempLocalFile = path.join(os.tmpdir(), filePath)
     const tempLocalDir = path.dirname(tempLocalFile)
 
-    const storage = new Storage();
+    if (!metadata.tags) {
+        console.log('not look the meaning of the image yet');
+        return null
+    }
+
+    if (metadata.themes) {
+        console.log('already looking at theme');
+        return null
+    }
+
     const bucket = storage.bucket(bucketName)
-
-    if (!object.contentType.startsWith('image/')) {
-        console.log('This is not an image.')
-        return null
-    }
-
-    if (metadata.autoOrient) {
-        console.log('This is already rotated')
-        return null
-    }
 
     return mkdirp(tempLocalDir).then(() => {
         // Download file from bucket.
         return bucket.file(filePath).download({ destination: tempLocalFile })
     }).then(() => {
-        console.log('The file has been downloaded to', tempLocalFile)
-        // Convert the image using ImageMagick.
-        return spawn('convert', [tempLocalFile, '-auto-orient', tempLocalFile])
-    }).then(() => {
-        console.log('rotated image created at', tempLocalFile)
-        metadata.autoOrient = true
-        return bucket.upload(tempLocalFile, {
-            destination: filePath,
-            metadata: { metadata: metadata }
-        })
-    }).then(() => {
-        return spawn('convert', [tempLocalFile, '-resize', '256x256', tempLocalFile]);
-    }).then(() => {
-        console.log('rotated image created at', tempLocalFile)
-        metadata.autoResize = true
+        const document = {
+            content: metadata.tags,
+            type: 'PLAIN_TEXT',
+        };
+        return client.analyzeEntities({ document: document })
+    }).then((results) => {
+        const entities = results[0].entities;
+        metadata.themes = [...new Set(entities.map(entity => entity.type))].toString()
         return bucket.upload(tempLocalFile, {
             destination: filePath,
             metadata: { metadata: metadata }

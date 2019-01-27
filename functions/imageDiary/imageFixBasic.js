@@ -4,7 +4,6 @@ const path = require('path')
 const os = require('os')
 const fs = require('fs')
 const gm = require('gm').subClass({ imageMagick: true });
-const spawn = require('child-process-promise').spawn
 
 exports.handler = (object) => {
     const filePath = object.name
@@ -16,14 +15,14 @@ exports.handler = (object) => {
 
     const storage = new Storage();
     const bucket = storage.bucket(bucketName)
-
+    
     if (!object.contentType.startsWith('image/')) {
         console.log('This is not an image.')
         return null
     }
 
-    if (metadata.autoMarking) {
-        console.log('This is already autoMarking')
+    if (metadata.autoOrientNResize) {
+        console.log('This is already rotated')
         return null
     }
 
@@ -32,11 +31,11 @@ exports.handler = (object) => {
         return bucket.file(filePath).download({ destination: tempLocalFile })
     }).then(() => {
         console.log('The file has been downloaded to', tempLocalFile)
-        // Blur the image using ImageMagick.
-        
+        // Convert the image using ImageMagick.
         return new Promise((resolve, reject) => {
             gm(tempLocalFile)
-                .drawRectangle(0, 200, 256, 256)
+                .autoOrient()
+                .resize(1080, 1080, '!')
                 .write(tempLocalFile, (err, stdout) => {
                     if (err) {
                         console.error('Failed to box.', err);
@@ -47,8 +46,8 @@ exports.handler = (object) => {
                 });
         });
     }).then(() => {
-        console.log('rotated image created at', tempLocalFile)
-        metadata.autoMarking = true
+        console.log('resize image created at', tempLocalFile)
+        metadata.autoOrientNResize = true
         return bucket.upload(tempLocalFile, {
             destination: filePath,
             metadata: { metadata: metadata }

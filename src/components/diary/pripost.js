@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Calendar from 'react-calendar';
-import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {

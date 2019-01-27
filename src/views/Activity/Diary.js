@@ -11,7 +11,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { changeMenu } from "../../store/actions/mapAction";
 import PriPost from '../../components/diary/pripost'
-import Calendar from 'react-calendar';
 
 const styles = theme => ({
     root: {

@@ -20,7 +20,7 @@ const notificationTokenModule = require('./accountsPrize/notificationTokenActivi
 exports.notifyToken = functions.firestore.document('user/{userID}').onWrite(notificationTokenModule.handler)
 
 //analyze image
-const imageDiaryRotateNResizeModule = require('./imageDiary/imageFixBasicic')
+const imageDiaryRotateNResizeModule = require('./imageDiary/imageFixBasic')
 exports.rotateUsingExif = functions.storage.object().onArchive(imageDiaryRotateNResizeModule.handler)
 
 const imageDiaryWaterMarkModule = require('./imageDiary/imageAddWaterMark')

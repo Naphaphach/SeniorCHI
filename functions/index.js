@@ -9,6 +9,7 @@ exports.Chi = functions.https.onRequest((request, response) => {
     response.send("Hello from Chi!");
 });
 
+//update prize
 const profileModule = require('./accountsPrize/profileActivity')
 exports.UpdateToken = functions.firestore.document('user/{userID}').onUpdate(profileModule.handler)
 
@@ -18,6 +19,7 @@ exports.UpdateTokenDiaryActivity = functions.firestore.document('user/{userID}/d
 const notificationTokenModule = require('./accountsPrize/notificationTokenActivity')
 exports.notifyToken = functions.firestore.document('user/{userID}').onWrite(notificationTokenModule.handler)
 
+//analyze image
 const imageDiaryRotateNResizeModule = require('./imageDiary/imageFixBasicic')
 exports.rotateUsingExif = functions.storage.object().onArchive(imageDiaryRotateNResizeModule.handler)
 
@@ -29,3 +31,7 @@ exports.callCloudVision = functions.storage.object().onFinalize(callVisionModule
 
 const callTranslateModule = require('./imageDiary/analyzeTheme')
 exports.callCloudNaturalLanguage = functions.storage.object().onFinalize(callTranslateModule.handler)
+
+//analyze and call diary
+const diaryThemeModule = require('./accountsPrize/diaryActivity')
+exports.UpdateThemeDiaryActivity = functions.firestore.document('user/{userID}/diary/{diaryID}').onWrite(diaryThemeModule.handler)

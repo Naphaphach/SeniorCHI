@@ -34,32 +34,32 @@ export const save = (D) => {
                         storageRef.getDownloadURL().then(function (url) {
                             photoURL.push(url);
                             // Add a new document in collection "cities"
-                            firestore.collection('user').doc(user.uid)
-                                .collection('diary').doc(D.id).set({
-                                    title: D.title,
-                                    public: D.public,
-                                    state: D.state,
-                                    note: D.note,
-                                    tag: D.tag,
-                                    photo: photoURL,
-                                    date: Date()
-                                }).catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
+                            firestore.collection('diary').doc(D.id).set({
+                                writer: user.uid,
+                                title: D.title,
+                                public: D.public,
+                                state: D.state,
+                                note: D.note,
+                                tag: D.tag,
+                                photo: photoURL,
+                                date: Date()
+                            }).catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
                         }).then(() => dispatch({ type: 'POSTING_SUCCESS' }))
-                        .catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
+                            .catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
                     }
                 );
             })
         } else {
-            firestore.collection('user').doc(user.uid)
-                .collection('diary').doc(D.id).set({
-                    title: D.title,
-                    public: D.public,
-                    state: D.state,
-                    note: D.note,
-                    tag: D.tag,
-                    photo: null,
-                    date: Date()
-                }).then(() => dispatch({ type: 'POSTING_SUCCESS' }))
+            firestore.collection('diary').doc(D.id).set({
+                writer: user.uid,
+                title: D.title,
+                public: D.public,
+                state: D.state,
+                note: D.note,
+                tag: D.tag,
+                photo: null,
+                date: Date()
+            }).then(() => dispatch({ type: 'POSTING_SUCCESS' }))
                 .catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
         }
     }

@@ -8,6 +8,7 @@ exports.handler = (change, context) => {
     const data = change.after.data();
     const previousData = change.before.data();
 
+    console.log(data.tag.toString());
     // We'll only update if the name has changed.
     // This is crucial to prevent infinite loops.
     if (data.tag === previousData.tag) return null;
@@ -17,13 +18,13 @@ exports.handler = (change, context) => {
         type: 'PLAIN_TEXT',
     };
 
-    const theme = client.analyzeEntities({ document: document })
+    return client.analyzeEntities({ document: document })
         .then((results) => {
             const entities = results[0].entities;
-            return [...new Set(entities.map(entity => entity.type))].toString()
+            const theme = [...new Set(entities.map(entity => entity.type))].toString();
+            // Then return a promise of a set operation to update the count
+            return change.after.ref.set({
+                theme: theme
+            }, { merge: true });
         })
-    // Then return a promise of a set operation to update the count
-    return change.after.ref.set({
-        theme: theme
-    }, { merge: true });
 }

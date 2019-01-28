@@ -14,10 +14,10 @@ const profileModule = require('./accountsPrize/profileActivity')
 exports.UpdateToken = functions.firestore.document('user/{userID}').onUpdate(profileModule.handler)
 
 const diaryModule = require('./accountsPrize/diaryActivity')
-exports.UpdateTokenDiaryActivity = functions.firestore.document('user/{userID}/diary/{diaryID}').onWrite(diaryModule.handler)
+exports.UpdateTokenDiaryActivity = functions.firestore.document('diary/{diaryID}').onWrite(diaryModule.handler)
 
 const notificationTokenModule = require('./accountsPrize/notificationTokenActivity')
-exports.notifyToken = functions.firestore.document('user/{userID}').onWrite(notificationTokenModule.handler)
+exports.notifyToken = functions.firestore.document('user/{userID}').onUpdate(notificationTokenModule.handler)
 
 //analyze image
 const imageDiaryRotateNResizeModule = require('./imageDiary/imageFixBasic')
@@ -33,5 +33,10 @@ const callTranslateModule = require('./imageDiary/analyzeTheme')
 exports.callCloudNaturalLanguage = functions.storage.object().onFinalize(callTranslateModule.handler)
 
 //analyze and call diary
-const diaryThemeModule = require('./accountsPrize/diaryActivity')
-exports.UpdateThemeDiaryActivity = functions.firestore.document('user/{userID}/diary/{diaryID}').onWrite(diaryThemeModule.handler)
+const diaryThemeModule = require('./diary/themeOfTag')
+exports.UpdateThemeDiaryActivity = functions.firestore.document('diary/{diaryID}').onWrite(diaryThemeModule.handler)
+
+// callable function
+// get all post from 
+// const allPostModule = require('./posts/allPost')
+// exports.getAllPost = functions.https.onCall(allPostModule.handler)

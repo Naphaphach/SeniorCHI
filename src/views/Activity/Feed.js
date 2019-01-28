@@ -10,6 +10,7 @@ import LocIcon from '@material-ui/icons/WhereToVote';
 import EventIcon from '@material-ui/icons/Event';
 import ArtIcon from '@material-ui/icons/Collections';
 import ConsumeIcon from '@material-ui/icons/LocalDining';
+import OtherIcon from '@material-ui/icons/MoreHoriz';
 import Tooltip from '@material-ui/core/Tooltip';
 import PubPost from '../../components/diary/pubpost'
 import img from '../../assets/world_her.png';
@@ -83,6 +84,11 @@ class Feed extends Component {
                                     <img className={classes.img} alt="complex" src= {img} /> 
                                 </Fab>
                             </Tooltip>
+                            <Tooltip title="Other" aria-label="Other">
+                                <Fab color="secondary" size="small" className={classes.fab}> 
+                                    <OtherIcon />
+                                </Fab>
+                            </Tooltip>
                             </Grid>
                                 <PubPost sz={12} like={true} book={true}/>
                             </Grid>
@@ -108,6 +114,11 @@ class Feed extends Component {
                             <Tooltip title="World_Heritage" aria-label="World_Heritage">
                                 <Fab color="secondary" size="big" className={classes.fab}> 
                                     <img className={classes.img} alt="complex" src= {img} /> 
+                                </Fab>
+                            </Tooltip>
+                            <Tooltip title="Other" aria-label="Other">
+                                <Fab color="secondary" size="big" className={classes.fab}> 
+                                    <OtherIcon />
                                 </Fab>
                             </Tooltip>
                             </Grid>

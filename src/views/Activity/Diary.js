@@ -45,6 +45,12 @@ const styles = theme => ({
 });
 
 class Diary extends Component {
+    state = {
+        date: new Date(),
+      }
+     
+      onChange = date => this.setState({ date })
+     
     render() {
         const { classes } = this.props
         return (
@@ -71,6 +77,7 @@ class Diary extends Component {
                                                 <DeleteIcon />
                                             </Fab>
                                         </Tooltip>
+                                        
                                         </Grid>
                                 <PriPost sz={12}/>
                             </Grid>

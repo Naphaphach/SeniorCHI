@@ -19,7 +19,7 @@ exports.handler = (change, context) => {
         return notiRef.set({
             owner: userID,
             content: `you got + ${data.token - previousData.token}`,
-            readed: false,
+            read: false,
             linked: '/profile',
             date: Date()
         });

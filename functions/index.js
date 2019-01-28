@@ -19,6 +19,9 @@ exports.UpdateTokenDiaryActivity = functions.firestore.document('diary/{diaryID}
 const notificationTokenModule = require('./accountsPrize/notificationTokenActivity')
 exports.notifyToken = functions.firestore.document('user/{userID}').onUpdate(notificationTokenModule.handler)
 
+const notificationNewUser = require('./accountsPrize/notificationNewUser')
+exports.notifyNewUser = functions.auth.user().onCreate(notificationNewUser.handler)
+
 //analyze image
 const imageDiaryRotateNResizeModule = require('./imageDiary/imageFixBasic')
 exports.rotateUsingExif = functions.storage.object().onArchive(imageDiaryRotateNResizeModule.handler)
@@ -36,7 +39,7 @@ exports.callCloudNaturalLanguage = functions.storage.object().onFinalize(callTra
 const diaryThemeModule = require('./diary/themeOfTag')
 exports.UpdateThemeDiaryActivity = functions.firestore.document('diary/{diaryID}').onWrite(diaryThemeModule.handler)
 
-// callable function
-// get all post from 
-// const allPostModule = require('./posts/allPost')
-// exports.getAllPost = functions.https.onCall(allPostModule.handler)
+// // callable function
+// // get all notification from 
+// const allNotification = require('./get/allNotify')
+// exports.getAllNoti = functions.https.onCall(allNotification.handler)

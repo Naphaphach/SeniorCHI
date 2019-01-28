@@ -136,7 +136,6 @@ class Header extends Component {
       anchorEl: null,
       value: this.props.Menu,
     };
-
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -353,8 +352,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     searchMap: valueSearch => dispatch(searchMap(valueSearch)),
     signout: () => dispatch(signout()),
-    changeMenu: Menu => dispatch(changeMenu(Menu))
+    changeMenu: Menu => dispatch(changeMenu(Menu)),
   }
 }
-
 export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Header));

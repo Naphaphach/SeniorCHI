@@ -40,7 +40,7 @@ class notiObj extends Component {
                 <ListItemIcon>
                     <UserIcon />
                 </ListItemIcon>
-                <ListItemText primary={data.data.content} secondary={Date(data.data.date)} />
+                <ListItemText primary={data.data.content} secondary={data.data.date} />
                 <Avatar name={profile.displayName} size="40" src={profile.Photo}/>
                 </ListItem>
             </Link>

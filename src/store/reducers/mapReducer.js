@@ -5,13 +5,14 @@ const initState = {
     valueSearch: '',
     Query: '',
     search: false,
-    Menu: '/'
+    Menu: '/',
+    post: []
 }
 
 const projectReducer = (state, action) => {
     switch (action.type) {
         case 'CHANGE_STATE':
-            state = { ...state, valueState: [action.S], valueSearch: '', search: false }
+            state = { ...state, valueState: [action.S], valueSearch: '', search: false, post: action.result}
             break;
 
         case 'CHANGE_MENU':
@@ -26,7 +27,7 @@ const projectReducer = (state, action) => {
                 result.push('')
             }
             result.sort();
-            state = { ...state, valueSearch: action.S, valueState: result, search: true, Query: action.S }
+            state = { ...state, valueSearch: action.S, valueState: result, search: true, Query: action.S, post: []}
             break;
 
         default:

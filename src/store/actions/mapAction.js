@@ -9,15 +9,15 @@ function compare(a, b) {
 export const changeState = (S) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
-
+        
         firestore.collection('diary').get().then(snapshot => {
             const result = []
             // snapshot.docs.map(doc => S === doc.data().state && doc.data().writer === state.firebase.auth.uid && doc.data().public ? result.push({ id: doc.id, data: doc.data() }) : null)
-            snapshot.docs.map(doc => doc.data().public ? console.log(doc.data()) : null)
+            snapshot.docs.map(doc => doc.data().public && S === doc.data().state ? result.push({ id: doc.id, data: doc.data() }) : null)
             result.sort(compare)
             // console.log(snapshot);
+            dispatch({ type: 'CHANGE_STATE', S, result })
         })
-        dispatch({ type: 'CHANGE_STATE', S })
     }
 }
 

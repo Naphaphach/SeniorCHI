@@ -1,14 +1,15 @@
-import React, {Component, Fragment} from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
 //import map from '../assets/map.svg';
 import { withStyles } from '@material-ui/core/styles';
-import {Button} from 'reactstrap'
+import { Button } from 'reactstrap'
 import { connect } from 'react-redux'
 import { changeState } from '../../store/actions/mapAction'
 import { Element, scroller } from 'react-scroll'
-
+import Post from '../diary/pubpost'
+import { isMobile } from 'react-device-detect'
 const styles = theme => ({
-    state:{
+    state: {
         width: "100%",
         color: 'black',
         [theme.breakpoints.up('sm')]: {
@@ -38,13 +39,19 @@ class Detail extends Component {
         this.props.changeState(s);
     }
     render() {
-        const { classes, valueState } = this.props;
-        return(
+        const { classes, valueState, post } = this.props;
+
+        return (
             <Fragment>
                 <Element name="section_detail" />
                 <div className={classes.state}>
-                    {valueState.map((s,i) => i === 0 ? <b key = {i}>{s}<br/></b> : <Button color='link' key = {i} onClick={()=>{this.handleClick(s)}}>{s}<br/></Button>)}
+                    {valueState.map((s, i) => i === 0 ? <b key={i}>{s}<br /></b> : <Button color='link' key={i} onClick={() => { this.handleClick(s) }}>{s}<br /></Button>)}
                 </div>
+                {isMobile ?
+                    <div className={classes.state}>
+                        {post.map(postData => <Post key={postData.id} post={postData} />)}
+                    </div> :
+                    post.map(postData => <Post key={postData.id} post={postData} />)}
             </Fragment>
         )
     }
@@ -58,6 +65,7 @@ Map.propTypes = {
 const mapStateToProps = (state) => {
     return {
         valueState: state.map.valueState,
+        post: state.map.post,
     }
 }
 

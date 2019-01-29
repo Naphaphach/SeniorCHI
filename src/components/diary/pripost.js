@@ -30,22 +30,26 @@ class Calendar extends Component {
 
 
 class PriPost extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    events:[
+                {
+                    title: 'All Day Event',
+                    start: '2019-02-05',
+                    color: '#FF9933'
+                },
+                {
+                    title: 'Long Event',
+                    start: '2019-01-01',
+                    color: '#FF9933'
+                }
+            ],    
+    }
+  }
   render() {
     const { classes } = this.props
-    this.state = {
-      events:[
-                  {
-                      title: 'All Day Event',
-                      start: '2019-01-05',
-                      color: '#FF9933',
-                  },
-                  {
-                      title: 'Long Event',
-                      start: '2019-02-02',
-                      color: '#FF9933',
-                  }
-              ],    
-      }
+    
 
     return (
       <div className={classes.App}>

@@ -21,3 +21,11 @@ export const initial = () => {
     }
 }
 
+export const checkRead = (id) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firestore = getFirestore();
+
+        firestore.collection('notification').doc(id).update({read: true})
+    }
+}
+

@@ -7,6 +7,7 @@ import Notification from '../../components/notify/notification'
 import { isMobile } from 'react-device-detect'
 import { initial } from '../../store/actions/notiAction'
 import { List, ListSubheader } from '@material-ui/core';
+import { changeMenu } from "../../store/actions/mapAction";
 
 const styles = theme => ({
   root: {
@@ -24,6 +25,11 @@ const styles = theme => ({
   },
 });
 class Notice extends Component {
+
+  componentDidMount(){
+    this.props.changeMenu('/notice')
+  }
+
   componentWillMount() {
     this.props.initial()
   }
@@ -56,7 +62,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initial: () => dispatch(initial())
+    initial: () => dispatch(initial()),
+    changeMenu: Menu => dispatch(changeMenu(Menu)),
   }
 }
 

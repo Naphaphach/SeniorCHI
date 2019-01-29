@@ -12,10 +12,12 @@ export const changeState = (S) => {
         
         firestore.collection('diary').get().then(snapshot => {
             const result = []
-            // snapshot.docs.map(doc => S === doc.data().state && doc.data().writer === state.firebase.auth.uid && doc.data().public ? result.push({ id: doc.id, data: doc.data() }) : null)
             snapshot.docs.map(doc => doc.data().public && S === doc.data().state ? result.push({ id: doc.id, data: doc.data() }) : null)
             result.sort(compare)
             // console.log(snapshot);
+            result.map(res => firestore.collection('user').doc(res.data.writer).get().then(wr => res.writer = wr.data()))
+            console.log(result);
+            
             dispatch({ type: 'CHANGE_STATE', S, result })
         })
     }
@@ -30,5 +32,37 @@ export const changeMenu = (S) => {
 export const searchMap = (S) => {
     return (dispatch, getState) => {
         dispatch({ type: 'SEARCH_MAP', S })
+    }
+}
+
+export const like = (id, uid) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firestore = getFirestore()
+        const PostRef = firestore.collection('diary').doc(id)
+        PostRef.get().then(snapshot => {
+            snapshot.data().book && snapshot.data().like.includes(uid) ?
+                PostRef.update({
+                    "like": firestore.FieldValue.arrayRemove(uid)
+                })
+                : PostRef.update({
+                    "like": firestore.FieldValue.arrayUnion(uid)
+                })
+        });
+    }
+}
+
+export const book = (id, uid) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firestore = getFirestore()
+        const PostRef = firestore.collection('diary').doc(id)
+        PostRef.get().then(snapshot => {
+            snapshot.data().book && snapshot.data().book.includes(uid) ?
+                PostRef.update({
+                    "book": firestore.FieldValue.arrayRemove(uid)
+                })
+                : PostRef.update({
+                    "book": firestore.FieldValue.arrayUnion(uid)
+                })
+        });
     }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Grid, Card, CardHeader, CardContent, CardActions, IconButton, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@material-ui/core'
 import Location from '@material-ui/icons/LocationOn';
 import BookmarkIcon from '@material-ui/icons/BookmarkBorderOutlined';
@@ -7,6 +7,7 @@ import FavIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import LoveIcon from '@material-ui/icons/Favorite';
 import { withStyles } from '@material-ui/core/styles';
 import ReportIcon from '@material-ui/icons/MoreVert';
+import { connect } from 'react-redux'
 import {
   Carousel,
   CarouselItem,
@@ -14,6 +15,7 @@ import {
   CarouselIndicators,
 } from 'reactstrap';
 import Avatar from 'react-avatar'
+import { like, book } from "../../store/actions/mapAction";
 
 const styles = theme => ({
   root: {
@@ -85,9 +87,18 @@ class PubPost extends Component {
     if (this.animating) return;
     this.setState({ activeIndex: newIndex });
   }
+
+  like(id, uid){
+    this.props.like(id, uid)
+  }
+
+  book(id, uid){
+    this.props.book(id, uid)
+  }
+
   render() {
     const { activeIndex } = this.state;
-    const { classes, sz, like, book, love, booked, post } = this.props
+    const { classes, sz, post, auth } = this.props
 
     const slides = post.data.photo.map((item, i) => {
       return (
@@ -96,7 +107,7 @@ class PubPost extends Component {
           onExited={this.onExited}
           key={i}
         >
-          <img src={item} key={i} alt={item} style={{width: '100%'}}/>
+          <img src={item} key={i} alt={item} style={{ width: '100%' }} />
         </CarouselItem>
       );
     });
@@ -105,7 +116,7 @@ class PubPost extends Component {
         <Card className={classes.card} >
           <CardHeader
             avatar={
-              <Avatar name={'N'} size="45" src={''} round={true} />
+              <Avatar name={post.writer.displayName} size="45" src={post.writer.Photo} round={true} />
             }
             action={
               <IconButton>
@@ -143,14 +154,15 @@ class PubPost extends Component {
             <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
           </Carousel>
           <CardActions className={classes.actions} disableActionSpacing>
-            {like ?
-              love ?
-                <IconButton > <FavIcon color="secondary" /> </IconButton>
-                : <IconButton > <LoveIcon color="secondary" /> </IconButton> : null}
-            {book ?
-              booked ?
-                <IconButton > <BookmarkIcon color="disabled" /> </IconButton>
-                : <IconButton > <BookedIcon color="disabled" /> </IconButton> : null}
+            {auth.uid ?
+              <Fragment>
+                <IconButton onClick={() => {this.like(post.id, auth.uid)}}>
+                  {post.data.like ? post.data.like.includes(auth.uid) ? <LoveIcon color="secondary" /> : <FavIcon color="secondary" /> : <FavIcon color="secondary" />}
+                </IconButton>
+                <IconButton onClick={() => {this.book(post.id, auth.uid)}}>
+                  {post.data.book ? post.data.book.includes(auth.uid) ? <BookedIcon color="disabled" /> : <BookmarkIcon color="disabled" /> : <BookmarkIcon color="disabled" />}
+                </IconButton>
+              </Fragment> : null}
           </CardActions>
           <CardContent>
             <Typography component="p" align="left">{post.data.note}</Typography>
@@ -163,4 +175,18 @@ class PubPost extends Component {
   }
 }
 
-export default withStyles(styles)(PubPost)
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+    valueState: state.map.valueState,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      like: (id, uid) => dispatch(like(id, uid)),
+      book: (id, uid) => dispatch(book(id, uid)),
+  }
+}
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(PubPost))

@@ -42,7 +42,9 @@ export const save = (D) => {
                                 note: D.note,
                                 tag: D.tag,
                                 photo: photoURL,
-                                date: Date()
+                                date: Date(),
+                                like: [],
+                                book: [],
                             }).catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
                         }).then(() => dispatch({ type: 'POSTING_SUCCESS' }))
                             .catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
@@ -58,7 +60,9 @@ export const save = (D) => {
                 note: D.note,
                 tag: D.tag,
                 photo: null,
-                date: Date()
+                date: Date(),
+                like: [],
+                book: [],
             }).then(() => dispatch({ type: 'POSTING_SUCCESS' }))
                 .catch((err) => dispatch({ type: 'POSTING_ERROR', err }))
         }

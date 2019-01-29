@@ -56,7 +56,7 @@ const styles = theme => ({
 class Feed extends Component {
     
     render() {
-        const { classes } = this.props
+        const { classes, post } = this.props
         return (
             <Home>
                 {this.props.auth.uid ?
@@ -111,7 +111,7 @@ class Feed extends Component {
                             <Tooltip title="Consume_Good" aria-label="Consume_Good">
                                 <Fab color="secondary" size="big" className={classes.fab}> <ConsumeIcon /> </Fab>
                             </Tooltip>
-                            <Tooltip title="World_Heritage" aria-label="World_Heritage">
+                            <Tooltip title="World Heritage" aria-label="World_Heritage">
                                 <Fab color="secondary" size="big" className={classes.fab}> 
                                     <img className={classes.img} alt="complex" src= {img} /> 
                                 </Fab>
@@ -122,7 +122,7 @@ class Feed extends Component {
                                 </Fab>
                             </Tooltip>
                             </Grid>
-                                <PubPost sz={4} like={true} love={true} book={true} booked={true}/>
+                                {post.map(postData => <PubPost sz={4} like={true} love={true} book={true} booked={true} post={postData} />)}
                             </Grid>
                         </div>
                     : <Unregist name='Feed' />}
@@ -134,8 +134,8 @@ class Feed extends Component {
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
+        post: state.map.post,
     }
 }
-
 
 export default withStyles(styles)(connect(mapStateToProps)(Feed))

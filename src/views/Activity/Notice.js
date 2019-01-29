@@ -3,40 +3,44 @@ import Home from '../../layouts/Home'
 import { connect } from 'react-redux'
 import Unregist from '../../components/main/unregist'
 import { withStyles } from '@material-ui/core/styles';
-import NotiObj from '../../components/notify/notificationObj'
+import Notification from '../../components/notify/notification'
 import { isMobile } from 'react-device-detect'
-import {initial} from '../../store/actions/notiAction'
+import { initial } from '../../store/actions/notiAction'
+import { List, ListSubheader } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
+    marginTop: '10%',
     width: '70%',
     backgroundColor: theme.palette.background.paper,
-
+    marginLeft: '64px',
+    marginBottom: '10%'
   },
   mobileroot: {
+    marginTop: '5%',
     width: '100%',
     backgroundColor: theme.palette.background.paper,
+    marginBottom: '10%'
   },
 });
 class Notice extends Component {
-  componentDidMount(){
-    console.log(1);
-    initial()
+  componentWillMount() {
+    this.props.initial()
   }
 
   render() {
-    const { classes } = this.props
-    
+    const { classes, noti } = this.props
+
     return (
       <Home>
         {this.props.auth.uid ?
           isMobile ?
-            <div className={classes.root}>
-              <NotiObj />
-            </div>
-            : <div className={classes.mobileroot}>
-              <NotiObj />
-            </div>
+            <List component="nav" className={classes.mobileroot} subheader={<ListSubheader component="div" align="left">Notification</ListSubheader>}>
+              <Notification noti = {noti}/>
+            </List>
+            : <List component="nav" className={classes.root} subheader={<ListSubheader component="div" align="left">Notification</ListSubheader>}>
+              <Notification noti = {noti}/>
+            </List>
           : <Unregist name='Notice' />}
       </Home>
     )
@@ -46,12 +50,13 @@ class Notice extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
+    noti: state.noti.noti
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      initial: () => dispatch(initial())
+    initial: () => dispatch(initial())
   }
 }
 

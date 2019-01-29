@@ -12,16 +12,18 @@ const styles = theme => ({
       marginTop: '10%',
       flexGrow: 1,
       marginLeft: '64px',
-      alignItems: 'flex-start !important',
   },
   rootmod: {
     marginTop: '10%',
-      flexGrow: 1,
+    flexGrow: 1,
   },
   grid: {
     width: '30%',
     height: 'auto',
     paddingRight: '10px'
+  },
+  gridmod: {
+    width: '100%',
   },
   button: {
     width: 'auto',
@@ -44,7 +46,7 @@ class Book extends Component {
                 isMobile ?
                 <div className={classes.rootmod}>
                         <Grid container spacing={16} className={classes.main}>
-                          <Grid item className={classes.grid}> 
+                          <Grid item className={classes.gridmod}> 
                             <img className={classes.img} alt="complex" src= {img} /> 
                           </Grid>
                         </Grid>

@@ -81,6 +81,10 @@ class SignIn extends Component {
     };
   }
 
+  componentDidMount(){
+    this.props.initial()
+  }
+
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,

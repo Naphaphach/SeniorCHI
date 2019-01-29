@@ -89,6 +89,10 @@ class Profile extends Component {
         this.onDismiss = this.onDismiss.bind(this);
     }
 
+    componentDidMount(){
+        this.props.initial()
+    }
+
     handleChange = name => event => {
         this.setState({
             [name]: event.target.value,

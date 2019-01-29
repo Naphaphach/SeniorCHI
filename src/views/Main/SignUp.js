@@ -120,6 +120,9 @@ class SignUp extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.initial()
+  }
 
   render() {
     const { classes, err } = this.props;

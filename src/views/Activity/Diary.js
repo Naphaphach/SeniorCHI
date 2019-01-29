@@ -24,7 +24,6 @@ const styles = theme => ({
     add: {
         fontSize: '2em'
     },
-
     main: {
         [theme.breakpoints.up('sm')]: {
             marginTop: '8.5%',

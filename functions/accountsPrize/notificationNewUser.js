@@ -8,6 +8,7 @@ exports.handler = (user) => {
         const newUser = doc.data();
         return notiRef.set({
             owner: user.uid,
+            type: 'welcome',
             content: `welcome ${newUser.displayName}`,
             read: false,
             linked: '/profile',

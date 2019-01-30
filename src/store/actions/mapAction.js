@@ -9,16 +9,19 @@ function compare(a, b) {
 export const changeState = (S) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
-        
+
         firestore.collection('diary').get().then(snapshot => {
             const result = []
-            snapshot.docs.map(doc => doc.data().public && S === doc.data().state ? result.push({ id: doc.id, data: doc.data() }) : null)
-            result.sort(compare)
-            // console.log(snapshot);
-            result.map(res => firestore.collection('user').doc(res.data.writer).get().then(wr => res.writer = wr.data()))
-            console.log(result);
-            
-            dispatch({ type: 'CHANGE_STATE', S, result })
+            snapshot.docs.map(doc =>
+                doc.data().public && S === doc.data().state ?
+                    firestore.collection('user').doc(doc.data().writer).get()
+                        .then(wr => {
+                            result.push({ id: doc.id, data: doc.data(), writer: wr.data() })
+                            result.sort(compare)
+                            console.log(result)
+                            dispatch({ type: 'CHANGE_STATE', S, result })
+                        })
+                    : null)
         })
     }
 }

@@ -49,6 +49,7 @@ class Detail extends Component {
                 </div>
                 {isMobile ?
                     <div className={classes.state}>
+                    {console.log(post)}
                         {post.map(postData => <Post key={postData.id} post={postData} />)}
                     </div> :
                     post.map(postData => <Post key={postData.id} post={postData} />)}

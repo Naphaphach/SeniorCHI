@@ -88,18 +88,17 @@ class PubPost extends Component {
     this.setState({ activeIndex: newIndex });
   }
 
-  like(id, uid){
+  like(id, uid) {
     this.props.like(id, uid)
   }
 
-  book(id, uid){
+  book(id, uid) {
     this.props.book(id, uid)
   }
 
   render() {
     const { activeIndex } = this.state;
     const { classes, sz, post, auth } = this.props
-
     const slides = post.data.photo.map((item, i) => {
       return (
         <CarouselItem
@@ -116,7 +115,9 @@ class PubPost extends Component {
         <Card className={classes.card} >
           <CardHeader
             avatar={
-              <Avatar name={post.writer.displayName} size="45" src={post.writer.Photo} round={true} />
+              <Fragment>
+                <Avatar name={post.writer.displayName} size="45" src={post.writer.Photo} round={true} />
+              </Fragment>
             }
             action={
               <IconButton>
@@ -156,10 +157,10 @@ class PubPost extends Component {
           <CardActions className={classes.actions} disableActionSpacing>
             {auth.uid ?
               <Fragment>
-                <IconButton onClick={() => {this.like(post.id, auth.uid)}}>
+                <IconButton onClick={() => { this.like(post.id, auth.uid) }}>
                   {post.data.like ? post.data.like.includes(auth.uid) ? <LoveIcon color="secondary" /> : <FavIcon color="secondary" /> : <FavIcon color="secondary" />}
                 </IconButton>
-                <IconButton onClick={() => {this.book(post.id, auth.uid)}}>
+                <IconButton onClick={() => { this.book(post.id, auth.uid) }}>
                   {post.data.book ? post.data.book.includes(auth.uid) ? <BookedIcon color="disabled" /> : <BookmarkIcon color="disabled" /> : <BookmarkIcon color="disabled" />}
                 </IconButton>
               </Fragment> : null}
@@ -184,8 +185,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      like: (id, uid) => dispatch(like(id, uid)),
-      book: (id, uid) => dispatch(book(id, uid)),
+    like: (id, uid) => dispatch(like(id, uid)),
+    book: (id, uid) => dispatch(book(id, uid)),
   }
 }
 

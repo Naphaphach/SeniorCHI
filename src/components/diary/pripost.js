@@ -16,7 +16,23 @@ class Calendar extends Component {
   componentDidMount(){
     const { calendar } = this.refs;
 
-    $(calendar).fullCalendar({events: this.props.events});
+    $(calendar).fullCalendar({
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2019-02-05',
+          color: '#FF9933'
+        },
+        {
+          title: 'Long Event',
+          start: '2019-01-01',
+          color: '#FF9933'
+        }
+      ],
+      eventClick: function(event) {
+        alert('Event: ' + event.title);
+      }
+    });
     
   }
 
@@ -30,23 +46,7 @@ class Calendar extends Component {
 
 
 class PriPost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    events:[
-                {
-                    title: 'All Day Event',
-                    start: '2019-02-05',
-                    color: '#FF9933'
-                },
-                {
-                    title: 'Long Event',
-                    start: '2019-01-01',
-                    color: '#FF9933'
-                }
-            ],    
-    }
-  }
+ 
   render() {
     const { classes } = this.props
     
@@ -62,9 +62,6 @@ class PriPost extends Component {
        }}
        navLinks= {true} // can click day/week names to navigate views
        editable= {true}
-       eventLimit= {true} // allow "more" link when too many events
-        events={this.state.events} 
-        eventClick = {function(calEvent, jsEvent, view, resourceObj) {alert(calEvent.title)}}
         />
       </div>
     );

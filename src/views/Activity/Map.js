@@ -9,8 +9,7 @@ import { connect } from 'react-redux'
 import { changeState } from '../../store/actions/mapAction'
 import { Element, scroller } from 'react-scroll'
 import Result from '../../components/map/searchResult'
-// Create your Styles. Remember, since React-JSS uses the default preset,
-// most plugins are available without further configuration needed.
+
 const styles = {
     map:{
         width: '100%',

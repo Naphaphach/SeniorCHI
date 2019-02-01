@@ -6,22 +6,33 @@ import 'fullcalendar/dist/fullcalendar.js';
 
 const styles = theme => ({
   App: {
-    backgroundColor: '#ebebeb',
+    backgroundColor: '#FFFFCC',
     color: '#000000',
-  }
-  
+    fontSize: '14px'
+    
+  },
 });
 class Calendar extends Component {
 
   componentDidMount(){
     const { calendar } = this.refs;
-
+    
     $(calendar).fullCalendar({
+      header: {
+        left: 'prevYear, prev',
+        center: 'title,',
+        right: 'today, next, nextYear'
+      },
       events: [
         {
           title: 'All Day Event',
           start: '2019-02-05',
           color: '#FF9933'
+        },
+        {
+          title: 'All Event',
+          start: '2019-02-05',
+          color: '#FFCC66'
         },
         {
           title: 'Long Event',
@@ -31,9 +42,8 @@ class Calendar extends Component {
       ],
       eventClick: function(event) {
         alert('Event: ' + event.title);
-      }
+      },
     });
-    
   }
 
   render() {
@@ -46,23 +56,17 @@ class Calendar extends Component {
 
 
 class PriPost extends Component {
- 
   render() {
     const { classes } = this.props
-    
-
     return (
       <div className={classes.App}>
         <Calendar 
-        id = "your-custom-ID"
-        header = {{
-           left: 'prev,next today myCustomButton',
-           center: 'title',
-           right: 'month,basicWeek,basicDay'
-       }}
-       navLinks= {true} // can click day/week names to navigate views
-       editable= {true}
+          id = "your-custom-ID"
+          navLinks= {true} // can click day/week names to navigate views
+          editable= {true}
         />
+        
+        
       </div>
     );
   }

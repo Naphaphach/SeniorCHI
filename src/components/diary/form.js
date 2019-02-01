@@ -25,6 +25,7 @@ const styles = theme => ({
     colorChecked: {},
     root: {
         flexGrow: 1,
+        
     },
     paper: {
         [theme.breakpoints.up('sm')]: {
@@ -36,6 +37,7 @@ const styles = theme => ({
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
         color: 'navy',
+        borderColor: '#FF6633',
     },
     add: {
         fontSize: '2em'
@@ -187,7 +189,7 @@ class EditForm extends Component {
             <Grid container spacing={0}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <Typography variant="subtitle1" align="center"> Add New Diary </Typography>
+                        <Typography variant="title" align="center"> Add New Diary </Typography>
                         <FormGroup row align>
                             <FormControlLabel
                                 style={{ margin: 2 }}
@@ -291,6 +293,7 @@ class EditForm extends Component {
                                 required={this.state.public}
                                 margin="normal"
                                 variant="outlined"
+                                
                             >
                                 {state.map((option, i) => (
                                     <MenuItem key={i} value={option}>
